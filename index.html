@@ -134,19 +134,19 @@
 
     <!-- Floating Action Menu -->
     <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-end">
-        <button onclick="openBgCustomModal()" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md" style="background-color: #f7eff8; color: #82547d;">
+        <button onclick="openModal('bgCustomModal')" type="button" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md" style="background-color: #f7eff8; color: #82547d;">
             <i class="fa-solid fa-wand-magic-sparkles text-sm"></i> <span class="hidden sm:inline">แต่งพื้นหลังอิโมจิ/PNG</span>
         </button>
-        <button onclick="openThemeModal()" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md" style="background-color: #fff8f0; color: #b87333;">
+        <button onclick="openModal('themeModal')" type="button" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md" style="background-color: #fff8f0; color: #b87333;">
             <i class="fa-solid fa-palette text-sm"></i> <span class="hidden sm:inline">เปลี่ยนโทนสีเว็บ (15 โทน)</span>
         </button>
-        <button onclick="openAddGroupModal()" class="floating-cloud-btn font-bold px-5 py-3 rounded-full flex items-center gap-2.5 text-sm shadow-lg" style="background-color: var(--accent-color); color: white;">
+        <button onclick="openAddGroupModal()" type="button" class="floating-cloud-btn font-bold px-5 py-3 rounded-full flex items-center gap-2.5 text-sm shadow-lg" style="background-color: var(--accent-color); color: white;">
             <i class="fa-solid fa-cloud-arrow-up text-base"></i> <span class="hidden sm:inline">+ เปิดกล่องกลุ่มใหม่</span>
         </button>
-        <button onclick="openCategoryManagerModal()" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md">
+        <button onclick="openCategoryManagerModal()" type="button" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md">
             <i class="fa-solid fa-tags text-sm"></i> <span class="hidden sm:inline">จัดการประเภทกลุ่ม</span>
         </button>
-        <button onclick="openHeaderConfigModal()" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md">
+        <button onclick="openModal('headerConfigModal')" type="button" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md">
             <i class="fa-solid fa-paintbrush text-sm"></i> <span class="hidden sm:inline">ตั้งค่าแบนเนอร์</span>
         </button>
     </div>
@@ -156,26 +156,10 @@
         <div class="cloud-card bg-[#fffdf9] max-w-xl w-full p-6 md:p-8 text-center max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
                 <h3 class="text-xl font-bold" style="color: var(--text-main);">🎨 เลือกโทนสีพาสเทล (15 โทน)</h3>
-                <button onclick="closeThemeModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal('themeModal')" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
-                <button onclick="setTheme('peach')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #fff5f2; border-color: #f2d6cd; color: #a3655c;"><span class="w-4 h-4 rounded-full bg-[#f2a194]"></span> พีบอกอุ่น 🍑</button>
-                <button onclick="setTheme('mint')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f0f7f4; border-color: #c4ded5; color: #437a6b;"><span class="w-4 h-4 rounded-full bg-[#8bc3b0]"></span> มิ้นต์ละมุน 🌿</button>
-                <button onclick="setTheme('blue')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f0f4f8; border-color: #cbdbee; color: #486e96;"><span class="w-4 h-4 rounded-full bg-[#82abdb]"></span> ฟ้าพาสเทล 🐳</button>
-                <button onclick="setTheme('lavender')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f7f0f7; border-color: #e5cbdf; color: #82547d;"><span class="w-4 h-4 rounded-full bg-[#c898c1]"></span> ม่วงลาเวนเดอร์ 💜</button>
-                <button onclick="setTheme('butter')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #fcf9ec; border-color: #f0e2b6; color: #917c38;"><span class="w-4 h-4 rounded-full bg-[#e3cd71]"></span> เนยครีมวานิลลา 🧈</button>
-                <button onclick="setTheme('strawberry')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #fcf0f2; border-color: #f5cbd3; color: #a8465c;"><span class="w-4 h-4 rounded-full bg-[#e87d95]"></span> สตอเบอร์รี่นม 🍓</button>
-                <button onclick="setTheme('matcha')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f4f7f0; border-color: #d2e3bc; color: #637a43;"><span class="w-4 h-4 rounded-full bg-[#9bbd72]"></span> ชาเขียวมัทฉะ 🍵</button>
-                <button onclick="setTheme('milktea')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #faf5f0; border-color: #e6d3c2; color: #8a6449;"><span class="w-4 h-4 rounded-full bg-[#c49a78]"></span> ชานมไข่มุก 🧋</button>
-                <button onclick="setTheme('sakura')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #faf2f5; border-color: #ebd3de; color: #9e5b79;"><span class="w-4 h-4 rounded-full bg-[#db8fb3]"></span> ซากุระหวาน 🌸</button>
-                <button onclick="setTheme('lemon')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #fcfceb; border-color: #f2edb8; color: #8a8233;"><span class="w-4 h-4 rounded-full bg-[#ded46f]"></span> เลมอนโซดา 🍋</button>
-                <button onclick="setTheme('taro')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f7f2f8; border-color: #e2d0e5; color: #735178;"><span class="w-4 h-4 rounded-full bg-[#b588bc]"></span> เผือกหอมนุ่ม 🍠</button>
-                <button onclick="setTheme('sky')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f0f8ff; border-color: #cce3fd; color: #4373a6;"><span class="w-4 h-4 rounded-full bg-[#7fb3f0]"></span> ท้องฟ้าโปร่ง ☁️</button>
-                <button onclick="setTheme('rose')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #fcf2f4; border-color: #f5d0d9; color: #a35265;"><span class="w-4 h-4 rounded-full bg-[#e3859b]"></span> กุหลาบวินเทจ 🌹</button>
-                <button onclick="setTheme('cocoa')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f7f4f2; border-color: #e0d4cc; color: #735e52;"><span class="w-4 h-4 rounded-full bg-[#b09685]"></span> โกโก้อุ่นๆ ☕</button>
-                <button onclick="setTheme('melon')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f2fcf5; border-color: #d0f2dc; color: #478a5b;"><span class="w-4 h-4 rounded-full bg-[#82de9e]"></span> เมล่อนญี่ปุ่น 🍈</button>
-            </div>
-            <button onclick="closeThemeModal()" class="cloud-btn px-6 py-2.5 font-bold text-sm w-full" style="background-color: var(--accent-color); color: white;">เสร็จสิ้น</button>
+            <div id="themeButtonsContainer" class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6"></div>
+            <button onclick="closeModal('themeModal')" type="button" class="cloud-btn px-6 py-2.5 font-bold text-sm w-full" style="background-color: var(--accent-color); color: white;">เสร็จสิ้น</button>
         </div>
     </div>
 
@@ -184,14 +168,14 @@
         <div class="cloud-card bg-[#fffdf9] max-w-md w-full p-6 md:p-8">
             <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
                 <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
-                    <span style="color: var(--accent-color);"><i class="fa-solid fa-wand-magic-sparkles"></i></span> แต่งพื้นหลัง (เลือกหลายรูปได้)
+                    <span style="color: var(--accent-color);"><i class="fa-solid fa-wand-magic-sparkles"></i></span> แต่งพื้นหลัง
                 </h3>
-                <button onclick="closeBgCustomModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal('bgCustomModal')" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
             <div class="space-y-4">
                 <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">เลือกใส่อิโมจิฟุ้งๆ (เว้นว่างไว้ได้ถ้าไม่ใส่)</label>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">เลือกใส่อิโมจิฟุ้งๆ</label>
                     <input type="text" id="bgEmojiInput" placeholder="เช่น 🌸⭐🧸☁️🍓" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
                 </div>
                 <div>
@@ -201,7 +185,7 @@
                 <div class="flex justify-between items-center pt-3">
                     <button type="button" onclick="clearBackgroundDecor()" class="cloud-btn px-4 py-2 bg-[#fff2f2] text-[#d66868] text-xs font-bold rounded-xl">ลบลวดลายทั้งหมด</button>
                     <div class="flex gap-2">
-                        <button type="button" onclick="closeBgCustomModal()" class="cloud-btn px-4 py-2 font-bold text-sm">ยกเลิก</button>
+                        <button type="button" onclick="closeModal('bgCustomModal')" class="cloud-btn px-4 py-2 font-bold text-sm">ยกเลิก</button>
                         <button type="button" onclick="saveBackgroundDecor()" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึกพื้นหลัง</button>
                     </div>
                 </div>
@@ -216,15 +200,15 @@
                 <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
                     <span style="color: var(--accent-color);"><i class="fa-solid fa-paintbrush"></i></span> ตั้งค่าแบนเนอร์
                 </h3>
-                <button onclick="closeHeaderConfigModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal('headerConfigModal')" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-4">
                 <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">หัวข้อหลัก (Title) - เว้นว่างได้หากใส่แต่รูป</label>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">หัวข้อหลัก (Title)</label>
                     <input type="text" id="configTitle" placeholder="ปล่อยว่างไว้ได้ครับ" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
                 </div>
                 <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">คำโปรย / Subtitle - เว้นว่างได้หากใส่แต่รูป</label>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">คำโปรย / Subtitle</label>
                     <input type="text" id="configSubtitle" placeholder="ปล่อยว่างไว้ได้ครับ" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
                 </div>
                 <div>
@@ -235,8 +219,8 @@
                 <div class="flex justify-between items-center pt-3 border-t-2 border-dashed mt-4" style="border-color: var(--border-color);">
                     <button type="button" onclick="removeBannerImage()" class="cloud-btn px-4 py-2 bg-[#fff2f2] text-[#d66868] text-xs font-bold rounded-xl">ลบรูปแบนเนอร์ออก</button>
                     <div class="flex gap-2">
-                        <button type="button" onclick="closeHeaderConfigModal()" class="cloud-btn px-4 py-2 font-bold text-sm">ยกเลิก</button>
-                        <button type="button" onclick="saveHeaderConfig(event)" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึก</button>
+                        <button type="button" onclick="closeModal('headerConfigModal')" class="cloud-btn px-4 py-2 font-bold text-sm">ยกเลิก</button>
+                        <button type="button" onclick="saveHeaderConfig()" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึก</button>
                     </div>
                 </div>
             </div>
@@ -250,20 +234,20 @@
                 <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
                     <span><i class="fa-solid fa-tags"></i></span> จัดการประเภทกลุ่มสินค้า
                 </h3>
-                <button onclick="closeCategoryManagerModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeModal('categoryManagerModal')" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
             <div class="space-y-4">
                 <div class="flex gap-2">
                     <input type="text" id="newCategoryName" placeholder="เพิ่มชื่อประเภทใหม่..." class="flex-grow px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
-                    <button onclick="addNewCategory()" class="cloud-btn px-4 py-2.5 font-bold rounded-2xl text-sm whitespace-nowrap" style="background-color: var(--accent-color); color: white;">+ เพิ่ม</button>
+                    <button onclick="addNewCategory()" type="button" class="cloud-btn px-4 py-2.5 font-bold rounded-2xl text-sm whitespace-nowrap" style="background-color: var(--accent-color); color: white;">+ เพิ่ม</button>
                 </div>
 
                 <div class="max-h-60 overflow-y-auto space-y-2 pr-1 custom-scrollbar" id="categoryListContainer"></div>
             </div>
 
             <div class="pt-4 mt-4 border-t-2 border-dashed text-right" style="border-color: var(--border-color);">
-                <button onclick="closeCategoryManagerModal()" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm">ปิดหน้าต่าง</button>
+                <button onclick="closeModal('categoryManagerModal')" type="button" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm">ปิดหน้าต่าง</button>
             </div>
         </div>
     </div>
@@ -275,7 +259,7 @@
                 <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
                     <span style="color: var(--accent-color);"><i class="fa-solid fa-gift"></i></span> เพิ่มกล่องกลุ่มสินค้าใหม่
                 </h3>
-                <button onclick="closeAddGroupModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeAddGroupModal()" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="space-y-4">
                 <div>
@@ -303,8 +287,8 @@
                     <input type="file" id="newGroupCoverInput" accept="image/*" class="w-full text-xs cursor-pointer" style="color: var(--text-main);">
                 </div>
                 <div class="flex justify-end gap-3 pt-3">
-                    <button type="button" onclick="closeAddGroupModal()" class="cloud-btn px-5 py-2.5 font-bold rounded-2xl text-sm">ยกเลิก</button>
-                    <button type="button" onclick="saveNewGroupDirect()" class="cloud-btn px-6 py-2.5 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึกกล่อง</button>
+                    <button onclick="closeAddGroupModal()" type="button" class="cloud-btn px-5 py-2.5 font-bold rounded-2xl text-sm">ยกเลิก</button>
+                    <button onclick="saveNewGroupDirect()" type="button" class="cloud-btn px-6 py-2.5 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึกกล่อง</button>
                 </div>
             </div>
         </div>
@@ -321,7 +305,7 @@
                         <h2 id="modalGroupName" class="text-xl md:text-2xl font-extrabold" style="color: var(--text-main);"></h2>
                     </div>
                 </div>
-                <button onclick="closeDetailModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="closeDetailModal()" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
             <div class="overflow-y-auto custom-scrollbar flex-grow space-y-6 pr-1">
@@ -340,10 +324,10 @@
                     </div>
                     <div class="flex items-center justify-between flex-wrap gap-2">
                         <div class="flex gap-2">
-                            <button onclick="updateModalProgress(-1)" class="cloud-btn px-4 py-1.5 text-sm font-bold"> -1 งาน</button>
-                            <button onclick="updateModalProgress(1)" class="cloud-btn px-4 py-1.5 text-sm font-bold" style="background-color: var(--accent-color); color: white;"> +1 งาน</button>
+                            <button onclick="updateModalProgress(-1)" type="button" class="cloud-btn px-4 py-1.5 text-sm font-bold"> -1 งาน</button>
+                            <button onclick="updateModalProgress(1)" type="button" class="cloud-btn px-4 py-1.5 text-sm font-bold" style="background-color: var(--accent-color); color: white;"> +1 งาน</button>
                         </div>
-                        <button onclick="resetGroupProgress()" class="cloud-btn px-3 py-1.5 bg-[#fff2f2] text-[#d66868] text-xs font-bold"><i class="fa-solid fa-rotate-right mr-1"></i> รีเซ็ตเป็น 0</button>
+                        <button onclick="resetGroupProgress()" type="button" class="cloud-btn px-3 py-1.5 bg-[#fff2f2] text-[#d66868] text-xs font-bold"><i class="fa-solid fa-rotate-right mr-1"></i> รีเซ็ตเป็น 0</button>
                     </div>
                 </div>
 
@@ -353,7 +337,7 @@
                             <h4 class="font-bold text-base" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1" style="color: var(--accent-color);"></i> คลังอัลบั้มรูปภาพสำรอง</h4>
                             <p class="text-xs" style="color: var(--text-sub);">รูปทั้งหมดของกลุ่มนี้ กดดูและบันทึกกลับเครื่องได้ทันทีหากเผลอลบ</p>
                         </div>
-                        <label class="cloud-btn text-xs font-bold px-4 py-2 flex items-center gap-1.5" style="background-color: var(--btn-bg); color: var(--accent-color);">
+                        <label class="cloud-btn text-xs font-bold px-4 py-2 flex items-center gap-1.5 cursor-pointer" style="background-color: var(--btn-bg); color: var(--accent-color);">
                             <i class="fa-solid fa-cloud-arrow-up"></i> เพิ่มรูปในอัลบั้ม
                             <input type="file" multiple accept="image/*" class="hidden" onchange="handleAlbumUpload(event)">
                         </label>
@@ -364,31 +348,31 @@
             </div>
 
             <div class="pt-4 border-t-2 border-dashed mt-4 flex justify-between items-center" style="border-color: var(--border-color);">
-                <button onclick="deleteCurrentGroup()" class="cloud-btn px-4 py-2 bg-[#fff2f2] text-[#d66868] text-sm font-bold rounded-2xl flex items-center gap-1">
+                <button onclick="deleteCurrentGroup()" type="button" class="cloud-btn px-4 py-2 bg-[#fff2f2] text-[#d66868] text-sm font-bold rounded-2xl flex items-center gap-1">
                     <i class="fa-solid fa-trash-can"></i> ทิ้งกล่องกลุ่มนี้
                 </button>
-                <button onclick="closeDetailModal()" class="cloud-btn px-5 py-2 font-bold rounded-2xl">ปิดหน้าต่าง</button>
+                <button onclick="closeDetailModal()" type="button" class="cloud-btn px-5 py-2 font-bold rounded-2xl">ปิดหน้าต่าง</button>
             </div>
         </div>
     </div>
 
     <script>
         const themes = {
-            peach: { '--bg-main': '#fefcf9', '--card-bg': '#ffffff', '--border-color': '#f2d6cd', '--text-main': '#6b5b53', '--text-sub': '#9e8479', '--accent-color': '#f2a194', '--btn-bg': '#fff5f2' },
-            mint: { '--bg-main': '#f4faf7', '--card-bg': '#ffffff', '--border-color': '#c4ded5', '--text-main': '#3a5c52', '--text-sub': '#6c9689', '--accent-color': '#528575', '--btn-bg': '#e4f0ed' },
-            blue: { '--bg-main': '#f4f8fb', '--card-bg': '#ffffff', '--border-color': '#cbdbee', '--text-main': '#3b5675', '--text-sub': '#7492b5', '--accent-color': '#54789e', '--btn-bg': '#e6edf5' },
-            lavender: { '--bg-main': '#faf5f9', '--card-bg': '#ffffff', '--border-color': '#e5cbdf', '--text-main': '#684865', '--text-sub': '#9c7798', '--accent-color': '#965e91', '--btn-bg': '#f5e4f2' },
-            butter: { '--bg-main': '#fcfaf2', '--card-bg': '#ffffff', '--border-color': '#f0e2b6', '--text-main': '#6b5e32', '--text-sub': '#9e8c58', '--accent-color': '#a68a49', '--btn-bg': '#fcf3db' },
-            strawberry: { '--bg-main': '#fef8f9', '--card-bg': '#ffffff', '--border-color': '#f5cbd3', '--text-main': '#6b4049', '--text-sub': '#9e737b', '--accent-color': '#e87d95', '--btn-bg': '#fcf0f2' },
-            matcha: { '--bg-main': '#f7f9f4', '--card-bg': '#ffffff', '--border-color': '#d2e3bc', '--text-main': '#4e5c38', '--text-sub': '#819468', '--accent-color': '#9bbd72', '--btn-bg': '#f4f7f0' },
-            milktea: { '--bg-main': '#fcf9f5', '--card-bg': '#ffffff', '--border-color': '#e6d3c2', '--text-main': '#5e4838', '--text-sub': '#947a66', '--accent-color': '#c49a78', '--btn-bg': '#faf5f0' },
-            sakura: { '--bg-main': '#fcf5f8', '--card-bg': '#ffffff', '--border-color': '#ebd3de', '--text-main': '#6b4657', '--text-sub': '#9e7687', '--accent-color': '#db8fb3', '--btn-bg': '#faf2f5' },
-            lemon: { '--bg-main': '#fcfcf4', '--card-bg': '#ffffff', '--border-color': '#f2edb8', '--text-main': '#5c5833', '--text-sub': '#948e5c', '--accent-color': '#c7be52', '--btn-bg': '#fcfceb' },
-            taro: { '--bg-main': '#faf6fc', '--card-bg': '#ffffff', '--border-color': '#e2d0e5', '--text-main': '#5e4363', '--text-sub': '#927396', '--accent-color': '#a875af', '--btn-bg': '#f5ecf7' },
-            sky: { '--bg-main': '#f0f6ff', '--card-bg': '#ffffff', '--border-color': '#cce0fd', '--text-main': '#385c8a', '--text-sub': '#749bc7', '--accent-color': '#6398db', '--btn-bg': '#e3effc' },
-            rose: { '--bg-main': '#fcf4f6', '--card-bg': '#ffffff', '--border-color': '#f5d0d9', '--text-main': '#73404d', '--text-sub': '#a87380', '--accent-color': '#db7b93', '--btn-bg': '#f7e6eb' },
-            cocoa: { '--bg-main': '#f7f4f2', '--card-bg': '#ffffff', '--border-color': '#e0d4cc', '--text-main': '#59473d', '--text-sub': '#917c70', '--accent-color': '#a38370', '--btn-bg': '#ede6e1' },
-            melon: { '--bg-main': '#f2fcf5', '--card-bg': '#ffffff', '--border-color': '#d0f2dc', '--text-main': '#3b6e49', '--text-sub': '#74a883', '--accent-color': '#64c781', '--btn-bg': '#e1f7e7' }
+            peach: { name: 'พีบอกอุ่น 🍑', color: '#f2a194', '--bg-main': '#fefcf9', '--card-bg': '#ffffff', '--border-color': '#f2d6cd', '--text-main': '#6b5b53', '--text-sub': '#9e8479', '--accent-color': '#f2a194', '--btn-bg': '#fff5f2' },
+            mint: { name: 'มิ้นต์ละมุน 🌿', color: '#8bc3b0', '--bg-main': '#f4faf7', '--card-bg': '#ffffff', '--border-color': '#c4ded5', '--text-main': '#3a5c52', '--text-sub': '#6c9689', '--accent-color': '#528575', '--btn-bg': '#e4f0ed' },
+            blue: { name: 'ฟ้าพาสเทล 🐳', color: '#82abdb', '--bg-main': '#f4f8fb', '--card-bg': '#ffffff', '--border-color': '#cbdbee', '--text-main': '#3b5675', '--text-sub': '#7492b5', '--accent-color': '#54789e', '--btn-bg': '#e6edf5' },
+            lavender: { name: 'ม่วงลาเวนเดอร์ 💜', color: '#c898c1', '--bg-main': '#faf5f9', '--card-bg': '#ffffff', '--border-color': '#e5cbdf', '--text-main': '#684865', '--text-sub': '#9c7798', '--accent-color': '#965e91', '--btn-bg': '#f5e4f2' },
+            butter: { name: 'เนยครีมวานิลลา 🧈', color: '#e3cd71', '--bg-main': '#fcfaf2', '--card-bg': '#ffffff', '--border-color': '#f0e2b6', '--text-main': '#6b5e32', '--text-sub': '#9e8c58', '--accent-color': '#a68a49', '--btn-bg': '#fcf3db' },
+            strawberry: { name: 'สตอเบอร์รี่นม 🍓', color: '#e87d95', '--bg-main': '#fef8f9', '--card-bg': '#ffffff', '--border-color': '#f5cbd3', '--text-main': '#6b4049', '--text-sub': '#9e737b', '--accent-color': '#e87d95', '--btn-bg': '#fcf0f2' },
+            matcha: { name: 'ชาเขียวมัทฉะ 🍵', color: '#9bbd72', '--bg-main': '#f7f9f4', '--card-bg': '#ffffff', '--border-color': '#d2e3bc', '--text-main': '#4e5c38', '--text-sub': '#819468', '--accent-color': '#9bbd72', '--btn-bg': '#f4f7f0' },
+            milktea: { name: 'ชานมไข่มุก 🧋', color: '#c49a78', '--bg-main': '#fcf9f5', '--card-bg': '#ffffff', '--border-color': '#e6d3c2', '--text-main': '#5e4838', '--text-sub': '#947a66', '--accent-color': '#c49a78', '--btn-bg': '#faf5f0' },
+            sakura: { name: 'ซากุระหวาน 🌸', color: '#db8fb3', '--bg-main': '#fcf5f8', '--card-bg': '#ffffff', '--border-color': '#ebd3de', '--text-main': '#6b4657', '--text-sub': '#9e7687', '--accent-color': '#db8fb3', '--btn-bg': '#faf2f5' },
+            lemon: { name: 'เลมอนโซดา 🍋', color: '#ded46f', '--bg-main': '#fcfcf4', '--card-bg': '#ffffff', '--border-color': '#f2edb8', '--text-main': '#5c5833', '--text-sub': '#948e5c', '--accent-color': '#c7be52', '--btn-bg': '#fcfceb' },
+            taro: { name: 'เผือกหอมนุ่ม 🍠', color: '#b588bc', '--bg-main': '#faf6fc', '--card-bg': '#ffffff', '--border-color': '#e2d0e5', '--text-main': '#5e4363', '--text-sub': '#927396', '--accent-color': '#a875af', '--btn-bg': '#f5ecf7' },
+            sky: { name: 'ท้องฟ้าโปร่ง ☁️', color: '#7fb3f0', '--bg-main': '#f0f6ff', '--card-bg': '#ffffff', '--border-color': '#cce0fd', '--text-main': '#385c8a', '--text-sub': '#749bc7', '--accent-color': '#6398db', '--btn-bg': '#e3effc' },
+            rose: { name: 'กุหลาบวินเทจ 🌹', color: '#e3859b', '--bg-main': '#fcf4f6', '--card-bg': '#ffffff', '--border-color': '#f5d0d9', '--text-main': '#73404d', '--text-sub': '#a87380', '--accent-color': '#db7b93', '--btn-bg': '#f7e6eb' },
+            cocoa: { name: 'โกโก้อุ่นๆ ☕', color: '#b09685', '--bg-main': '#f7f4f2', '--card-bg': '#ffffff', '--border-color': '#e0d4cc', '--text-main': '#59473d', '--text-sub': '#917c70', '--accent-color': '#a38370', '--btn-bg': '#ede6e1' },
+            melon: { name: 'เมล่อนญี่ปุ่น 🍈', color: '#82de9e', '--bg-main': '#f2fcf5', '--card-bg': '#ffffff', '--border-color': '#d0f2dc', '--text-main': '#3b6e49', '--text-sub': '#74a883', '--accent-color': '#64c781', '--btn-bg': '#e1f7e7' }
         };
 
         function setTheme(themeName) {
@@ -396,10 +380,12 @@
             if (!theme) return;
             const root = document.documentElement;
             for (const key in theme) {
-                root.style.setProperty(key, theme[key]);
+                if (key.startsWith('--')) {
+                    root.style.setProperty(key, theme[key]);
+                }
             }
             localStorage.setItem('cloud_current_theme', themeName);
-            closeThemeModal();
+            closeModal('themeModal');
         }
 
         function loadSavedTheme() {
@@ -407,25 +393,42 @@
             setTheme(savedTheme);
         }
 
-        function openThemeModal() {
-            document.getElementById('themeModal').classList.remove('hidden');
-            document.getElementById('themeModal').classList.add('flex');
+        function renderThemeButtons() {
+            const container = document.getElementById('themeButtonsContainer');
+            if (!container) return;
+            container.innerHTML = Object.keys(themes).map(key => {
+                const t = themes[key];
+                return `<button type="button" onclick="setTheme('${key}')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: ${t['--btn-bg']}; border-color: ${t['--border-color']}; color: ${t['--text-main']};"><span class="w-4 h-4 rounded-full" style="background-color: ${t.color}"></span> ${t.name}</button>`;
+            }).join('');
         }
 
-        function closeThemeModal() {
-            document.getElementById('themeModal').classList.add('hidden');
-            document.getElementById('themeModal').classList.remove('flex');
+        function openModal(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.remove('hidden');
+                el.classList.add('flex');
+            }
         }
 
-        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v22')) || {
+        function closeModal(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.classList.add('hidden');
+                el.classList.remove('flex');
+            }
+        }
+
+        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v28')) || {
             emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
             pngUrls: []
         };
 
         function renderBackgroundDecor() {
             const layer = document.getElementById('bgStickersLayer');
+            if (!layer) return;
             layer.innerHTML = '';
-            document.getElementById('bgEmojiInput').value = bgDecorData.emojis;
+            const emojiInput = document.getElementById('bgEmojiInput');
+            if (emojiInput) emojiInput.value = bgDecorData.emojis;
 
             if (bgDecorData.pngUrls && bgDecorData.pngUrls.length > 0) {
                 for (let i = 0; i < 15; i++) {
@@ -441,7 +444,7 @@
                 }
             }
 
-            const rawEmojis = bgDecorData.emojis;
+            const rawEmojis = bgDecorData.emojis || '';
             const emojiList = [...rawEmojis].filter(e => e.trim() !== '');
 
             if (emojiList.length > 0) {
@@ -458,21 +461,12 @@
             }
         }
 
-        function openBgCustomModal() {
-            document.getElementById('bgCustomModal').classList.remove('hidden');
-            document.getElementById('bgCustomModal').classList.add('flex');
-        }
-
-        function closeBgCustomModal() {
-            document.getElementById('bgCustomModal').classList.add('hidden');
-            document.getElementById('bgCustomModal').classList.remove('flex');
-        }
-
         function saveBackgroundDecor() {
-            bgDecorData.emojis = document.getElementById('bgEmojiInput').value;
+            const emojiInput = document.getElementById('bgEmojiInput');
+            bgDecorData.emojis = emojiInput ? emojiInput.value : '';
             const fileInput = document.getElementById('bgPngInput');
 
-            if (fileInput.files && fileInput.files.length > 0) {
+            if (fileInput && fileInput.files && fileInput.files.length > 0) {
                 let loadedFilesCount = 0;
                 const newImages = [];
 
@@ -483,36 +477,36 @@
                         loadedFilesCount++;
                         if (loadedFilesCount === fileInput.files.length) {
                             bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
-                            localStorage.setItem('cloud_bg_decor_v22', JSON.stringify(bgDecorData));
+                            localStorage.setItem('cloud_bg_decor_v28', JSON.stringify(bgDecorData));
                             renderBackgroundDecor();
-                            closeBgCustomModal();
+                            closeModal('bgCustomModal');
                         }
                     };
                     reader.readAsDataURL(file);
                 }
             } else {
-                localStorage.setItem('cloud_bg_decor_v22', JSON.stringify(bgDecorData));
+                localStorage.setItem('cloud_bg_decor_v28', JSON.stringify(bgDecorData));
                 renderBackgroundDecor();
-                closeBgCustomModal();
+                closeModal('bgCustomModal');
             }
         }
 
         function clearBackgroundDecor() {
             bgDecorData.emojis = '';
             bgDecorData.pngUrls = [];
-            localStorage.setItem('cloud_bg_decor_v22', JSON.stringify(bgDecorData));
+            localStorage.setItem('cloud_bg_decor_v28', JSON.stringify(bgDecorData));
             renderBackgroundDecor();
-            closeBgCustomModal();
+            closeModal('bgCustomModal');
         }
 
-        let categories = JSON.parse(localStorage.getItem('cloud_categories_v22')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
-        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v22') || '';
-        let headerData = JSON.parse(localStorage.getItem('cloud_header_v22')) || {
+        let categories = JSON.parse(localStorage.getItem('cloud_categories_v28')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
+        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v28') || '';
+        let headerData = JSON.parse(localStorage.getItem('cloud_header_v28')) || {
             title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
             subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
         };
 
-        let groups = JSON.parse(localStorage.getItem('cloud_groups_v22')) || [
+        let groups = JSON.parse(localStorage.getItem('cloud_groups_v28')) || [
             {
                 id: 1,
                 name: 'ของตกแต่งห้องนอน Woody & Friends',
@@ -548,9 +542,14 @@
         }
 
         function saveAndRefresh() {
-            localStorage.setItem('cloud_categories_v22', JSON.stringify(categories));
-            localStorage.setItem('cloud_header_v22', JSON.stringify(headerData));
-            localStorage.setItem('cloud_groups_v22', JSON.stringify(groups));
+            try {
+                localStorage.setItem('cloud_categories_v28', JSON.stringify(categories));
+                localStorage.setItem('cloud_header_v28', JSON.stringify(headerData));
+                localStorage.setItem('cloud_groups_v28', JSON.stringify(groups));
+            } catch (e) {
+                alert('พื้นที่จัดเก็บข้อมูลเต็ม (LocalStorage Full) กรุณาลดขนาดภาพหรือลบบางรายการออกครับ');
+                return false;
+            }
 
             renderHeader();
             renderCategorySelectOptions();
@@ -561,6 +560,7 @@
                 const group = groups.find(g => g.id === currentActiveGroupId);
                 if (group) updateModalContent(group);
             }
+            return true;
         }
 
         function renderHeader() {
@@ -571,59 +571,56 @@
             const bannerImg = document.getElementById('bannerImageElement');
             const textContent = document.getElementById('headerTextContent');
             
-            document.getElementById('configTitle').value = headerData.title && headerData.title.includes('<span') ? headerData.title.replace(/<[^>]*>?/gm, '') : (headerData.title || '');
-            document.getElementById('configSubtitle').value = headerData.subtitle || '';
+            const configTitle = document.getElementById('configTitle');
+            const configSubtitle = document.getElementById('configSubtitle');
+
+            if (configTitle) configTitle.value = headerData.title && headerData.title.includes('<span') ? headerData.title.replace(/<[^>]*>?/gm, '') : (headerData.title || '');
+            if (configSubtitle) configSubtitle.value = headerData.subtitle || '';
 
             if (headerBannerUrl) {
-                bannerWrapper.classList.remove('hidden');
-                bannerImg.src = headerBannerUrl;
+                if (bannerWrapper) bannerWrapper.classList.remove('hidden');
+                if (bannerImg) bannerImg.src = headerBannerUrl;
 
                 if (!headerData.title && !headerData.subtitle) {
-                    titleEl.style.display = 'none';
-                    subtitleEl.style.display = 'none';
-                    badgeEl.style.display = 'none';
-                    textContent.style.display = 'none';
+                    if (titleEl) titleEl.style.display = 'none';
+                    if (subtitleEl) subtitleEl.style.display = 'none';
+                    if (badgeEl) badgeEl.style.display = 'none';
+                    if (textContent) textContent.style.display = 'none';
                 } else {
-                    titleEl.style.display = 'block';
-                    subtitleEl.style.display = 'block';
-                    badgeEl.style.display = 'inline-block';
-                    textContent.style.display = 'flex';
-                    textContent.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-                    textContent.style.borderRadius = '24px';
-                    textContent.style.padding = '1.5rem';
-                    textContent.style.margin = '1rem auto';
-                    textContent.style.width = 'calc(100% - 2rem)';
-                    textContent.style.border = '2px solid var(--border-color)';
-                    titleEl.innerHTML = headerData.title;
-                    subtitleEl.innerText = headerData.subtitle;
+                    if (titleEl) titleEl.style.display = 'block';
+                    if (subtitleEl) subtitleEl.style.display = 'block';
+                    if (badgeEl) badgeEl.style.display = 'inline-block';
+                    if (textContent) {
+                        textContent.style.display = 'flex';
+                        textContent.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                        textContent.style.borderRadius = '24px';
+                        textContent.style.padding = '1.5rem';
+                        textContent.style.margin = '1rem auto';
+                        textContent.style.width = 'calc(100% - 2rem)';
+                        textContent.style.border = '2px solid var(--border-color)';
+                    }
+                    if (titleEl) titleEl.innerHTML = headerData.title;
+                    if (subtitleEl) subtitleEl.innerText = headerData.subtitle;
                 }
             } else {
-                bannerWrapper.classList.add('hidden');
-                bannerImg.src = '';
-                textContent.style.display = 'flex';
-                textContent.style.backgroundColor = 'transparent';
-                textContent.style.padding = '2.5rem 1.5rem';
-                textContent.style.margin = '0 auto';
-                textContent.style.border = 'none';
-                titleEl.style.display = 'block';
-                subtitleEl.style.display = 'block';
-                badgeEl.style.display = 'inline-block';
-                titleEl.innerHTML = headerData.title || '';
-                subtitleEl.innerText = headerData.subtitle || '';
+                if (bannerWrapper) bannerWrapper.classList.add('hidden');
+                if (bannerImg) bannerImg.src = '';
+                if (textContent) {
+                    textContent.style.display = 'flex';
+                    textContent.style.backgroundColor = 'transparent';
+                    textContent.style.padding = '2.5rem 1.5rem';
+                    textContent.style.margin = '0 auto';
+                    textContent.style.border = 'none';
+                }
+                if (titleEl) titleEl.style.display = 'block';
+                if (subtitleEl) subtitleEl.style.display = 'block';
+                if (badgeEl) badgeEl.style.display = 'inline-block';
+                if (titleEl) titleEl.innerHTML = headerData.title || '';
+                if (subtitleEl) subtitleEl.innerText = headerData.subtitle || '';
             }
         }
 
-        function openHeaderConfigModal() {
-            document.getElementById('headerConfigModal').classList.remove('hidden');
-            document.getElementById('headerConfigModal').classList.add('flex');
-        }
-
-        function closeHeaderConfigModal() {
-            document.getElementById('headerConfigModal').classList.add('hidden');
-            document.getElementById('headerConfigModal').classList.remove('flex');
-        }
-
-        function saveHeaderConfig(e) {
+        function saveHeaderConfig() {
             const rawTitle = document.getElementById('configTitle').value.trim();
             const rawSubtitle = document.getElementById('configSubtitle').value.trim();
             
@@ -635,49 +632,42 @@
             headerData.subtitle = rawSubtitle;
 
             const fileInput = document.getElementById('configBannerInput');
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    headerBannerUrl = event.target.result;
+            if (fileInput && fileInput.files && fileInput.files[0]) {
+                compressImage(fileInput.files[0], 1200, 0.8, function(compressedUrl) {
+                    headerBannerUrl = compressedUrl;
                     try {
-                        localStorage.setItem('cloud_banner_blob_v22', headerBannerUrl);
+                        localStorage.setItem('cloud_banner_blob_v28', headerBannerUrl);
                     } catch (err) {}
                     saveAndRefresh();
-                    closeHeaderConfigModal();
-                };
-                reader.readAsDataURL(fileInput.files[0]);
+                    closeModal('headerConfigModal');
+                });
             } else {
                 saveAndRefresh();
-                closeHeaderConfigModal();
+                closeModal('headerConfigModal');
             }
         }
 
         function removeBannerImage() {
             headerBannerUrl = '';
-            localStorage.removeItem('cloud_banner_blob_v22');
+            localStorage.removeItem('cloud_banner_blob_v28');
             saveAndRefresh();
-            closeHeaderConfigModal();
+            closeModal('headerConfigModal');
         }
 
         function openCategoryManagerModal() {
             renderCategoryListInModal();
-            document.getElementById('categoryManagerModal').classList.remove('hidden');
-            document.getElementById('categoryManagerModal').classList.add('flex');
-        }
-
-        function closeCategoryManagerModal() {
-            document.getElementById('categoryManagerModal').classList.add('hidden');
-            document.getElementById('categoryManagerModal').classList.remove('flex');
+            openModal('categoryManagerModal');
         }
 
         function renderCategoryListInModal() {
             const container = document.getElementById('categoryListContainer');
+            if (!container) return;
             container.innerHTML = categories.map((cat, idx) => `
                 <div class="flex items-center justify-between p-2.5 rounded-2xl border-2" style="background-color: var(--bg-main); border-color: var(--border-color);">
                     <input type="text" value="${cat}" id="editCat_${idx}" class="bg-transparent text-sm font-bold focus:outline-none w-2/3" style="color: var(--text-main);">
                     <div class="flex gap-1.5">
-                        <button onclick="updateCategory(${idx})" class="cloud-btn px-3 py-1 text-xs font-bold" title="บันทึกชื่อใหม่">💾</button>
-                        ${categories.length > 1 ? `<button onclick="deleteCategory(${idx})" class="cloud-btn px-3 py-1 bg-[#fff2f2] text-[#d66868] text-xs font-bold" title="ลบประเภท">🗑️</button>` : ''}
+                        <button type="button" onclick="updateCategory(${idx})" class="cloud-btn px-3 py-1 text-xs font-bold" title="บันทึกชื่อใหม่">💾</button>
+                        ${categories.length > 1 ? `<button type="button" onclick="deleteCategory(${idx})" class="cloud-btn px-3 py-1 bg-[#fff2f2] text-[#d66868] text-xs font-bold" title="ลบประเภท">🗑️</button>` : ''}
                     </div>
                 </div>
             `).join('');
@@ -685,7 +675,7 @@
 
         function addNewCategory() {
             const input = document.getElementById('newCategoryName');
-            const val = input.value.trim();
+            const val = input ? input.value.trim() : '';
             if (val && !categories.includes(val)) {
                 categories.push(val);
                 input.value = '';
@@ -697,7 +687,8 @@
         }
 
         function updateCategory(idx) {
-            const newVal = document.getElementById(`editCat_${idx}`).value.trim();
+            const editInput = document.getElementById(`editCat_${idx}`);
+            const newVal = editInput ? editInput.value.trim() : '';
             if (newVal && !categories.includes(newVal)) {
                 const oldVal = categories[idx];
                 categories[idx] = newVal;
@@ -724,31 +715,68 @@
 
         function renderCategorySelectOptions() {
             const select = document.getElementById('newGroupCategory');
-            select.innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+            if (select) {
+                select.innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+            }
         }
 
         function openAddGroupModal() {
             renderCategorySelectOptions();
-            document.getElementById('addGroupModal').classList.remove('hidden');
-            document.getElementById('addGroupModal').classList.add('flex');
+            openModal('addGroupModal');
         }
 
         function closeAddGroupModal() {
-            document.getElementById('addGroupModal').classList.add('hidden');
-            document.getElementById('addGroupModal').classList.remove('flex');
-            document.getElementById('newGroupName').value = '';
-            document.getElementById('newGroupBrand').value = '';
-            document.getElementById('newGroupDesc').value = '';
-            document.getElementById('newGroupCoverInput').value = '';
+            closeModal('addGroupModal');
+            const nameEl = document.getElementById('newGroupName');
+            const brandEl = document.getElementById('newGroupBrand');
+            const descEl = document.getElementById('newGroupDesc');
+            const coverInput = document.getElementById('newGroupCoverInput');
+            if (nameEl) nameEl.value = '';
+            if (brandEl) brandEl.value = '';
+            if (descEl) descEl.value = '';
+            if (coverInput) coverInput.value = '';
+        }
+
+        // ฟังก์ชันบีบอัดรูปภาพเพื่อป้องกันหน่วยความจำเต็ม
+        function compressImage(file, maxWidth, quality, callback) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new Image();
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > maxWidth) {
+                        height = Math.round((height * maxWidth) / width);
+                        width = maxWidth;
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    const dataUrl = canvas.toDataURL('image/jpeg', quality);
+                    callback(dataUrl);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
         }
 
         function saveNewGroupDirect() {
-            const name = document.getElementById('newGroupName').value.trim();
-            const brand = document.getElementById('newGroupBrand').value.trim();
-            const category = document.getElementById('newGroupCategory').value;
-            const target = parseInt(document.getElementById('newGroupTarget').value) || 50;
-            const desc = document.getElementById('newGroupDesc').value.trim();
+            const nameEl = document.getElementById('newGroupName');
+            const brandEl = document.getElementById('newGroupBrand');
+            const categoryEl = document.getElementById('newGroupCategory');
+            const targetEl = document.getElementById('newGroupTarget');
+            const descEl = document.getElementById('newGroupDesc');
             const fileInput = document.getElementById('newGroupCoverInput');
+
+            const name = nameEl ? nameEl.value.trim() : '';
+            const brand = brandEl ? brandEl.value.trim() : '';
+            const category = categoryEl ? categoryEl.value : categories[0];
+            const target = targetEl ? (parseInt(targetEl.value) || 50) : 50;
+            const desc = descEl ? descEl.value.trim() : '';
 
             if (!name) {
                 alert('กรุณากรอกชื่อกลุ่มสินค้าด้วยครับ');
@@ -761,41 +789,42 @@
 
             const defaultImg = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80';
 
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    const coverUrl = event.target.result;
+            if (fileInput && fileInput.files && fileInput.files[0]) {
+                compressImage(fileInput.files[0], 800, 0.7, function(coverUrl) {
                     const newGroup = {
                         id: Date.now(),
-                        name,
-                        brand,
-                        category,
-                        target,
+                        name: name,
+                        brand: brand,
+                        category: category,
+                        target: target,
                         current: 0,
-                        desc,
+                        desc: desc,
                         coverImage: coverUrl,
                         images: [coverUrl]
                     };
-                    groups.push(newGroup);
-                    saveAndRefresh();
-                    closeAddGroupModal();
-                };
-                reader.readAsDataURL(fileInput.files[0]);
+                    groups.unshift(newGroup);
+                    const success = saveAndRefresh();
+                    if (success) {
+                        closeAddGroupModal();
+                    }
+                });
             } else {
                 const newGroup = {
                     id: Date.now(),
-                    name,
-                    brand,
-                    category,
-                    target,
+                    name: name,
+                    brand: brand,
+                    category: category,
+                    target: target,
                     current: 0,
-                    desc,
+                    desc: desc,
                     coverImage: defaultImg,
                     images: [defaultImg]
                 };
-                groups.push(newGroup);
-                saveAndRefresh();
-                closeAddGroupModal();
+                groups.unshift(newGroup);
+                const success = saveAndRefresh();
+                if (success) {
+                    closeAddGroupModal();
+                }
             }
         }
 
@@ -805,46 +834,54 @@
             if (!group) return;
 
             updateModalContent(group);
-            document.getElementById('detailModal').classList.remove('hidden');
-            document.getElementById('detailModal').classList.add('flex');
+            openModal('detailModal');
         }
 
         function closeDetailModal() {
-            document.getElementById('detailModal').classList.add('hidden');
-            document.getElementById('detailModal').classList.remove('flex');
+            closeModal('detailModal');
             currentActiveGroupId = null;
         }
 
         function updateModalContent(group) {
-            document.getElementById('modalGroupName').innerText = group.name;
-            document.getElementById('modalBrandText').innerText = group.brand;
-            document.getElementById('modalGroupDesc').innerText = group.desc || 'ไม่มีรายละเอียดเพิ่มเติม';
+            const nameEl = document.getElementById('modalGroupName');
+            const brandEl = document.getElementById('modalBrandText');
+            const descEl = document.getElementById('modalGroupDesc');
+            const badge = document.getElementById('modalCategoryBadge');
+            const progressText = document.getElementById('modalProgressText');
+            const progressBar = document.getElementById('modalProgressBar');
+            const albumGrid = document.getElementById('modalAlbumGrid');
+
+            if (nameEl) nameEl.innerText = group.name;
+            if (brandEl) brandEl.innerText = group.brand;
+            if (descEl) descEl.innerText = group.desc || 'ไม่มีรายละเอียดเพิ่มเติม';
             
             const catStyle = getCategoryStyle(group.category);
-            const badge = document.getElementById('modalCategoryBadge');
-            badge.innerText = group.category;
-            badge.style.backgroundColor = catStyle.bg;
-            badge.style.color = catStyle.text;
-
-            const percent = Math.min(100, Math.round((group.current / group.target) * 100));
-            document.getElementById('modalProgressText').innerText = `${group.current} / ${group.target} งาน (${percent}%)`;
-            document.getElementById('modalProgressBar').style.width = `${percent}%`;
-
-            const albumGrid = document.getElementById('modalAlbumGrid');
-            if (group.images.length === 0) {
-                albumGrid.innerHTML = `<p class="col-span-full text-center text-xs py-6 font-medium" style="color: var(--text-sub);">ยังไม่มีรูปสำรองในอัลบั้ม กดปุ่มเพิ่มรูปด้านบนได้เลยครับ</p>`;
-                return;
+            if (badge) {
+                badge.innerText = group.category;
+                badge.style.backgroundColor = catStyle.bg;
+                badge.style.color = catStyle.text;
             }
 
-            albumGrid.innerHTML = group.images.map((img, idx) => `
-                <div class="relative group aspect-square rounded-2xl overflow-hidden border-2 shadow-xs" style="background-color: var(--bg-main); border-color: var(--border-color);">
-                    <img src="${img}" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
-                        <a href="${img}" download="backup_${group.name}_${idx}.png" class="cloud-btn p-2 bg-white text-xs" title="บันทึกรูปนี้ลงเครื่อง"><i class="fa-solid fa-download"></i></a>
-                        <button onclick="deleteAlbumImage(${idx})" class="cloud-btn p-2 bg-[#fff2f2] text-[#d66868] text-xs" title="ลบรูป"><i class="fa-solid fa-trash"></i></button>
+            const percent = Math.min(100, Math.round((group.current / group.target) * 100));
+            if (progressText) progressText.innerText = `${group.current} / ${group.target} งาน (${percent}%)`;
+            if (progressBar) progressBar.style.width = `${percent}%`;
+
+            if (albumGrid) {
+                if (group.images.length === 0) {
+                    albumGrid.innerHTML = `<p class="col-span-full text-center text-xs py-6 font-medium" style="color: var(--text-sub);">ยังไม่มีรูปสำรองในอัลบั้ม กดปุ่มเพิ่มรูปด้านบนได้เลยครับ</p>`;
+                    return;
+                }
+
+                albumGrid.innerHTML = group.images.map((img, idx) => `
+                    <div class="relative group aspect-square rounded-2xl overflow-hidden border-2 shadow-xs" style="background-color: var(--bg-main); border-color: var(--border-color);">
+                        <img src="${img}" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
+                            <a href="${img}" download="backup_${group.name}_${idx}.png" class="cloud-btn p-2 bg-white text-xs" title="บันทึกรูปนี้ลงเครื่อง"><i class="fa-solid fa-download"></i></a>
+                            <button type="button" onclick="deleteAlbumImage(${idx})" class="cloud-btn p-2 bg-[#fff2f2] text-[#d66868] text-xs" title="ลบรูป"><i class="fa-solid fa-trash"></i></button>
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            }
         }
 
         function updateModalProgress(change) {
@@ -876,19 +913,17 @@
         function handleAlbumUpload(event) {
             const files = event.target.files;
             const group = groups.find(g => g.id === currentActiveGroupId);
-            if (!group) return;
+            if (!group || !files) return;
 
             let loadedCount = 0;
             for (let file of files) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    group.images.push(e.target.result);
+                compressImage(file, 800, 0.7, function(compressedUrl) {
+                    group.images.push(compressedUrl);
                     loadedCount++;
                     if (loadedCount === files.length) {
                         saveAndRefresh();
                     }
-                };
-                reader.readAsDataURL(file);
+                });
             }
         }
 
@@ -908,19 +943,22 @@
 
         function renderCategoryTabs() {
             const tabsContainer = document.getElementById('categoryTabs');
+            if (!tabsContainer) return;
             const allCats = ['all', ...categories];
             
             tabsContainer.innerHTML = allCats.map(cat => {
                 const label = cat === 'all' ? '✨ ทั้งหมดทุกกลุ่ม' : cat;
                 const isActive = currentCategoryFilter === cat;
                 const activeStyle = isActive ? 'background-color: var(--accent-color); color: white;' : 'background-color: var(--card-bg); color: var(--text-main);';
-                return `<button onclick="setCategoryFilter('${cat}')" class="cloud-btn px-4 py-2 text-xs font-bold transition" style="${activeStyle}">${label}</button>`;
+                return `<button type="button" onclick="setCategoryFilter('${cat}')" class="cloud-btn px-4 py-2 text-xs font-bold transition" style="${activeStyle}">${label}</button>`;
             }).join('');
         }
 
         function renderGroups() {
-            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const searchInput = document.getElementById('searchInput');
+            const searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
             const grid = document.getElementById('groupGrid');
+            if (!grid) return;
 
             let filtered = groups.filter(g => {
                 const matchesCategory = currentCategoryFilter === 'all' || g.category === currentCategoryFilter;
@@ -983,6 +1021,7 @@
             }).join('');
         }
 
+        renderThemeButtons();
         loadSavedTheme();
         renderBackgroundDecor();
         saveAndRefresh();
