@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>☁️ Cloud Toy Box - เลขาสุดนุ่มฟูสไตล์พาสเทล</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-main: #fefcf9;
+            --card-bg: #ffffff;
+            --border-color: #f2d6cd;
+            --text-main: #6b5b53;
+            --text-sub: #9e8479;
+            --accent-color: #f2a194;
+            --btn-bg: #fff5f2;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        #bgStickersLayer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .floating-bg-item {
+            position: absolute;
+            user-select: none;
+            opacity: 0.45;
+            animation: floatSlow 7s ease-in-out infinite alternate;
+        }
+        @keyframes floatSlow {
+            0% { transform: translateY(0px) rotate(0deg) scale(1); }
+            100% { transform: translateY(-20px) rotate(10deg) scale(1.05); }
+        }
+
+        .cloud-card {
+            background: var(--card-bg);
+            border: 2.5px solid var(--border-color);
+            border-radius: 32px;
+            box-shadow: 0 12px 30px -10px rgba(220, 180, 170, 0.2);
+            transition: all 0.3s ease;
+        }
+        .cloud-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 35px -8px rgba(220, 180, 170, 0.3);
+        }
+
+        .cloud-btn {
+            background: var(--btn-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 9999px;
+            box-shadow: 0 6px 15px -3px rgba(230, 190, 180, 0.2);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+        .cloud-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -3px rgba(230, 190, 180, 0.35);
+        }
+        .cloud-btn:active {
+            transform: translateY(1px);
+        }
+
+        .floating-cloud-btn {
+            background: var(--card-bg);
+            border: 2.5px solid var(--border-color);
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px -5px rgba(210, 170, 160, 0.25);
+            transition: all 0.25s ease;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+        .floating-cloud-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 30px -5px rgba(210, 170, 160, 0.4);
+        }
+
+        .soft-tag {
+            border: 1.5px dashed var(--border-color);
+            background: var(--bg-main);
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 pb-28">
+
+    <div id="bgStickersLayer"></div>
+
+    <div class="max-w-5xl mx-auto">
+        <!-- ส่วนหัว / แบนเนอร์ -->
+        <header id="mainHeader" class="cloud-card mb-8 overflow-hidden transition-all duration-300">
+            <div id="bannerWrapper" class="w-full hidden">
+                <img id="bannerImageElement" src="" class="w-full h-auto max-h-[450px] object-cover block">
+            </div>
+            <div id="headerTextContent" class="p-6 md:p-10 flex flex-col justify-center items-center text-center max-w-xl mx-auto">
+                <div id="headerBadge" class="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-3 shadow-sm" style="background-color: var(--accent-color);">
+                    ☁️ SOFT PASTEL SECRETARY
+                </div>
+                <h1 id="headerTitle" class="text-3xl md:text-5xl font-extrabold tracking-wide" style="color: var(--text-main);">
+                    Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸
+                </h1>
+                <p id="headerSubtitle" class="text-sm md:text-base mt-2 font-medium" style="color: var(--text-sub);">
+                    into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา
+                </p>
+            </div>
+        </header>
+
+        <div class="cloud-card p-4 md:p-5 mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
+            <div id="categoryTabs" class="flex flex-wrap gap-2.5 w-full md:w-auto"></div>
+            <div class="relative w-full md:w-80">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-4" style="color: var(--text-sub);"><i class="fa-solid fa-search"></i></span>
+                <input type="text" id="searchInput" oninput="renderGroups()" placeholder="ค้นหาชื่อกลุ่ม หรือเครือแบรนด์..." class="w-full pl-11 pr-4 py-2.5 rounded-full text-sm font-medium focus:outline-none transition" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+            </div>
+        </div>
+
+        <div id="groupGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+
+    <!-- Floating Action Menu -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-end">
+        <button onclick="openBgCustomModal()" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md" style="background-color: #f7eff8; color: #82547d;">
+            <i class="fa-solid fa-wand-magic-sparkles text-sm"></i> <span class="hidden sm:inline">แต่งพื้นหลังอิโมจิ/PNG</span>
+        </button>
+        <button onclick="openThemeModal()" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md" style="background-color: #fff8f0; color: #b87333;">
+            <i class="fa-solid fa-palette text-sm"></i> <span class="hidden sm:inline">เปลี่ยนโทนสีเว็บ (15 โทน)</span>
+        </button>
+        <button onclick="openAddGroupModal()" class="floating-cloud-btn font-bold px-5 py-3 rounded-full flex items-center gap-2.5 text-sm shadow-lg" style="background-color: var(--accent-color); color: white;">
+            <i class="fa-solid fa-cloud-arrow-up text-base"></i> <span class="hidden sm:inline">+ เปิดกล่องกลุ่มใหม่</span>
+        </button>
+        <button onclick="openCategoryManagerModal()" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md">
+            <i class="fa-solid fa-tags text-sm"></i> <span class="hidden sm:inline">จัดการประเภทกลุ่ม</span>
+        </button>
+        <button onclick="openHeaderConfigModal()" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md">
+            <i class="fa-solid fa-paintbrush text-sm"></i> <span class="hidden sm:inline">ตั้งค่าแบนเนอร์</span>
+        </button>
+    </div>
+
+    <!-- Modal: เลือกโทนสีเว็บ -->
+    <div id="themeModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+        <div class="cloud-card bg-[#fffdf9] max-w-xl w-full p-6 md:p-8 text-center max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
+                <h3 class="text-xl font-bold" style="color: var(--text-main);">🎨 เลือกโทนสีพาสเทล (15 โทน)</h3>
+                <button onclick="closeThemeModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+                <button onclick="setTheme('peach')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #fff5f2; border-color: #f2d6cd; color: #a3655c;"><span class="w-4 h-4 rounded-full bg-[#f2a194]"></span> พีบอกอุ่น 🍑</button>
+                <button onclick="setTheme('mint')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f0f7f4; border-color: #c4ded5; color: #437a6b;"><span class="w-4 h-4 rounded-full bg-[#8bc3b0]"></span> มิ้นต์ละมุน 🌿</button>
+                <button onclick="setTheme('blue')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f0f4f8; border-color: #cbdbee; color: #486e96;"><span class="w-4 h-4 rounded-full bg-[#82abdb]"></span> ฟ้าพาสเทล 🐳</button>
+                <button onclick="setTheme('lavender')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f7f0f7; border-color: #e5cbdf; color: #82547d;"><span class="w-4 h-4 rounded-full bg-[#c898c1]"></span> ม่วงลาเวนเดอร์ 💜</button>
+                <button onclick="setTheme('butter')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #fcf9ec; border-color: #f0e2b6; color: #917c38;"><span class="w-4 h-4 rounded-full bg-[#e3cd71]"></span> เนยครีมวานิลลา 🧈</button>
+                <button onclick="setTheme('strawberry')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #fcf0f2; border-color: #f5cbd3; color: #a8465c;"><span class="w-4 h-4 rounded-full bg-[#e87d95]"></span> สตอเบอร์รี่นม 🍓</button>
+                <button onclick="setTheme('matcha')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f4f7f0; border-color: #d2e3bc; color: #637a43;"><span class="w-4 h-4 rounded-full bg-[#9bbd72]"></span> ชาเขียวมัทฉะ 🍵</button>
+                <button onclick="setTheme('milktea')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #faf5f0; border-color: #e6d3c2; color: #8a6449;"><span class="w-4 h-4 rounded-full bg-[#c49a78]"></span> ชานมไข่มุก 🧋</button>
+                <button onclick="setTheme('sakura')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #faf2f5; border-color: #ebd3de; color: #9e5b79;"><span class="w-4 h-4 rounded-full bg-[#db8fb3]"></span> ซากุระหวาน 🌸</button>
+                <button onclick="setTheme('lemon')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #fcfceb; border-color: #f2edb8; color: #8a8233;"><span class="w-4 h-4 rounded-full bg-[#ded46f]"></span> เลมอนโซดา 🍋</button>
+                <button onclick="setTheme('taro')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f7f2f8; border-color: #e2d0e5; color: #735178;"><span class="w-4 h-4 rounded-full bg-[#b588bc]"></span> เผือกหอมนุ่ม 🍠</button>
+                <button onclick="setTheme('sky')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f0f8ff; border-color: #cce3fd; color: #4373a6;"><span class="w-4 h-4 rounded-full bg-[#7fb3f0]"></span> ท้องฟ้าโปร่ง ☁️</button>
+                <button onclick="setTheme('rose')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #fcf2f4; border-color: #f5d0d9; color: #a35265;"><span class="w-4 h-4 rounded-full bg-[#e3859b]"></span> กุหลาบวินเทจ 🌹</button>
+                <button onclick="setTheme('cocoa')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f7f4f2; border-color: #e0d4cc; color: #735e52;"><span class="w-4 h-4 rounded-full bg-[#b09685]"></span> โกโก้อุ่นๆ ☕</button>
+                <button onclick="setTheme('melon')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: #f2fcf5; border-color: #d0f2dc; color: #478a5b;"><span class="w-4 h-4 rounded-full bg-[#82de9e]"></span> เมล่อนญี่ปุ่น 🍈</button>
+            </div>
+            <button onclick="closeThemeModal()" class="cloud-btn px-6 py-2.5 font-bold text-sm w-full" style="background-color: var(--accent-color); color: white;">เสร็จสิ้น</button>
+        </div>
+    </div>
+
+    <!-- Modal: แต่งพื้นหลังอิโมจิ / รูป PNG -->
+    <div id="bgCustomModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+        <div class="cloud-card bg-[#fffdf9] max-w-md w-full p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
+                <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
+                    <span style="color: var(--accent-color);"><i class="fa-solid fa-wand-magic-sparkles"></i></span> แต่งพื้นหลัง (เลือกหลายรูปได้)
+                </h3>
+                <button onclick="closeBgCustomModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">เลือกใส่อิโมจิฟุ้งๆ (เว้นว่างไว้ได้ถ้าไม่ใส่)</label>
+                    <input type="text" id="bgEmojiInput" placeholder="เช่น 🌸⭐🧸☁️🍓" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">อัพโหลดรูป PNG หลายรูปพร้อมกัน</label>
+                    <input type="file" id="bgPngInput" accept="image/png, image/*" multiple class="w-full text-xs cursor-pointer" style="color: var(--text-main);">
+                </div>
+                <div class="flex justify-between items-center pt-3">
+                    <button type="button" onclick="clearBackgroundDecor()" class="cloud-btn px-4 py-2 bg-[#fff2f2] text-[#d66868] text-xs font-bold rounded-xl">ลบลวดลายทั้งหมด</button>
+                    <div class="flex gap-2">
+                        <button type="button" onclick="closeBgCustomModal()" class="cloud-btn px-4 py-2 font-bold text-sm">ยกเลิก</button>
+                        <button type="button" onclick="saveBackgroundDecor()" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึกพื้นหลัง</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: ตั้งค่าแบนเนอร์ -->
+    <div id="headerConfigModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+        <div class="cloud-card bg-[#fffdf9] max-w-md w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
+                <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
+                    <span style="color: var(--accent-color);"><i class="fa-solid fa-paintbrush"></i></span> ตั้งค่าแบนเนอร์
+                </h3>
+                <button onclick="closeHeaderConfigModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="saveHeaderConfig(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">หัวข้อหลัก (Title) - เว้นว่างได้หากใส่แต่รูป</label>
+                    <input type="text" id="configTitle" placeholder="ปล่อยว่างไว้ได้ครับ" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">คำโปรย / Subtitle - เว้นว่างได้หากใส่แต่รูป</label>
+                    <input type="text" id="configSubtitle" placeholder="ปล่อยว่างไว้ได้ครับ" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">อัพโหลดรูปแบนเนอร์</label>
+                    <input type="file" id="configBannerInput" accept="image/*" class="w-full text-xs cursor-pointer" style="color: var(--text-main);">
+                </div>
+
+                <div class="flex justify-between items-center pt-3 border-t-2 border-dashed mt-4" style="border-color: var(--border-color);">
+                    <button type="button" onclick="removeBannerImage()" class="cloud-btn px-4 py-2 bg-[#fff2f2] text-[#d66868] text-xs font-bold rounded-xl">ลบรูปแบนเนอร์ออก</button>
+                    <div class="flex gap-2">
+                        <button type="button" onclick="closeHeaderConfigModal()" class="cloud-btn px-4 py-2 font-bold text-sm">ยกเลิก</button>
+                        <button type="submit" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึก</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: จัดการประเภทกลุ่ม -->
+    <div id="categoryManagerModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+        <div class="cloud-card bg-[#fffdf9] max-w-md w-full p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
+                <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
+                    <span><i class="fa-solid fa-tags"></i></span> จัดการประเภทกลุ่มสินค้า
+                </h3>
+                <button onclick="closeCategoryManagerModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="flex gap-2">
+                    <input type="text" id="newCategoryName" placeholder="เพิ่มชื่อประเภทใหม่..." class="flex-grow px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                    <button onclick="addNewCategory()" class="cloud-btn px-4 py-2.5 font-bold rounded-2xl text-sm whitespace-nowrap" style="background-color: var(--accent-color); color: white;">+ เพิ่ม</button>
+                </div>
+
+                <div class="max-h-60 overflow-y-auto space-y-2 pr-1 custom-scrollbar" id="categoryListContainer"></div>
+            </div>
+
+            <div class="pt-4 mt-4 border-t-2 border-dashed text-right" style="border-color: var(--border-color);">
+                <button onclick="closeCategoryManagerModal()" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm">ปิดหน้าต่าง</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: เพิ่มกลุ่มใหม่ -->
+    <div id="addGroupModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+        <div class="cloud-card bg-[#fffdf9] max-w-lg w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
+                <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
+                    <span style="color: var(--accent-color);"><i class="fa-solid fa-gift"></i></span> เพิ่มกล่องกลุ่มสินค้าใหม่
+                </h3>
+                <button onclick="closeAddGroupModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="saveNewGroup(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ชื่อกลุ่มสินค้า</label>
+                    <input type="text" id="newGroupName" required placeholder="เช่น น้องมะเขือเทศพาสเทลแต่งห้อง" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ชื่อเครือ / แบรนด์สังกัด</label>
+                    <input type="text" id="newGroupBrand" required placeholder="เช่น MochiMochi Studio" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ประเภทกลุ่ม</label>
+                    <select id="newGroupCategory" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);"></select>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">จำนวนงานเป้าหมาย (ค่ามาตรฐาน 50 งาน)</label>
+                    <input type="number" id="newGroupTarget" value="50" min="1" required class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">รายละเอียดเพิ่มเติม / โน้ตกลุ่ม</label>
+                    <textarea id="newGroupDesc" rows="2" placeholder="ใส่รายละเอียดลิงก์ หรือโน้ตเตือนความจำที่นี่..." class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">รูปหน้าปกกล่อง (Cover Image)</label>
+                    <input type="file" id="newGroupCoverInput" accept="image/*" required class="w-full text-xs cursor-pointer" style="color: var(--text-main);">
+                </div>
+                <div class="flex justify-end gap-3 pt-3">
+                    <button type="button" onclick="closeAddGroupModal()" class="cloud-btn px-5 py-2.5 font-bold rounded-2xl text-sm">ยกเลิก</button>
+                    <button type="submit" class="cloud-btn px-6 py-2.5 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึกกล่อง</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: รายละเอียดกล่อง & อัลบั้มสำรอง -->
+    <div id="detailModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
+        <div class="cloud-card bg-[#fffdf9] max-w-2xl w-full p-6 md:p-8 max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center pb-4 border-b-2 border-dashed mb-4" style="border-color: var(--border-color);">
+                <div class="flex items-center gap-3">
+                    <span id="modalCategoryBadge" class="text-xs font-bold px-3 py-1 rounded-full border" style="border-color: var(--border-color);"></span>
+                    <div>
+                        <span id="modalBrandText" class="text-xs font-bold uppercase" style="color: var(--text-sub);"></span>
+                        <h2 id="modalGroupName" class="text-xl md:text-2xl font-extrabold" style="color: var(--text-main);"></h2>
+                    </div>
+                </div>
+                <button onclick="closeDetailModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="overflow-y-auto custom-scrollbar flex-grow space-y-6 pr-1">
+                <div class="soft-tag p-4 rounded-2xl">
+                    <span class="text-xs font-bold block mb-1" style="color: var(--text-sub);"><i class="fa-solid fa-note-sticky mr-1"></i> รายละเอียด / โน้ตกลุ่ม:</span>
+                    <p id="modalGroupDesc" class="text-sm font-medium whitespace-pre-wrap" style="color: var(--text-main);">ไม่มีรายละเอียดเพิ่มเติม</p>
+                </div>
+
+                <div class="p-4 rounded-2xl border-2 shadow-xs" style="background-color: var(--bg-main); border-color: var(--border-color);">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-bold" style="color: var(--text-main);">สถานะความสำเร็จของงาน</span>
+                        <span id="modalProgressText" class="text-sm font-extrabold" style="color: var(--accent-color);"></span>
+                    </div>
+                    <div class="w-full h-4 rounded-full overflow-hidden mb-4 border" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                        <div id="modalProgressBar" class="h-full transition-all duration-300" style="background-color: var(--accent-color); width: 0%"></div>
+                    </div>
+                    <div class="flex items-center justify-between flex-wrap gap-2">
+                        <div class="flex gap-2">
+                            <button onclick="updateModalProgress(-1)" class="cloud-btn px-4 py-1.5 text-sm font-bold"> -1 งาน</button>
+                            <button onclick="updateModalProgress(1)" class="cloud-btn px-4 py-1.5 text-sm font-bold" style="background-color: var(--accent-color); color: white;"> +1 งาน</button>
+                        </div>
+                        <button onclick="resetGroupProgress()" class="cloud-btn px-3 py-1.5 bg-[#fff2f2] text-[#d66868] text-xs font-bold"><i class="fa-solid fa-rotate-right mr-1"></i> รีเซ็ตเป็น 0</button>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <div>
+                            <h4 class="font-bold text-base" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1" style="color: var(--accent-color);"></i> คลังอัลบั้มรูปภาพสำรอง</h4>
+                            <p class="text-xs" style="color: var(--text-sub);">รูปทั้งหมดของกลุ่มนี้ กดดูและบันทึกกลับเครื่องได้ทันทีหากเผลอลบ</p>
+                        </div>
+                        <label class="cloud-btn text-xs font-bold px-4 py-2 flex items-center gap-1.5" style="background-color: var(--btn-bg); color: var(--accent-color);">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> เพิ่มรูปในอัลบั้ม
+                            <input type="file" multiple accept="image/*" class="hidden" onchange="handleAlbumUpload(event)">
+                        </label>
+                    </div>
+
+                    <div id="modalAlbumGrid" class="grid grid-cols-3 md:grid-cols-4 gap-3 max-h-60 overflow-y-auto p-1 custom-scrollbar"></div>
+                </div>
+            </div>
+
+            <div class="pt-4 border-t-2 border-dashed mt-4 flex justify-between items-center" style="border-color: var(--border-color);">
+                <button onclick="deleteCurrentGroup()" class="cloud-btn px-4 py-2 bg-[#fff2f2] text-[#d66868] text-sm font-bold rounded-2xl flex items-center gap-1">
+                    <i class="fa-solid fa-trash-can"></i> ทิ้งกล่องกลุ่มนี้
+                </button>
+                <button onclick="closeDetailModal()" class="cloud-btn px-5 py-2 font-bold rounded-2xl">ปิดหน้าต่าง</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const themes = {
+            peach: { '--bg-main': '#fefcf9', '--card-bg': '#ffffff', '--border-color': '#f2d6cd', '--text-main': '#6b5b53', '--text-sub': '#9e8479', '--accent-color': '#f2a194', '--btn-bg': '#fff5f2' },
+            mint: { '--bg-main': '#f4faf7', '--card-bg': '#ffffff', '--border-color': '#c4ded5', '--text-main': '#3a5c52', '--text-sub': '#6c9689', '--accent-color': '#528575', '--btn-bg': '#e4f0ed' },
+            blue: { '--bg-main': '#f4f8fb', '--card-bg': '#ffffff', '--border-color': '#cbdbee', '--text-main': '#3b5675', '--text-sub': '#7492b5', '--accent-color': '#54789e', '--btn-bg': '#e6edf5' },
+            lavender: { '--bg-main': '#faf5f9', '--card-bg': '#ffffff', '--border-color': '#e5cbdf', '--text-main': '#684865', '--text-sub': '#9c7798', '--accent-color': '#965e91', '--btn-bg': '#f5e4f2' },
+            butter: { '--bg-main': '#fcfaf2', '--card-bg': '#ffffff', '--border-color': '#f0e2b6', '--text-main': '#6b5e32', '--text-sub': '#9e8c58', '--accent-color': '#a68a49', '--btn-bg': '#fcf3db' },
+            strawberry: { '--bg-main': '#fef8f9', '--card-bg': '#ffffff', '--border-color': '#f5cbd3', '--text-main': '#6b4049', '--text-sub': '#9e737b', '--accent-color': '#e87d95', '--btn-bg': '#fcf0f2' },
+            matcha: { '--bg-main': '#f7f9f4', '--card-bg': '#ffffff', '--border-color': '#d2e3bc', '--text-main': '#4e5c38', '--text-sub': '#819468', '--accent-color': '#9bbd72', '--btn-bg': '#f4f7f0' },
+            milktea: { '--bg-main': '#fcf9f5', '--card-bg': '#ffffff', '--border-color': '#e6d3c2', '--text-main': '#5e4838', '--text-sub': '#947a66', '--accent-color': '#c49a78', '--btn-bg': '#faf5f0' },
+            sakura: { '--bg-main': '#fcf5f8', '--card-bg': '#ffffff', '--border-color': '#ebd3de', '--text-main': '#6b4657', '--text-sub': '#9e7687', '--accent-color': '#db8fb3', '--btn-bg': '#faf2f5' },
+            lemon: { '--bg-main': '#fcfcf4', '--card-bg': '#ffffff', '--border-color': '#f2edb8', '--text-main': '#5c5833', '--text-sub': '#948e5c', '--accent-color': '#c7be52', '--btn-bg': '#fcfceb' },
+            taro: { '--bg-main': '#faf6fc', '--card-bg': '#ffffff', '--border-color': '#e2d0e5', '--text-main': '#5e4363', '--text-sub': '#927396', '--accent-color': '#a875af', '--btn-bg': '#f5ecf7' },
+            sky: { '--bg-main': '#f0f6ff', '--card-bg': '#ffffff', '--border-color': '#cce0fd', '--text-main': '#385c8a', '--text-sub': '#749bc7', '--accent-color': '#6398db', '--btn-bg': '#e3effc' },
+            rose: { '--bg-main': '#fcf4f6', '--card-bg': '#ffffff', '--border-color': '#f5d0d9', '--text-main': '#73404d', '--text-sub': '#a87380', '--accent-color': '#db7b93', '--btn-bg': '#f7e6eb' },
+            cocoa: { '--bg-main': '#f7f4f2', '--card-bg': '#ffffff', '--border-color': '#e0d4cc', '--text-main': '#59473d', '--text-sub': '#917c70', '--accent-color': '#a38370', '--btn-bg': '#ede6e1' },
+            melon: { '--bg-main': '#f2fcf5', '--card-bg': '#ffffff', '--border-color': '#d0f2dc', '--text-main': '#3b6e49', '--text-sub': '#74a883', '--accent-color': '#64c781', '--btn-bg': '#e1f7e7' }
+        };
+
+        function setTheme(themeName) {
+            const theme = themes[themeName];
+            if (!theme) return;
+            const root = document.documentElement;
+            for (const key in theme) {
+                root.style.setProperty(key, theme[key]);
+            }
+            localStorage.setItem('cloud_current_theme', themeName);
+            closeThemeModal();
+        }
+
+        function loadSavedTheme() {
+            const savedTheme = localStorage.getItem('cloud_current_theme') || 'peach';
+            setTheme(savedTheme);
+        }
+
+        function openThemeModal() {
+            document.getElementById('themeModal').classList.remove('hidden');
+            document.getElementById('themeModal').classList.add('flex');
+        }
+
+        function closeThemeModal() {
+            document.getElementById('themeModal').classList.add('hidden');
+            document.getElementById('themeModal').classList.remove('flex');
+        }
+
+        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v20')) || {
+            emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
+            pngUrls: []
+        };
+
+        function renderBackgroundDecor() {
+            const layer = document.getElementById('bgStickersLayer');
+            layer.innerHTML = '';
+            document.getElementById('bgEmojiInput').value = bgDecorData.emojis;
+
+            if (bgDecorData.pngUrls && bgDecorData.pngUrls.length > 0) {
+                for (let i = 0; i < 15; i++) {
+                    const randomImgUrl = bgDecorData.pngUrls[Math.floor(Math.random() * bgDecorData.pngUrls.length)];
+                    const imgItem = document.createElement('img');
+                    imgItem.src = randomImgUrl;
+                    imgItem.className = 'floating-bg-item';
+                    imgItem.style.width = (Math.random() * 30 + 35) + 'px';
+                    imgItem.style.top = (Math.random() * 92) + '%';
+                    imgItem.style.left = (Math.random() * 92) + '%';
+                    imgItem.style.animationDuration = (Math.random() * 5 + 6) + 's';
+                    layer.appendChild(imgItem);
+                }
+            }
+
+            const rawEmojis = bgDecorData.emojis;
+            const emojiList = [...rawEmojis].filter(e => e.trim() !== '');
+
+            if (emojiList.length > 0) {
+                for (let i = 0; i < 20; i++) {
+                    const span = document.createElement('span');
+                    span.className = 'floating-bg-item';
+                    span.innerText = emojiList[Math.floor(Math.random() * emojiList.length)];
+                    span.style.fontSize = (Math.random() * 1.6 + 1.2) + 'rem';
+                    span.style.top = (Math.random() * 92) + '%';
+                    span.style.left = (Math.random() * 92) + '%';
+                    span.style.animationDuration = (Math.random() * 6 + 5) + 's';
+                    layer.appendChild(span);
+                }
+            }
+        }
+
+        function openBgCustomModal() {
+            document.getElementById('bgCustomModal').classList.remove('hidden');
+            document.getElementById('bgCustomModal').classList.add('flex');
+        }
+
+        function closeBgCustomModal() {
+            document.getElementById('bgCustomModal').classList.add('hidden');
+            document.getElementById('bgCustomModal').classList.remove('flex');
+        }
+
+        function saveBackgroundDecor() {
+            bgDecorData.emojis = document.getElementById('bgEmojiInput').value;
+            const fileInput = document.getElementById('bgPngInput');
+
+            if (fileInput.files && fileInput.files.length > 0) {
+                let loadedFilesCount = 0;
+                const newImages = [];
+
+                for (let file of fileInput.files) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        newImages.push(e.target.result);
+                        loadedFilesCount++;
+                        if (loadedFilesCount === fileInput.files.length) {
+                            bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
+                            localStorage.setItem('cloud_bg_decor_v20', JSON.stringify(bgDecorData));
+                            renderBackgroundDecor();
+                            closeBgCustomModal();
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                }
+            } else {
+                localStorage.setItem('cloud_bg_decor_v20', JSON.stringify(bgDecorData));
+                renderBackgroundDecor();
+                closeBgCustomModal();
+            }
+        }
+
+        function clearBackgroundDecor() {
+            bgDecorData.emojis = '';
+            bgDecorData.pngUrls = [];
+            localStorage.setItem('cloud_bg_decor_v20', JSON.stringify(bgDecorData));
+            renderBackgroundDecor();
+            closeBgCustomModal();
+        }
+
+        let categories = JSON.parse(localStorage.getItem('cloud_categories_v20')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
+        
+        // ใช้เก็บสถานะแบนเนอร์แยกต่างหากเพื่อไม่ให้ติดขัด localStorage ล้น
+        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v20') || '';
+        let headerData = JSON.parse(localStorage.getItem('cloud_header_v20')) || {
+            title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
+            subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
+        };
+
+        let groups = JSON.parse(localStorage.getItem('cloud_groups_v20')) || [
+            {
+                id: 1,
+                name: 'ของตกแต่งห้องนอน Woody & Friends',
+                brand: 'MochiMochi Studio',
+                category: 'ของตกแต่ง',
+                target: 50,
+                current: 42,
+                desc: 'ชุดแต่งห้องสไตล์พาสเทลละมุนตา โทนอุ่นหัวใจ',
+                coverImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
+                    'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80'
+                ]
+            }
+        ];
+
+        let currentActiveGroupId = null;
+        let currentCategoryFilter = 'all';
+
+        const pastelColorPool = [
+            { bg: '#fff0ed', text: '#d97d71' },
+            { bg: '#e4f0ed', text: '#528575' },
+            { bg: '#e6edf5', text: '#54789e' },
+            { bg: '#fcf3db', text: '#a68a49' },
+            { bg: '#f5e4f2', text: '#965e91' },
+            { bg: '#f4e6e0', text: '#8c6b60' }
+        ];
+
+        function getCategoryStyle(catName) {
+            let index = categories.indexOf(catName);
+            if (index === -1) index = 0;
+            return pastelColorPool[index % pastelColorPool.length];
+        }
+
+        function saveAndRefresh() {
+            localStorage.setItem('cloud_categories_v20', JSON.stringify(categories));
+            localStorage.setItem('cloud_header_v20', JSON.stringify(headerData));
+            localStorage.setItem('cloud_groups_v20', JSON.stringify(groups));
+
+            renderHeader();
+            renderCategorySelectOptions();
+            renderCategoryTabs();
+            renderGroups();
+
+            if (currentActiveGroupId !== null) {
+                const group = groups.find(g => g.id === currentActiveGroupId);
+                if (group) updateModalContent(group);
+            }
+        }
+
+        function renderHeader() {
+            const titleEl = document.getElementById('headerTitle');
+            const subtitleEl = document.getElementById('headerSubtitle');
+            const badgeEl = document.getElementById('headerBadge');
+            const bannerWrapper = document.getElementById('bannerWrapper');
+            const bannerImg = document.getElementById('bannerImageElement');
+            const textContent = document.getElementById('headerTextContent');
+            
+            document.getElementById('configTitle').value = headerData.title && headerData.title.includes('<span') ? headerData.title.replace(/<[^>]*>?/gm, '') : (headerData.title || '');
+            document.getElementById('configSubtitle').value = headerData.subtitle || '';
+
+            if (headerBannerUrl) {
+                bannerWrapper.classList.remove('hidden');
+                bannerImg.src = headerBannerUrl;
+
+                if (!headerData.title && !headerData.subtitle) {
+                    titleEl.style.display = 'none';
+                    subtitleEl.style.display = 'none';
+                    badgeEl.style.display = 'none';
+                    textContent.style.display = 'none';
+                } else {
+                    titleEl.style.display = 'block';
+                    subtitleEl.style.display = 'block';
+                    badgeEl.style.display = 'inline-block';
+                    textContent.style.display = 'flex';
+                    textContent.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                    textContent.style.borderRadius = '24px';
+                    textContent.style.padding = '1.5rem';
+                    textContent.style.margin = '1rem auto';
+                    textContent.style.width = 'calc(100% - 2rem)';
+                    textContent.style.border = '2px solid var(--border-color)';
+                    titleEl.innerHTML = headerData.title;
+                    subtitleEl.innerText = headerData.subtitle;
+                }
+            } else {
+                bannerWrapper.classList.add('hidden');
+                bannerImg.src = '';
+                textContent.style.display = 'flex';
+                textContent.style.backgroundColor = 'transparent';
+                textContent.style.padding = '2.5rem 1.5rem';
+                textContent.style.margin = '0 auto';
+                textContent.style.border = 'none';
+                titleEl.style.display = 'block';
+                subtitleEl.style.display = 'block';
+                badgeEl.style.display = 'inline-block';
+                titleEl.innerHTML = headerData.title || '';
+                subtitleEl.innerText = headerData.subtitle || '';
+            }
+        }
+
+        function openHeaderConfigModal() {
+            document.getElementById('headerConfigModal').classList.remove('hidden');
+            document.getElementById('headerConfigModal').classList.add('flex');
+        }
+
+        function closeHeaderConfigModal() {
+            document.getElementById('headerConfigModal').classList.add('hidden');
+            document.getElementById('headerConfigModal').classList.remove('flex');
+        }
+
+        function saveHeaderConfig(e) {
+            e.preventDefault();
+            const rawTitle = document.getElementById('configTitle').value.trim();
+            const rawSubtitle = document.getElementById('configSubtitle').value.trim();
+            
+            if (rawTitle) {
+                headerData.title = rawTitle.includes('simple moments') ? rawTitle.replace('simple moments', '<span style="color: var(--accent-color);">simple moments</span>') : rawTitle;
+            } else {
+                headerData.title = '';
+            }
+            headerData.subtitle = rawSubtitle;
+
+            const fileInput = document.getElementById('configBannerInput');
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    headerBannerUrl = event.target.result;
+                    try {
+                        localStorage.setItem('cloud_banner_blob_v20', headerBannerUrl);
+                    } catch (err) {
+                        console.warn('Image is too large for localStorage, using temporary memory URL.');
+                    }
+                    saveAndRefresh();
+                    closeHeaderConfigModal();
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                saveAndRefresh();
+                closeHeaderConfigModal();
+            }
+        }
+
+        function removeBannerImage() {
+            headerBannerUrl = '';
+            localStorage.removeItem('cloud_banner_blob_v20');
+            saveAndRefresh();
+            closeHeaderConfigModal();
+        }
+
+        function openCategoryManagerModal() {
+            renderCategoryListInModal();
+            document.getElementById('categoryManagerModal').classList.remove('hidden');
+            document.getElementById('categoryManagerModal').classList.add('flex');
+        }
+
+        function closeCategoryManagerModal() {
+            document.getElementById('categoryManagerModal').classList.add('hidden');
+            document.getElementById('categoryManagerModal').classList.remove('flex');
+        }
+
+        function renderCategoryListInModal() {
+            const container = document.getElementById('categoryListContainer');
+            container.innerHTML = categories.map((cat, idx) => `
+                <div class="flex items-center justify-between p-2.5 rounded-2xl border-2" style="background-color: var(--bg-main); border-color: var(--border-color);">
+                    <input type="text" value="${cat}" id="editCat_${idx}" class="bg-transparent text-sm font-bold focus:outline-none w-2/3" style="color: var(--text-main);">
+                    <div class="flex gap-1.5">
+                        <button onclick="updateCategory(${idx})" class="cloud-btn px-3 py-1 text-xs font-bold" title="บันทึกชื่อใหม่">💾</button>
+                        ${categories.length > 1 ? `<button onclick="deleteCategory(${idx})" class="cloud-btn px-3 py-1 bg-[#fff2f2] text-[#d66868] text-xs font-bold" title="ลบประเภท">🗑️</button>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addNewCategory() {
+            const input = document.getElementById('newCategoryName');
+            const val = input.value.trim();
+            if (val && !categories.includes(val)) {
+                categories.push(val);
+                input.value = '';
+                saveAndRefresh();
+                renderCategoryListInModal();
+            } else {
+                alert('ชื่อประเภทซ้ำหรือว่างเปล่าครับ');
+            }
+        }
+
+        function updateCategory(idx) {
+            const newVal = document.getElementById(`editCat_${idx}`).value.trim();
+            if (newVal && !categories.includes(newVal)) {
+                const oldVal = categories[idx];
+                categories[idx] = newVal;
+                groups.forEach(g => {
+                    if (g.category === oldVal) g.category = newVal;
+                });
+                saveAndRefresh();
+                renderCategoryListInModal();
+            } else {
+                alert('ชื่อประเภทซ้ำหรือว่างเปล่าครับ');
+            }
+        }
+
+        function deleteCategory(idx) {
+            if (confirm('คุณต้องการลบประเภทนี้ใช่หรือไม่? กลุ่มสินค้าในประเภทนี้จะถูกย้ายไปหมวดแรกสุด')) {
+                const removed = categories.splice(idx, 1)[0];
+                groups.forEach(g => {
+                    if (g.category === removed) g.category = categories[0];
+                });
+                saveAndRefresh();
+                renderCategoryListInModal();
+            }
+        }
+
+        function renderCategorySelectOptions() {
+            const select = document.getElementById('newGroupCategory');
+            select.innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
+        }
+
+        function openAddGroupModal() {
+            renderCategorySelectOptions();
+            document.getElementById('addGroupModal').classList.remove('hidden');
+            document.getElementById('addGroupModal').classList.add('flex');
+        }
+
+        function closeAddGroupModal() {
+            document.getElementById('addGroupModal').classList.add('hidden');
+            document.getElementById('addGroupModal').classList.remove('flex');
+            document.getElementById('newGroupName').value = '';
+            document.getElementById('newGroupBrand').value = '';
+            document.getElementById('newGroupDesc').value = '';
+            document.getElementById('newGroupCoverInput').value = '';
+        }
+
+        function saveNewGroup(e) {
+            e.preventDefault();
+            const name = document.getElementById('newGroupName').value;
+            const brand = document.getElementById('newGroupBrand').value;
+            const category = document.getElementById('newGroupCategory').value;
+            const target = parseInt(document.getElementById('newGroupTarget').value) || 50;
+            const desc = document.getElementById('newGroupDesc').value;
+            const fileInput = document.getElementById('newGroupCoverInput');
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const coverUrl = event.target.result;
+                    const newGroup = {
+                        id: Date.now(),
+                        name,
+                        brand,
+                        category,
+                        target,
+                        current: 0,
+                        desc,
+                        coverImage: coverUrl,
+                        images: [coverUrl]
+                    };
+                    groups.push(newGroup);
+                    saveAndRefresh();
+                    closeAddGroupModal();
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+
+        function openDetailModal(id) {
+            currentActiveGroupId = id;
+            const group = groups.find(g => g.id === id);
+            if (!group) return;
+
+            updateModalContent(group);
+            document.getElementById('detailModal').classList.remove('hidden');
+            document.getElementById('detailModal').classList.add('flex');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+            document.getElementById('detailModal').classList.remove('flex');
+            currentActiveGroupId = null;
+        }
+
+        function updateModalContent(group) {
+            document.getElementById('modalGroupName').innerText = group.name;
+            document.getElementById('modalBrandText').innerText = group.brand;
+            document.getElementById('modalGroupDesc').innerText = group.desc || 'ไม่มีรายละเอียดเพิ่มเติม';
+            
+            const catStyle = getCategoryStyle(group.category);
+            const badge = document.getElementById('modalCategoryBadge');
+            badge.innerText = group.category;
+            badge.style.backgroundColor = catStyle.bg;
+            badge.style.color = catStyle.text;
+
+            const percent = Math.min(100, Math.round((group.current / group.target) * 100));
+            document.getElementById('modalProgressText').innerText = `${group.current} / ${group.target} งาน (${percent}%)`;
+            document.getElementById('modalProgressBar').style.width = `${percent}%`;
+
+            const albumGrid = document.getElementById('modalAlbumGrid');
+            if (group.images.length === 0) {
+                albumGrid.innerHTML = `<p class="col-span-full text-center text-xs py-6 font-medium" style="color: var(--text-sub);">ยังไม่มีรูปสำรองในอัลบั้ม กดปุ่มเพิ่มรูปด้านบนได้เลยครับ</p>`;
+                return;
+            }
+
+            albumGrid.innerHTML = group.images.map((img, idx) => `
+                <div class="relative group aspect-square rounded-2xl overflow-hidden border-2 shadow-xs" style="background-color: var(--bg-main); border-color: var(--border-color);">
+                    <img src="${img}" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
+                        <a href="${img}" download="backup_${group.name}_${idx}.png" class="cloud-btn p-2 bg-white text-xs" title="บันทึกรูปนี้ลงเครื่อง"><i class="fa-solid fa-download"></i></a>
+                        <button onclick="deleteAlbumImage(${idx})" class="cloud-btn p-2 bg-[#fff2f2] text-[#d66868] text-xs" title="ลบรูป"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateModalProgress(change) {
+            const group = groups.find(g => g.id === currentActiveGroupId);
+            if (group) {
+                group.current = Math.max(0, Math.min(group.target, group.current + change));
+                saveAndRefresh();
+            }
+        }
+
+        function resetGroupProgress() {
+            if (confirm('คุณต้องการรีเซ็ตยอดงานของกลุ่มนี้กลับเป็น 0 ใช่หรือไม่?')) {
+                const group = groups.find(g => g.id === currentActiveGroupId);
+                if (group) {
+                    group.current = 0;
+                    saveAndRefresh();
+                }
+            }
+        }
+
+        function deleteCurrentGroup() {
+            if (confirm('คุณต้องการทิ้งกล่องกลุ่มสินค้านี้ใช่หรือไม่?')) {
+                groups = groups.filter(g => g.id !== currentActiveGroupId);
+                closeDetailModal();
+                saveAndRefresh();
+            }
+        }
+
+        function handleAlbumUpload(event) {
+            const files = event.target.files;
+            const group = groups.find(g => g.id === currentActiveGroupId);
+            if (!group) return;
+
+            let loadedCount = 0;
+            for (let file of files) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    group.images.push(e.target.result);
+                    loadedCount++;
+                    if (loadedCount === files.length) {
+                        saveAndRefresh();
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function deleteAlbumImage(imgIndex) {
+            const group = groups.find(g => g.id === currentActiveGroupId);
+            if (group) {
+                group.images.splice(imgIndex, 1);
+                saveAndRefresh();
+            }
+        }
+
+        function setCategoryFilter(cat) {
+            currentCategoryFilter = cat;
+            renderCategoryTabs();
+            renderGroups();
+        }
+
+        function renderCategoryTabs() {
+            const tabsContainer = document.getElementById('categoryTabs');
+            const allCats = ['all', ...categories];
+            
+            tabsContainer.innerHTML = allCats.map(cat => {
+                const label = cat === 'all' ? '✨ ทั้งหมดทุกกลุ่ม' : cat;
+                const isActive = currentCategoryFilter === cat;
+                const activeStyle = isActive ? 'background-color: var(--accent-color); color: white;' : 'background-color: var(--card-bg); color: var(--text-main);';
+                return `<button onclick="setCategoryFilter('${cat}')" class="cloud-btn px-4 py-2 text-xs font-bold transition" style="${activeStyle}">${label}</button>`;
+            }).join('');
+        }
+
+        function renderGroups() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const grid = document.getElementById('groupGrid');
+
+            let filtered = groups.filter(g => {
+                const matchesCategory = currentCategoryFilter === 'all' || g.category === currentCategoryFilter;
+                const matchesSearch = g.name.toLowerCase().includes(searchQuery) || g.brand.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-16 cloud-card bg-white">
+                        <div class="text-4xl mb-3" style="color: var(--accent-color);"><i class="fa-solid fa-cloud-moon"></i></div>
+                        <p class="font-bold text-base" style="color: var(--text-main);">ไม่พบกล่องกลุ่มสินค้าที่คุณค้นหา</p>
+                        <p class="text-xs mt-1" style="color: var(--text-sub);">ลองกดเพิ่มกลุ่มสินค้าใหม่ด้านล่างขวาได้เลยครับเลขาพร้อมดูแล!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(group => {
+                const percent = Math.min(100, Math.round((group.current / group.target) * 100));
+                const isCompleted = group.current >= group.target;
+                const catStyle = getCategoryStyle(group.category);
+
+                return `
+                    <div onclick="openDetailModal(${group.id})" class="cloud-card p-5 flex flex-col justify-between cursor-pointer group/card" style="background-color: var(--card-bg);">
+                        <div>
+                            <div class="relative h-52 rounded-2xl overflow-hidden mb-4 border-2 shadow-xs" style="background-color: var(--bg-main); border-color: var(--border-color);">
+                                <img src="${group.coverImage}" class="w-full h-full object-cover group-hover/card:scale-105 transition duration-500">
+                                <div class="absolute top-3 left-3 backdrop-blur-xs px-3 py-1 rounded-full text-xs font-bold border shadow-xs" style="background-color: rgba(255,255,255,0.9); color: var(--text-main); border-color: var(--border-color);">
+                                    ${group.brand}
+                                </div>
+                                <div class="absolute bottom-3 right-3 backdrop-blur-xs px-2.5 py-1 rounded-xl text-xs font-bold text-white" style="background-color: rgba(107, 91, 83, 0.8);">
+                                    <i class="fa-solid fa-images mr-1"></i> ${group.images.length} รูป
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <span class="text-[11px] font-extrabold px-3 py-0.5 rounded-full border" style="background-color: ${catStyle.bg}; color: ${catStyle.text}; border-color: var(--border-color);">${group.category}</span>
+                            </div>
+                            <h3 class="text-lg font-extrabold line-clamp-1 group-hover/card:opacity-75 transition" style="color: var(--text-main);">${group.name}</h3>
+                            <p class="text-xs line-clamp-1 mt-0.5" style="color: var(--text-sub);">${group.desc || 'ไม่มีรายละเอียดเพิ่มเติม'}</p>
+
+                            <div class="mt-4">
+                                <div class="flex justify-between text-xs mb-1 font-bold">
+                                    <span style="color: var(--text-sub);">เป้าหมาย: ${group.current} / ${group.target} งาน</span>
+                                    <span class="${isCompleted ? 'text-emerald-600 font-extrabold' : ''}" style="${!isCompleted ? 'color: var(--accent-color);' : ''}">${isCompleted ? '🎉 สำเร็จครบแล้ว!' : percent + '%'}</span>
+                                </div>
+                                <div class="w-full h-3 rounded-full overflow-hidden border" style="background-color: var(--bg-main); border-color: var(--border-color);">
+                                    <div class="h-full transition-all duration-300" style="background-color: var(--accent-color); width: ${percent}%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 pt-3 border-t border-dashed flex justify-between items-center text-xs font-bold" style="border-color: var(--border-color); color: var(--text-sub);">
+                            <span>คลิกเปิดกล่องดูอัลบั้ม</span>
+                            <span class="w-7 h-7 rounded-full flex items-center justify-center transition" style="background-color: var(--btn-bg); color: var(--accent-color); border: 1px solid var(--border-color);"><i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        loadSavedTheme();
+        renderBackgroundDecor();
+        saveAndRefresh();
+    </script>
+</body>
+</html>
