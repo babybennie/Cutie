@@ -218,7 +218,7 @@
                 </h3>
                 <button onclick="closeHeaderConfigModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <form onsubmit="saveHeaderConfig(event)" class="space-y-4">
+            <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">หัวข้อหลัก (Title) - เว้นว่างได้หากใส่แต่รูป</label>
                     <input type="text" id="configTitle" placeholder="ปล่อยว่างไว้ได้ครับ" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
@@ -236,10 +236,10 @@
                     <button type="button" onclick="removeBannerImage()" class="cloud-btn px-4 py-2 bg-[#fff2f2] text-[#d66868] text-xs font-bold rounded-xl">ลบรูปแบนเนอร์ออก</button>
                     <div class="flex gap-2">
                         <button type="button" onclick="closeHeaderConfigModal()" class="cloud-btn px-4 py-2 font-bold text-sm">ยกเลิก</button>
-                        <button type="submit" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึก</button>
+                        <button type="button" onclick="saveHeaderConfig(event)" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึก</button>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -277,14 +277,14 @@
                 </h3>
                 <button onclick="closeAddGroupModal()" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <form onsubmit="saveNewGroup(event)" class="space-y-4">
+            <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ชื่อกลุ่มสินค้า</label>
-                    <input type="text" id="newGroupName" required placeholder="เช่น น้องมะเขือเทศพาสเทลแต่งห้อง" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                    <input type="text" id="newGroupName" placeholder="เช่น น้องมะเขือเทศพาสเทลแต่งห้อง" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
                 </div>
                 <div>
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ชื่อเครือ / แบรนด์สังกัด</label>
-                    <input type="text" id="newGroupBrand" required placeholder="เช่น MochiMochi Studio" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                    <input type="text" id="newGroupBrand" placeholder="เช่น MochiMochi Studio" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
                 </div>
                 <div>
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ประเภทกลุ่ม</label>
@@ -292,7 +292,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">จำนวนงานเป้าหมาย (ค่ามาตรฐาน 50 งาน)</label>
-                    <input type="number" id="newGroupTarget" value="50" min="1" required class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                    <input type="number" id="newGroupTarget" value="50" min="1" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
                 </div>
                 <div>
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">รายละเอียดเพิ่มเติม / โน้ตกลุ่ม</label>
@@ -300,13 +300,13 @@
                 </div>
                 <div>
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">รูปหน้าปกกล่อง (Cover Image)</label>
-                    <input type="file" id="newGroupCoverInput" accept="image/*" required class="w-full text-xs cursor-pointer" style="color: var(--text-main);">
+                    <input type="file" id="newGroupCoverInput" accept="image/*" class="w-full text-xs cursor-pointer" style="color: var(--text-main);">
                 </div>
                 <div class="flex justify-end gap-3 pt-3">
                     <button type="button" onclick="closeAddGroupModal()" class="cloud-btn px-5 py-2.5 font-bold rounded-2xl text-sm">ยกเลิก</button>
-                    <button type="submit" class="cloud-btn px-6 py-2.5 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึกกล่อง</button>
+                    <button type="button" onclick="saveNewGroupDirect()" class="cloud-btn px-6 py-2.5 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึกกล่อง</button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 
@@ -417,7 +417,7 @@
             document.getElementById('themeModal').classList.remove('flex');
         }
 
-        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v21')) || {
+        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v22')) || {
             emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
             pngUrls: []
         };
@@ -483,7 +483,7 @@
                         loadedFilesCount++;
                         if (loadedFilesCount === fileInput.files.length) {
                             bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
-                            localStorage.setItem('cloud_bg_decor_v21', JSON.stringify(bgDecorData));
+                            localStorage.setItem('cloud_bg_decor_v22', JSON.stringify(bgDecorData));
                             renderBackgroundDecor();
                             closeBgCustomModal();
                         }
@@ -491,7 +491,7 @@
                     reader.readAsDataURL(file);
                 }
             } else {
-                localStorage.setItem('cloud_bg_decor_v21', JSON.stringify(bgDecorData));
+                localStorage.setItem('cloud_bg_decor_v22', JSON.stringify(bgDecorData));
                 renderBackgroundDecor();
                 closeBgCustomModal();
             }
@@ -500,19 +500,19 @@
         function clearBackgroundDecor() {
             bgDecorData.emojis = '';
             bgDecorData.pngUrls = [];
-            localStorage.setItem('cloud_bg_decor_v21', JSON.stringify(bgDecorData));
+            localStorage.setItem('cloud_bg_decor_v22', JSON.stringify(bgDecorData));
             renderBackgroundDecor();
             closeBgCustomModal();
         }
 
-        let categories = JSON.parse(localStorage.getItem('cloud_categories_v21')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
-        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v21') || '';
-        let headerData = JSON.parse(localStorage.getItem('cloud_header_v21')) || {
+        let categories = JSON.parse(localStorage.getItem('cloud_categories_v22')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
+        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v22') || '';
+        let headerData = JSON.parse(localStorage.getItem('cloud_header_v22')) || {
             title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
             subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
         };
 
-        let groups = JSON.parse(localStorage.getItem('cloud_groups_v21')) || [
+        let groups = JSON.parse(localStorage.getItem('cloud_groups_v22')) || [
             {
                 id: 1,
                 name: 'ของตกแต่งห้องนอน Woody & Friends',
@@ -548,9 +548,9 @@
         }
 
         function saveAndRefresh() {
-            localStorage.setItem('cloud_categories_v21', JSON.stringify(categories));
-            localStorage.setItem('cloud_header_v21', JSON.stringify(headerData));
-            localStorage.setItem('cloud_groups_v21', JSON.stringify(groups));
+            localStorage.setItem('cloud_categories_v22', JSON.stringify(categories));
+            localStorage.setItem('cloud_header_v22', JSON.stringify(headerData));
+            localStorage.setItem('cloud_groups_v22', JSON.stringify(groups));
 
             renderHeader();
             renderCategorySelectOptions();
@@ -624,7 +624,6 @@
         }
 
         function saveHeaderConfig(e) {
-            e.preventDefault();
             const rawTitle = document.getElementById('configTitle').value.trim();
             const rawSubtitle = document.getElementById('configSubtitle').value.trim();
             
@@ -641,7 +640,7 @@
                 reader.onload = function(event) {
                     headerBannerUrl = event.target.result;
                     try {
-                        localStorage.setItem('cloud_banner_blob_v21', headerBannerUrl);
+                        localStorage.setItem('cloud_banner_blob_v22', headerBannerUrl);
                     } catch (err) {}
                     saveAndRefresh();
                     closeHeaderConfigModal();
@@ -655,7 +654,7 @@
 
         function removeBannerImage() {
             headerBannerUrl = '';
-            localStorage.removeItem('cloud_banner_blob_v21');
+            localStorage.removeItem('cloud_banner_blob_v22');
             saveAndRefresh();
             closeHeaderConfigModal();
         }
@@ -743,14 +742,24 @@
             document.getElementById('newGroupCoverInput').value = '';
         }
 
-        function saveNewGroup(e) {
-            e.preventDefault();
-            const name = document.getElementById('newGroupName').value;
-            const brand = document.getElementById('newGroupBrand').value;
+        function saveNewGroupDirect() {
+            const name = document.getElementById('newGroupName').value.trim();
+            const brand = document.getElementById('newGroupBrand').value.trim();
             const category = document.getElementById('newGroupCategory').value;
             const target = parseInt(document.getElementById('newGroupTarget').value) || 50;
-            const desc = document.getElementById('newGroupDesc').value;
+            const desc = document.getElementById('newGroupDesc').value.trim();
             const fileInput = document.getElementById('newGroupCoverInput');
+
+            if (!name) {
+                alert('กรุณากรอกชื่อกลุ่มสินค้าด้วยครับ');
+                return;
+            }
+            if (!brand) {
+                alert('กรุณากรอกชื่อแบรนด์สังกัดด้วยครับ');
+                return;
+            }
+
+            const defaultImg = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80';
 
             if (fileInput.files && fileInput.files[0]) {
                 const reader = new FileReader();
@@ -781,8 +790,8 @@
                     target,
                     current: 0,
                     desc,
-                    coverImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
-                    images: []
+                    coverImage: defaultImg,
+                    images: [defaultImg]
                 };
                 groups.push(newGroup);
                 saveAndRefresh();
