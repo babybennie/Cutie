@@ -417,7 +417,7 @@
             document.getElementById('themeModal').classList.remove('flex');
         }
 
-        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v20')) || {
+        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v21')) || {
             emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
             pngUrls: []
         };
@@ -483,7 +483,7 @@
                         loadedFilesCount++;
                         if (loadedFilesCount === fileInput.files.length) {
                             bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
-                            localStorage.setItem('cloud_bg_decor_v20', JSON.stringify(bgDecorData));
+                            localStorage.setItem('cloud_bg_decor_v21', JSON.stringify(bgDecorData));
                             renderBackgroundDecor();
                             closeBgCustomModal();
                         }
@@ -491,7 +491,7 @@
                     reader.readAsDataURL(file);
                 }
             } else {
-                localStorage.setItem('cloud_bg_decor_v20', JSON.stringify(bgDecorData));
+                localStorage.setItem('cloud_bg_decor_v21', JSON.stringify(bgDecorData));
                 renderBackgroundDecor();
                 closeBgCustomModal();
             }
@@ -500,21 +500,19 @@
         function clearBackgroundDecor() {
             bgDecorData.emojis = '';
             bgDecorData.pngUrls = [];
-            localStorage.setItem('cloud_bg_decor_v20', JSON.stringify(bgDecorData));
+            localStorage.setItem('cloud_bg_decor_v21', JSON.stringify(bgDecorData));
             renderBackgroundDecor();
             closeBgCustomModal();
         }
 
-        let categories = JSON.parse(localStorage.getItem('cloud_categories_v20')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
-        
-        // ใช้เก็บสถานะแบนเนอร์แยกต่างหากเพื่อไม่ให้ติดขัด localStorage ล้น
-        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v20') || '';
-        let headerData = JSON.parse(localStorage.getItem('cloud_header_v20')) || {
+        let categories = JSON.parse(localStorage.getItem('cloud_categories_v21')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
+        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v21') || '';
+        let headerData = JSON.parse(localStorage.getItem('cloud_header_v21')) || {
             title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
             subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
         };
 
-        let groups = JSON.parse(localStorage.getItem('cloud_groups_v20')) || [
+        let groups = JSON.parse(localStorage.getItem('cloud_groups_v21')) || [
             {
                 id: 1,
                 name: 'ของตกแต่งห้องนอน Woody & Friends',
@@ -550,9 +548,9 @@
         }
 
         function saveAndRefresh() {
-            localStorage.setItem('cloud_categories_v20', JSON.stringify(categories));
-            localStorage.setItem('cloud_header_v20', JSON.stringify(headerData));
-            localStorage.setItem('cloud_groups_v20', JSON.stringify(groups));
+            localStorage.setItem('cloud_categories_v21', JSON.stringify(categories));
+            localStorage.setItem('cloud_header_v21', JSON.stringify(headerData));
+            localStorage.setItem('cloud_groups_v21', JSON.stringify(groups));
 
             renderHeader();
             renderCategorySelectOptions();
@@ -643,10 +641,8 @@
                 reader.onload = function(event) {
                     headerBannerUrl = event.target.result;
                     try {
-                        localStorage.setItem('cloud_banner_blob_v20', headerBannerUrl);
-                    } catch (err) {
-                        console.warn('Image is too large for localStorage, using temporary memory URL.');
-                    }
+                        localStorage.setItem('cloud_banner_blob_v21', headerBannerUrl);
+                    } catch (err) {}
                     saveAndRefresh();
                     closeHeaderConfigModal();
                 };
@@ -659,7 +655,7 @@
 
         function removeBannerImage() {
             headerBannerUrl = '';
-            localStorage.removeItem('cloud_banner_blob_v20');
+            localStorage.removeItem('cloud_banner_blob_v21');
             saveAndRefresh();
             closeHeaderConfigModal();
         }
@@ -776,6 +772,21 @@
                     closeAddGroupModal();
                 };
                 reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                const newGroup = {
+                    id: Date.now(),
+                    name,
+                    brand,
+                    category,
+                    target,
+                    current: 0,
+                    desc,
+                    coverImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
+                    images: []
+                };
+                groups.push(newGroup);
+                saveAndRefresh();
+                closeAddGroupModal();
             }
         }
 
