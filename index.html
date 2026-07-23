@@ -252,7 +252,7 @@
         </div>
     </div>
 
-    <!-- Modal: เพิ่มกลุ่มใหม่ -->
+    <!-- Modal: เพิ่มกลุ่มใหม่ (แยกช่องรูปปก และ รูปอัลบั้มชัดเจน รองรับรายการจำนวนมาก) -->
     <div id="addGroupModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
         <div class="cloud-card bg-[#fffdf9] max-w-lg w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
@@ -264,28 +264,37 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ชื่อกลุ่มสินค้า</label>
-                    <input type="text" id="newGroupName" placeholder="เช่น น้องมะเขือเทศพาสเทลแต่งห้อง" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                    <input type="text" id="newGroupName" placeholder="เช่น Pinky Pompom" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
                 </div>
                 <div>
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ชื่อเครือ / แบรนด์สังกัด</label>
-                    <input type="text" id="newGroupBrand" placeholder="เช่น MochiMochi Studio" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                    <input type="text" id="newGroupBrand" placeholder="เช่น Bennie" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
                 </div>
                 <div>
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ประเภทกลุ่ม</label>
                     <select id="newGroupCategory" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);"></select>
                 </div>
                 <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">จำนวนงานเป้าหมาย (ค่ามาตรฐาน 50 งาน)</label>
-                    <input type="number" id="newGroupTarget" value="50" min="1" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">จำนวนงานเป้าหมาย (ค่ามาตรฐาน 25-50 งาน)</label>
+                    <input type="number" id="newGroupTarget" value="25" min="1" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
                 </div>
                 <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">รายละเอียดเพิ่มเติม / โน้ตกลุ่ม</label>
-                    <textarea id="newGroupDesc" rows="2" placeholder="ใส่รายละเอียดลิงก์ หรือโน้ตเตือนความจำที่นี่..." class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);"></textarea>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">รายละเอียดเพิ่มเติม / ลิงก์ Drive</label>
+                    <textarea id="newGroupDesc" rows="2" placeholder="ใส่ลิงก์ Drive หรือรายละเอียดที่นี่..." class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);"></textarea>
                 </div>
-                <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">รูปหน้าปกกล่อง (Cover Image)</label>
-                    <input type="file" id="newGroupCoverInput" accept="image/*" class="w-full text-xs cursor-pointer" style="color: var(--text-main);">
+                
+                <!-- ช่องแยกที่ 1: รูปหน้าปก -->
+                <div class="p-3 rounded-2xl border-2" style="background-color: var(--bg-main); border-color: var(--border-color);">
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);"><i class="fa-solid fa-image mr-1 text-[#f2a194]"></i> 1. รูปภาพหน้าปก (แสดงหน้าการ์ดหลัก)</label>
+                    <input type="file" id="newGroupCoverInput" accept="image/*" class="w-full text-xs cursor-pointer mt-1">
                 </div>
+
+                <!-- ช่องแยกที่ 2: รูปในอัลบั้มย่อย -->
+                <div class="p-3 rounded-2xl border-2" style="background-color: var(--bg-main); border-color: var(--border-color);">
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1 text-[#f2a194]"></i> 2. รูปภาพในอัลบั้มย่อย (เลือกได้หลายรูป)</label>
+                    <input type="file" id="newGroupAlbumInput" accept="image/*" multiple class="w-full text-xs cursor-pointer mt-1">
+                </div>
+
                 <div class="flex justify-end gap-3 pt-3">
                     <button onclick="closeAddGroupModal()" type="button" class="cloud-btn px-5 py-2.5 font-bold rounded-2xl text-sm">ยกเลิก</button>
                     <button onclick="saveNewGroupDirect()" type="button" class="cloud-btn px-6 py-2.5 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึกกล่อง</button>
@@ -310,7 +319,7 @@
 
             <div class="overflow-y-auto custom-scrollbar flex-grow space-y-6 pr-1">
                 <div class="soft-tag p-4 rounded-2xl">
-                    <span class="text-xs font-bold block mb-1" style="color: var(--text-sub);"><i class="fa-solid fa-note-sticky mr-1"></i> รายละเอียด / โน้ตกลุ่ม:</span>
+                    <span class="text-xs font-bold block mb-1" style="color: var(--text-sub);"><i class="fa-solid fa-note-sticky mr-1"></i> รายละเอียด / ลิงก์ Drive:</span>
                     <p id="modalGroupDesc" class="text-sm font-medium whitespace-pre-wrap" style="color: var(--text-main);">ไม่มีรายละเอียดเพิ่มเติม</p>
                 </div>
 
@@ -334,8 +343,8 @@
                 <div>
                     <div class="flex justify-between items-center mb-3">
                         <div>
-                            <h4 class="font-bold text-base" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1" style="color: var(--accent-color);"></i> คลังอัลบั้มรูปภาพสำรอง</h4>
-                            <p class="text-xs" style="color: var(--text-sub);">รูปทั้งหมดของกลุ่มนี้ กดดูและบันทึกกลับเครื่องได้ทันทีหากเผลอลบ</p>
+                            <h4 class="font-bold text-base" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1" style="color: var(--accent-color);"></i> คลังอัลบั้มรูปภาพย่อย</h4>
+                            <p class="text-xs" style="color: var(--text-sub);">รูปทั้งหมดของกลุ่มนี้ กดดูและบันทึกกลับเครื่องได้ทันที</p>
                         </div>
                         <label class="cloud-btn text-xs font-bold px-4 py-2 flex items-center gap-1.5 cursor-pointer" style="background-color: var(--btn-bg); color: var(--accent-color);">
                             <i class="fa-solid fa-cloud-arrow-up"></i> เพิ่มรูปในอัลบั้ม
@@ -418,7 +427,7 @@
             }
         }
 
-        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v29')) || {
+        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v31')) || {
             emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
             pngUrls: []
         };
@@ -477,9 +486,7 @@
                         loadedFilesCount++;
                         if (loadedFilesCount === fileInput.files.length) {
                             bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
-                            try {
-                                localStorage.setItem('cloud_bg_decor_v29', JSON.stringify(bgDecorData));
-                            } catch (err) {}
+                            try { localStorage.setItem('cloud_bg_decor_v31', JSON.stringify(bgDecorData)); } catch (err) {}
                             renderBackgroundDecor();
                             closeModal('bgCustomModal');
                         }
@@ -487,9 +494,7 @@
                     reader.readAsDataURL(file);
                 }
             } else {
-                try {
-                    localStorage.setItem('cloud_bg_decor_v29', JSON.stringify(bgDecorData));
-                } catch (err) {}
+                try { localStorage.setItem('cloud_bg_decor_v31', JSON.stringify(bgDecorData)); } catch (err) {}
                 renderBackgroundDecor();
                 closeModal('bgCustomModal');
             }
@@ -498,32 +503,29 @@
         function clearBackgroundDecor() {
             bgDecorData.emojis = '';
             bgDecorData.pngUrls = [];
-            localStorage.setItem('cloud_bg_decor_v29', JSON.stringify(bgDecorData));
+            localStorage.setItem('cloud_bg_decor_v31', JSON.stringify(bgDecorData));
             renderBackgroundDecor();
             closeModal('bgCustomModal');
         }
 
-        let categories = JSON.parse(localStorage.getItem('cloud_categories_v29')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
-        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v29') || '';
-        let headerData = JSON.parse(localStorage.getItem('cloud_header_v29')) || {
+        let categories = JSON.parse(localStorage.getItem('cloud_categories_v31')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
+        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v31') || '';
+        let headerData = JSON.parse(localStorage.getItem('cloud_header_v31')) || {
             title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
             subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
         };
 
-        let groups = JSON.parse(localStorage.getItem('cloud_groups_v29')) || [
+        let groups = JSON.parse(localStorage.getItem('cloud_groups_v31')) || [
             {
                 id: 1,
-                name: 'ของตกแต่งห้องนอน Woody & Friends',
-                brand: 'MochiMochi Studio',
+                name: 'Pinky Pompom',
+                brand: 'Bennie',
                 category: 'ของตกแต่ง',
-                target: 50,
-                current: 42,
-                desc: 'ชุดแต่งห้องสไตล์พาสเทลละมุนตา โทนอุ่นหัวใจ',
-                coverImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
-                images: [
-                    'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80',
-                    'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80'
-                ]
+                target: 25,
+                current: 25,
+                desc: 'ชุดแต่งห้องสไตล์พาสเทลละมุนตา',
+                coverImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70',
+                images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70']
             }
         ];
 
@@ -547,17 +549,17 @@
 
         function saveAndRefresh() {
             try {
-                localStorage.setItem('cloud_categories_v29', JSON.stringify(categories));
-                localStorage.setItem('cloud_header_v29', JSON.stringify(headerData));
-                localStorage.setItem('cloud_groups_v29', JSON.stringify(groups));
+                localStorage.setItem('cloud_categories_v31', JSON.stringify(categories));
+                localStorage.setItem('cloud_header_v31', JSON.stringify(headerData));
+                localStorage.setItem('cloud_groups_v31', JSON.stringify(groups));
             } catch (e) {
-                // หาก LocalStorage เต็ม ให้ลบรูปภาพหนักๆ ออกจากกลุ่มเก่าอัตโนมัติ เพื่อให้บันทึกต่อได้
+                // หาก LocalStorage เต็ม ให้ลบรูปภาพหนักๆ ออกจากกลุ่มเก่าอัตโนมัติ เพื่อให้บันทึกรายการเพิ่มได้เกิน 30+ รายการ
                 groups.forEach(g => {
-                    g.coverImage = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=300&q=80';
+                    g.coverImage = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=200&q=50';
                     g.images = [g.coverImage];
                 });
                 try {
-                    localStorage.setItem('cloud_groups_v29', JSON.stringify(groups));
+                    localStorage.setItem('cloud_groups_v31', JSON.stringify(groups));
                 } catch (err) {}
             }
 
@@ -570,7 +572,6 @@
                 const group = groups.find(g => g.id === currentActiveGroupId);
                 if (group) updateModalContent(group);
             }
-            return true;
         }
 
         function renderHeader() {
@@ -646,9 +647,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     headerBannerUrl = e.target.result;
-                    try {
-                        localStorage.setItem('cloud_banner_blob_v29', headerBannerUrl);
-                    } catch (err) {}
+                    try { localStorage.setItem('cloud_banner_blob_v31', headerBannerUrl); } catch (err) {}
                     saveAndRefresh();
                     closeModal('headerConfigModal');
                 };
@@ -661,7 +660,7 @@
 
         function removeBannerImage() {
             headerBannerUrl = '';
-            localStorage.removeItem('cloud_banner_blob_v29');
+            localStorage.removeItem('cloud_banner_blob_v31');
             saveAndRefresh();
             closeModal('headerConfigModal');
         }
@@ -715,7 +714,7 @@
         }
 
         function deleteCategory(idx) {
-            if (confirm('คุณต้องการลบประเภทนี้ใช่หรือไม่? กลุ่มสินค้าในประเภทนี้จะถูกย้ายไปหมวดแรกสุด')) {
+            if (confirm('คุณต้องการลบประเภทนี้ใช่หรือไม่?')) {
                 const removed = categories.splice(idx, 1)[0];
                 groups.forEach(g => {
                     if (g.category === removed) g.category = categories[0];
@@ -739,14 +738,31 @@
 
         function closeAddGroupModal() {
             closeModal('addGroupModal');
-            const nameEl = document.getElementById('newGroupName');
-            const brandEl = document.getElementById('newGroupBrand');
-            const descEl = document.getElementById('newGroupDesc');
-            const coverInput = document.getElementById('newGroupCoverInput');
-            if (nameEl) nameEl.value = '';
-            if (brandEl) brandEl.value = '';
-            if (descEl) descEl.value = '';
-            if (coverInput) coverInput.value = '';
+            document.getElementById('newGroupName').value = '';
+            document.getElementById('newGroupBrand').value = '';
+            document.getElementById('newGroupDesc').value = '';
+            document.getElementById('newGroupCoverInput').value = '';
+            document.getElementById('newGroupAlbumInput').value = '';
+        }
+
+        // ฟังก์ชันบีบอัดรูปภาพขนาดกะทัดรัดพิเศษ เพื่อรองรับรายการจำนวนมาก 30+ รายการ
+        function compressImageFile(file, callback) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let w = img.width;
+                    let h = img.height;
+                    if (w > 400) { h = Math.round((h * 400) / w); w = 400; }
+                    canvas.width = w;
+                    canvas.height = h;
+                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                    callback(canvas.toDataURL('image/jpeg', 0.5));
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
         }
 
         function saveNewGroupDirect() {
@@ -755,59 +771,42 @@
             const categoryEl = document.getElementById('newGroupCategory');
             const targetEl = document.getElementById('newGroupTarget');
             const descEl = document.getElementById('newGroupDesc');
-            const fileInput = document.getElementById('newGroupCoverInput');
+            const coverInput = document.getElementById('newGroupCoverInput');
+            const albumInput = document.getElementById('newGroupAlbumInput');
 
             const name = nameEl ? nameEl.value.trim() : '';
             const brand = brandEl ? brandEl.value.trim() : '';
             const category = categoryEl ? categoryEl.value : categories[0];
-            const target = targetEl ? (parseInt(targetEl.value) || 50) : 50;
+            const target = targetEl ? (parseInt(targetEl.value) || 25) : 25;
             const desc = descEl ? descEl.value.trim() : '';
 
-            if (!name) {
-                alert('กรุณากรอกชื่อกลุ่มสินค้าด้วยครับ');
-                return;
-            }
-            if (!brand) {
-                alert('กรุณากรอกชื่อแบรนด์สังกัดด้วยครับ');
-                return;
-            }
+            if (!name) { alert('กรุณากรอกชื่อกลุ่มสินค้าด้วยครับ'); return; }
+            if (!brand) { alert('กรุณากรอกชื่อแบรนด์สังกัดด้วยครับ'); return; }
 
-            const defaultImg = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=75';
+            const defaultCover = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70';
 
-            if (fileInput && fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    // ย่อภาพให้เล็กลงอัตโนมัติก่อนเก็บบนเบราว์เซอร์
-                    const img = new Image();
-                    img.onload = function() {
-                        const canvas = document.createElement('canvas');
-                        let w = img.width;
-                        let h = img.height;
-                        if (w > 500) { h = Math.round((h * 500) / w); w = 500; }
-                        canvas.width = w;
-                        canvas.height = h;
-                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                        const smallUrl = canvas.toDataURL('image/jpeg', 0.6);
+            const processCoverAndAlbum = (coverUrl) => {
+                const albumImages = [];
+                const files = albumInput.files;
 
-                        const newGroup = {
-                            id: Date.now(),
-                            name: name,
-                            brand: brand,
-                            category: category,
-                            target: target,
-                            current: 0,
-                            desc: desc,
-                            coverImage: smallUrl,
-                            images: [smallUrl]
-                        };
-                        groups.unshift(newGroup);
-                        saveAndRefresh();
-                        closeAddGroupModal();
-                    };
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            } else {
+                if (files && files.length > 0) {
+                    let processedCount = 0;
+                    for (let file of files) {
+                        compressImageFile(file, (compressedAlbumUrl) => {
+                            albumImages.push(compressedAlbumUrl);
+                            processedCount++;
+                            if (processedCount === files.length) {
+                                finalizeGroupCreation(coverUrl, albumImages);
+                            }
+                        });
+                    }
+                } else {
+                    albumImages.push(coverUrl);
+                    finalizeGroupCreation(coverUrl, albumImages);
+                }
+            };
+
+            const finalizeGroupCreation = (coverUrl, albumImages) => {
                 const newGroup = {
                     id: Date.now(),
                     name: name,
@@ -816,12 +815,20 @@
                     target: target,
                     current: 0,
                     desc: desc,
-                    coverImage: defaultImg,
-                    images: [defaultImg]
+                    coverImage: coverUrl, 
+                    images: albumImages   
                 };
                 groups.unshift(newGroup);
                 saveAndRefresh();
                 closeAddGroupModal();
+            };
+
+            if (coverInput && coverInput.files && coverInput.files[0]) {
+                compressImageFile(coverInput.files[0], (compressedCoverUrl) => {
+                    processCoverAndAlbum(compressedCoverUrl);
+                });
+            } else {
+                processCoverAndAlbum(defaultCover);
             }
         }
 
@@ -864,8 +871,8 @@
             if (progressBar) progressBar.style.width = `${percent}%`;
 
             if (albumGrid) {
-                if (group.images.length === 0) {
-                    albumGrid.innerHTML = `<p class="col-span-full text-center text-xs py-6 font-medium" style="color: var(--text-sub);">ยังไม่มีรูปสำรองในอัลบั้ม กดปุ่มเพิ่มรูปด้านบนได้เลยครับ</p>`;
+                if (!group.images || group.images.length === 0) {
+                    albumGrid.innerHTML = `<p class="col-span-full text-center text-xs py-6 font-medium" style="color: var(--text-sub);">ยังไม่มีรูปในอัลบั้ม กดปุ่มเพิ่มรูปด้านบนได้เลยครับ</p>`;
                     return;
                 }
 
@@ -873,7 +880,7 @@
                     <div class="relative group aspect-square rounded-2xl overflow-hidden border-2 shadow-xs" style="background-color: var(--bg-main); border-color: var(--border-color);">
                         <img src="${img}" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
-                            <a href="${img}" download="backup_${group.name}_${idx}.png" class="cloud-btn p-2 bg-white text-xs" title="บันทึกรูปนี้ลงเครื่อง"><i class="fa-solid fa-download"></i></a>
+                            <a href="${img}" download="album_${group.name}_${idx}.jpg" class="cloud-btn p-2 bg-white text-xs" title="บันทึกรูปนี้ลงเครื่อง"><i class="fa-solid fa-download"></i></a>
                             <button type="button" onclick="deleteAlbumImage(${idx})" class="cloud-btn p-2 bg-[#fff2f2] text-[#d66868] text-xs" title="ลบรูป"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
@@ -914,28 +921,13 @@
 
             let loadedCount = 0;
             for (let file of files) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = new Image();
-                    img.onload = function() {
-                        const canvas = document.createElement('canvas');
-                        let w = img.width;
-                        let h = img.height;
-                        if (w > 500) { h = Math.round((h * 500) / w); w = 500; }
-                        canvas.width = w;
-                        canvas.height = h;
-                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                        const smallUrl = canvas.toDataURL('image/jpeg', 0.6);
-
-                        group.images.push(smallUrl);
-                        loadedCount++;
-                        if (loadedCount === files.length) {
-                            saveAndRefresh();
-                        }
-                    };
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
+                compressImageFile(file, (compressedUrl) => {
+                    group.images.push(compressedUrl);
+                    loadedCount++;
+                    if (loadedCount === files.length) {
+                        saveAndRefresh();
+                    }
+                });
             }
         }
 
@@ -993,6 +985,7 @@
                 const percent = Math.min(100, Math.round((group.current / group.target) * 100));
                 const isCompleted = group.current >= group.target;
                 const catStyle = getCategoryStyle(group.category);
+                const imageCount = group.images ? group.images.length : 0;
 
                 return `
                     <div onclick="openDetailModal(${group.id})" class="cloud-card p-5 flex flex-col justify-between cursor-pointer group/card" style="background-color: var(--card-bg);">
@@ -1003,7 +996,7 @@
                                     ${group.brand}
                                 </div>
                                 <div class="absolute bottom-3 right-3 backdrop-blur-xs px-2.5 py-1 rounded-xl text-xs font-bold text-white" style="background-color: rgba(107, 91, 83, 0.8);">
-                                    <i class="fa-solid fa-images mr-1"></i> ${group.images.length} รูป
+                                    <i class="fa-solid fa-images mr-1"></i> ${imageCount} รูป
                                 </div>
                             </div>
 
