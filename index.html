@@ -344,7 +344,7 @@
                     <div class="flex justify-between items-center mb-3">
                         <div>
                             <h4 class="font-bold text-base" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1" style="color: var(--accent-color);"></i> คลังอัลบั้มรูปภาพย่อย</h4>
-                            <p class="text-xs" style="color: var(--text-sub);">รูปทั้งหมดของกลุ่มนี้ กดปุ่มดาวน์โหลดหรือลบรูปเฉพาะจุดได้เลยครับ</p>
+                            <p class="text-xs" style="color: var(--text-sub);">รูปทั้งหมดของกลุ่มนี้ มีปุ่มดาวน์โหลดและปุ่มลบใต้รูปชัดเจนกดได้ทันที</p>
                         </div>
                         <label class="cloud-btn text-xs font-bold px-4 py-2 flex items-center gap-1.5 cursor-pointer" style="background-color: var(--btn-bg); color: var(--accent-color);">
                             <i class="fa-solid fa-cloud-arrow-up"></i> เพิ่มรูปในอัลบั้ม
@@ -352,7 +352,8 @@
                         </label>
                     </div>
 
-                    <div id="modalAlbumGrid" class="grid grid-cols-3 md:grid-cols-4 gap-3 max-h-60 overflow-y-auto p-1 custom-scrollbar"></div>
+                    <!-- แสดงผลรูปภาพในอัลบั้ม พร้อมปุ่มดาวน์โหลดและลบถาวรด้านล่าง -->
+                    <div id="modalAlbumGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-72 overflow-y-auto p-1 custom-scrollbar"></div>
                 </div>
             </div>
 
@@ -427,7 +428,7 @@
             }
         }
 
-        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v33')) || {
+        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v34')) || {
             emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
             pngUrls: []
         };
@@ -486,7 +487,7 @@
                         loadedFilesCount++;
                         if (loadedFilesCount === fileInput.files.length) {
                             bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
-                            try { localStorage.setItem('cloud_bg_decor_v33', JSON.stringify(bgDecorData)); } catch (err) {}
+                            try { localStorage.setItem('cloud_bg_decor_v34', JSON.stringify(bgDecorData)); } catch (err) {}
                             renderBackgroundDecor();
                             closeModal('bgCustomModal');
                         }
@@ -494,7 +495,7 @@
                     reader.readAsDataURL(file);
                 }
             } else {
-                try { localStorage.setItem('cloud_bg_decor_v33', JSON.stringify(bgDecorData)); } catch (err) {}
+                try { localStorage.setItem('cloud_bg_decor_v34', JSON.stringify(bgDecorData)); } catch (err) {}
                 renderBackgroundDecor();
                 closeModal('bgCustomModal');
             }
@@ -503,19 +504,19 @@
         function clearBackgroundDecor() {
             bgDecorData.emojis = '';
             bgDecorData.pngUrls = [];
-            localStorage.setItem('cloud_bg_decor_v33', JSON.stringify(bgDecorData));
+            localStorage.setItem('cloud_bg_decor_v34', JSON.stringify(bgDecorData));
             renderBackgroundDecor();
             closeModal('bgCustomModal');
         }
 
-        let categories = JSON.parse(localStorage.getItem('cloud_categories_v33')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
-        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v33') || '';
-        let headerData = JSON.parse(localStorage.getItem('cloud_header_v33')) || {
+        let categories = JSON.parse(localStorage.getItem('cloud_categories_v34')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
+        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v34') || '';
+        let headerData = JSON.parse(localStorage.getItem('cloud_header_v34')) || {
             title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
             subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
         };
 
-        let groups = JSON.parse(localStorage.getItem('cloud_groups_v33')) || [
+        let groups = JSON.parse(localStorage.getItem('cloud_groups_v34')) || [
             {
                 id: 1,
                 name: 'Pinky Pompom',
@@ -549,15 +550,15 @@
 
         function saveAndRefresh() {
             try {
-                localStorage.setItem('cloud_categories_v33', JSON.stringify(categories));
-                localStorage.setItem('cloud_header_v33', JSON.stringify(headerData));
-                localStorage.setItem('cloud_groups_v33', JSON.stringify(groups));
+                localStorage.setItem('cloud_categories_v34', JSON.stringify(categories));
+                localStorage.setItem('cloud_header_v34', JSON.stringify(headerData));
+                localStorage.setItem('cloud_groups_v34', JSON.stringify(groups));
             } catch (e) {
                 groups.forEach(g => {
                     g.coverImage = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=200&q=50';
                     g.images = [g.coverImage];
                 });
-                try { localStorage.setItem('cloud_groups_v33', JSON.stringify(groups)); } catch (err) {}
+                try { localStorage.setItem('cloud_groups_v34', JSON.stringify(groups)); } catch (err) {}
             }
 
             renderHeader();
@@ -644,7 +645,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     headerBannerUrl = e.target.result;
-                    try { localStorage.setItem('cloud_banner_blob_v33', headerBannerUrl); } catch (err) {}
+                    try { localStorage.setItem('cloud_banner_blob_v34', headerBannerUrl); } catch (err) {}
                     saveAndRefresh();
                     closeModal('headerConfigModal');
                 };
@@ -657,7 +658,7 @@
 
         function removeBannerImage() {
             headerBannerUrl = '';
-            localStorage.removeItem('cloud_banner_blob_v33');
+            localStorage.removeItem('cloud_banner_blob_v34');
             saveAndRefresh();
             closeModal('headerConfigModal');
         }
@@ -878,13 +879,19 @@
                     return;
                 }
 
+                // ปรับดีไซน์ให้ปุ่มดาวน์โหลดและลบอยู่ใต้ภาพตลอดเวลา ไม่ต้องเอาเมาส์ชี้ รองรับมือถือ/แท็บเล็ต 100%
                 albumGrid.innerHTML = group.images.map((img, idx) => `
-                    <div class="relative group aspect-square rounded-2xl overflow-hidden border-2 shadow-xs" style="background-color: var(--bg-main); border-color: var(--border-color);">
-                        <img src="${img}" class="w-full h-full object-cover">
-                        <!-- ปุ่มดาวน์โหลดและปุ่มลบแยกส่วนชัดเจน ไม่ทำให้ภาพหาย -->
-                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
-                            <a href="${img}" download="album_${group.name}_${idx}.jpg" class="cloud-btn w-8 h-8 flex items-center justify-center bg-white text-xs font-bold" title="บันทึกรูปนี้ลงเครื่อง"><i class="fa-solid fa-download"></i></a>
-                            <button type="button" onclick="deleteAlbumImage(${idx})" class="cloud-btn w-8 h-8 flex items-center justify-center bg-[#fff2f2] text-[#d66868] text-xs font-bold" title="ลบรูปนี้"><i class="fa-solid fa-trash"></i></button>
+                    <div class="cloud-card p-2 flex flex-col justify-between" style="background-color: var(--card-bg);">
+                        <div class="aspect-square rounded-xl overflow-hidden border-2 mb-2" style="border-color: var(--border-color); background-color: var(--bg-main);">
+                            <img src="${img}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex gap-2 justify-center">
+                            <a href="${img}" download="album_${group.name}_${idx}.jpg" class="cloud-btn flex-1 py-1.5 text-xs font-bold flex items-center justify-center gap-1" style="background-color: var(--btn-bg); color: var(--accent-color);" title="บันทึกรูป">
+                                <i class="fa-solid fa-download"></i> บันทึก
+                            </a>
+                            <button type="button" onclick="deleteAlbumImage(${idx})" class="cloud-btn px-3 py-1.5 bg-[#fff2f2] text-[#d66868] text-xs font-bold" title="ลบรูป">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </div>
                     </div>
                 `).join('');
