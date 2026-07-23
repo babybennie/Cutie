@@ -343,11 +343,11 @@
                 <div>
                     <div class="flex justify-between items-center mb-3">
                         <div>
-                            <h4 class="font-bold text-base" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1" style="color: var(--accent-color);"></i> คลังอัลบั้มรูปภาพย่อย</h4>
+                            <h4 class="font-bold text-base" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1" style="color: var(--accent-color);"></i> คลังอัลบั้มรูปภาพย่อย (ความคมชัดสูง)</h4>
                             <p class="text-xs" style="color: var(--text-sub);">รูปทั้งหมดของกลุ่มนี้ มีปุ่มดาวน์โหลดและปุ่มลบชัดเจนด้านล่าง</p>
                         </div>
                         <label class="cloud-btn text-xs font-bold px-4 py-2 flex items-center gap-1.5 cursor-pointer" style="background-color: var(--btn-bg); color: var(--accent-color);">
-                            <i class="fa-solid fa-cloud-arrow-up"></i> เพิ่มรูปในอัลบั้ม
+                            <i class="fa-solid fa-cloud-arrow-up"></i> เพิ่มรูปในอัลบั้ม (HD)
                             <input type="file" multiple accept="image/*" class="hidden" onchange="handleAlbumUpload(event)">
                         </label>
                     </div>
@@ -366,6 +366,50 @@
     </div>
 
     <script>
+        // ระบบ IndexedDB สำหรับเก็บข้อมูลความจุสูงระดับกิกะไบต์ รูปคมชัด ไม่จำกัดพื้นที่
+        const DB_NAME = 'CloudToyBoxDB_HD';
+        const DB_VERSION = 1;
+        let db = null;
+
+        function initDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, DB_VERSION);
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => {
+                    db = request.result;
+                    resolve(db);
+                };
+                request.onupgradeneeded = (event) => {
+                    const database = event.target.result;
+                    if (!database.objectStoreNames.contains('appData')) {
+                        database.createObjectStore('appData', { keyPath: 'key' });
+                    }
+                };
+            });
+        }
+
+        function dbGet(key) {
+            return new Promise((resolve, reject) => {
+                if (!db) return resolve(null);
+                const transaction = db.transaction(['appData'], 'readonly');
+                const store = transaction.objectStore('appData');
+                const request = store.get(key);
+                request.onsuccess = () => resolve(request.result ? request.result.value : null);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        function dbPut(key, value) {
+            return new Promise((resolve, reject) => {
+                if (!db) return resolve(null);
+                const transaction = db.transaction(['appData'], 'readwrite');
+                const store = transaction.objectStore('appData');
+                const request = store.put({ key: key, value: value });
+                request.onsuccess = () => resolve(true);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
         const themes = {
             peach: { name: 'พีบอกอุ่น 🍑', color: '#f2a194', '--bg-main': '#fefcf9', '--card-bg': '#ffffff', '--border-color': '#f2d6cd', '--text-main': '#6b5b53', '--text-sub': '#9e8479', '--accent-color': '#f2a194', '--btn-bg': '#fff5f2' },
             mint: { name: 'มิ้นต์ละมุน 🌿', color: '#8bc3b0', '--bg-main': '#f4faf7', '--card-bg': '#ffffff', '--border-color': '#c4ded5', '--text-main': '#3a5c52', '--text-sub': '#6c9689', '--accent-color': '#528575', '--btn-bg': '#e4f0ed' },
@@ -427,7 +471,7 @@
             }
         }
 
-        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v38')) || {
+        let bgDecorData = {
             emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
             pngUrls: []
         };
@@ -470,7 +514,7 @@
             }
         }
 
-        function saveBackgroundDecor() {
+        async function saveBackgroundDecor() {
             const emojiInput = document.getElementById('bgEmojiInput');
             bgDecorData.emojis = emojiInput ? emojiInput.value : '';
             const fileInput = document.getElementById('bgPngInput');
@@ -480,21 +524,19 @@
                 const newImages = [];
 
                 for (let file of fileInput.files) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        newImages.push(e.target.result);
+                    readImageFileHD(file, 800, 0.8, (base64) => {
+                        newImages.push(base64);
                         loadedFilesCount++;
                         if (loadedFilesCount === fileInput.files.length) {
                             bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
-                            try { localStorage.setItem('cloud_bg_decor_v38', JSON.stringify(bgDecorData)); } catch (err) {}
+                            dbPut('cloud_bg_decor', bgDecorData);
                             renderBackgroundDecor();
                             closeModal('bgCustomModal');
                         }
-                    };
-                    reader.readAsDataURL(file);
+                    });
                 }
             } else {
-                try { localStorage.setItem('cloud_bg_decor_v38', JSON.stringify(bgDecorData)); } catch (err) {}
+                dbPut('cloud_bg_decor', bgDecorData);
                 renderBackgroundDecor();
                 closeModal('bgCustomModal');
             }
@@ -503,52 +545,31 @@
         function clearBackgroundDecor() {
             bgDecorData.emojis = '';
             bgDecorData.pngUrls = [];
-            localStorage.setItem('cloud_bg_decor_v38', JSON.stringify(bgDecorData));
+            dbPut('cloud_bg_decor', bgDecorData);
             renderBackgroundDecor();
             closeModal('bgCustomModal');
         }
 
-        let categories = JSON.parse(localStorage.getItem('cloud_categories_v38')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
-        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v38') || '';
-        let headerData = JSON.parse(localStorage.getItem('cloud_header_v38')) || {
+        let categories = ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
+        let headerBannerUrl = '';
+        let headerData = {
             title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
             subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
         };
 
-        let rawSavedGroups = JSON.parse(localStorage.getItem('cloud_groups_v38'));
-        let groups = [];
-
-        if (rawSavedGroups && Array.isArray(rawSavedGroups)) {
-            groups = rawSavedGroups.map(g => {
-                let validImages = [];
-                if (g.images && Array.isArray(g.images)) {
-                    validImages = g.images.filter(img => img && typeof img === 'string' && img.trim() !== '');
-                }
-                let validCover = (g.coverImage && typeof g.coverImage === 'string' && g.coverImage.trim() !== '') ? g.coverImage : (validImages[0] || 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70');
-                if (validImages.length === 0) {
-                    validImages.push(validCover);
-                }
-                return {
-                    ...g,
-                    coverImage: validCover,
-                    images: validImages
-                };
-            });
-        } else {
-            groups = [
-                {
-                    id: 1,
-                    name: 'Pinky Pompom',
-                    brand: 'Bennie',
-                    category: 'ของตกแต่ง',
-                    target: 25,
-                    current: 25,
-                    desc: 'ชุดแต่งห้องสไตล์พาสเทลละมุนตา',
-                    coverImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70',
-                    images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70']
-                }
-            ];
-        }
+        let groups = [
+            {
+                id: 1,
+                name: 'Pinky Pompom',
+                brand: 'Bennie',
+                category: 'ของตกแต่ง',
+                target: 25,
+                current: 25,
+                desc: 'ชุดแต่งห้องสไตล์พาสเทลละมุนตา',
+                coverImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80',
+                images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80']
+            }
+        ];
 
         let currentActiveGroupId = null;
         let currentCategoryFilter = 'all';
@@ -568,14 +589,14 @@
             return pastelColorPool[index % pastelColorPool.length];
         }
 
-        function saveAndRefresh() {
+        async function saveAndRefresh() {
             try {
-                localStorage.setItem('cloud_categories_v38', JSON.stringify(categories));
-                localStorage.setItem('cloud_header_v38', JSON.stringify(headerData));
-                localStorage.setItem('cloud_groups_v38', JSON.stringify(groups));
+                await dbPut('cloud_categories', categories);
+                await dbPut('cloud_header', headerData);
+                await dbPut('cloud_banner_blob', headerBannerUrl);
+                await dbPut('cloud_groups', groups);
             } catch (e) {
-                console.error("Storage limit reached:", e);
-                alert('พื้นที่จัดเก็บข้อมูลเต็ม กรุณาลบบางรูปที่ไม่จำเป็นออกครับ');
+                console.error("DB Save Error:", e);
             }
 
             renderHeader();
@@ -659,9 +680,8 @@
 
             const fileInput = document.getElementById('configBannerInput');
             if (fileInput && fileInput.files && fileInput.files[0]) {
-                readImageFile(fileInput.files[0], 1000, 0.6, (base64) => {
+                readImageFileHD(fileInput.files[0], 1200, 0.85, (base64) => {
                     headerBannerUrl = base64;
-                    try { localStorage.setItem('cloud_banner_blob_v38', headerBannerUrl); } catch (err) {}
                     saveAndRefresh();
                     closeModal('headerConfigModal');
                 });
@@ -673,7 +693,6 @@
 
         function removeBannerImage() {
             headerBannerUrl = '';
-            localStorage.removeItem('cloud_banner_blob_v38');
             saveAndRefresh();
             closeModal('headerConfigModal');
         }
@@ -758,7 +777,8 @@
             document.getElementById('newGroupAlbumInput').value = '';
         }
 
-        function readImageFile(file, maxWidth = 500, quality = 0.5, callback) {
+        // ฟังก์ชันอ่านและประมวลผลไฟล์ภาพความคมชัดสูง (HD) 
+        function readImageFileHD(file, maxDimension = 1200, quality = 0.85, callback) {
             const reader = new FileReader();
             reader.onload = function(e) {
                 const img = new Image();
@@ -766,7 +786,17 @@
                     const canvas = document.createElement('canvas');
                     let w = img.width;
                     let h = img.height;
-                    if (w > maxWidth) { h = Math.round((h * maxWidth) / w); w = maxWidth; }
+                    
+                    if (w > maxDimension || h > maxDimension) {
+                        if (w > h) {
+                            h = Math.round((h * maxDimension) / w);
+                            w = maxDimension;
+                        } else {
+                            w = Math.round((w * maxDimension) / h);
+                            h = maxDimension;
+                        }
+                    }
+                    
                     canvas.width = w;
                     canvas.height = h;
                     const ctx = canvas.getContext('2d');
@@ -796,11 +826,11 @@
             if (!name) { alert('กรุณากรอกชื่อกลุ่มสินค้าด้วยครับ'); return; }
             if (!brand) { alert('กรุณากรอกชื่อแบรนด์สังกัดด้วยครับ'); return; }
 
-            const defaultCover = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70';
+            const defaultCover = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80';
 
             const handleCoverImage = (onCoverReady) => {
                 if (coverInput && coverInput.files && coverInput.files[0]) {
-                    readImageFile(coverInput.files[0], 500, 0.5, (base64) => {
+                    readImageFileHD(coverInput.files[0], 1000, 0.85, (base64) => {
                         onCoverReady(base64);
                     });
                 } else {
@@ -815,7 +845,7 @@
                 if (files && files.length > 0) {
                     let loadedCount = 0;
                     Array.from(files).forEach((file, index) => {
-                        readImageFile(file, 500, 0.5, (base64) => {
+                        readImageFileHD(file, 1200, 0.85, (base64) => {
                             albumImages[index] = base64;
                             loadedCount++;
                             if (loadedCount === files.length) {
@@ -946,7 +976,7 @@
 
             let loadedCount = 0;
             Array.from(files).forEach((file) => {
-                readImageFile(file, 500, 0.5, (compressedUrl) => {
+                readImageFileHD(file, 1200, 0.85, (compressedUrl) => {
                     group.images.push(compressedUrl);
                     loadedCount++;
                     if (loadedCount === files.length) {
@@ -1012,7 +1042,7 @@
                 const catStyle = getCategoryStyle(group.category);
                 const imageCount = group.images ? group.images.length : 0;
                 
-                const fallbackImg = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70';
+                const fallbackImg = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80';
                 const displayCover = (group.coverImage && group.coverImage.trim() !== '') ? group.coverImage : ((group.images && group.images[0]) ? group.images[0] : fallbackImg);
 
                 return `
@@ -1054,10 +1084,32 @@
             }).join('');
         }
 
-        renderThemeButtons();
-        loadSavedTheme();
-        renderBackgroundDecor();
-        saveAndRefresh();
+        // เริ่มต้นการทำงานพร้อมโหลดข้อมูลจาก IndexedDB
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                await initDB();
+                const savedCategories = await dbGet('cloud_categories');
+                const savedHeader = await dbGet('cloud_header');
+                const savedBanner = await dbGet('cloud_banner_blob');
+                const savedGroups = await dbGet('cloud_groups');
+                const savedDecor = await dbGet('cloud_bg_decor');
+
+                if (savedCategories) categories = savedCategories;
+                if (savedHeader) headerData = savedHeader;
+                if (savedBanner) headerBannerUrl = savedBanner;
+                if (savedGroups && Array.isArray(savedGroups) && savedGroups.length > 0) {
+                    groups = savedGroups;
+                }
+                if (savedDecor) bgDecorData = savedDecor;
+            } catch (err) {
+                console.error("IndexedDB Load Error:", err);
+            }
+
+            renderThemeButtons();
+            loadSavedTheme();
+            renderBackgroundDecor();
+            saveAndRefresh();
+        });
     </script>
 </body>
 </html>
