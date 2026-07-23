@@ -252,7 +252,7 @@
         </div>
     </div>
 
-    <!-- Modal: เพิ่มกลุ่มใหม่ (แยกส่วนชัดเจนระหว่างรูปปกและรูปอัลบั้ม) -->
+    <!-- Modal: เพิ่มกลุ่มใหม่ -->
     <div id="addGroupModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
         <div class="cloud-card bg-[#fffdf9] max-w-lg w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
@@ -344,7 +344,7 @@
                     <div class="flex justify-between items-center mb-3">
                         <div>
                             <h4 class="font-bold text-base" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1" style="color: var(--accent-color);"></i> คลังอัลบั้มรูปภาพย่อย</h4>
-                            <p class="text-xs" style="color: var(--text-sub);">รูปทั้งหมดของกลุ่มนี้ กดดูและบันทึกกลับเครื่องได้ทันที</p>
+                            <p class="text-xs" style="color: var(--text-sub);">รูปทั้งหมดของกลุ่มนี้ กดปุ่มดาวน์โหลดหรือลบรูปเฉพาะจุดได้เลยครับ</p>
                         </div>
                         <label class="cloud-btn text-xs font-bold px-4 py-2 flex items-center gap-1.5 cursor-pointer" style="background-color: var(--btn-bg); color: var(--accent-color);">
                             <i class="fa-solid fa-cloud-arrow-up"></i> เพิ่มรูปในอัลบั้ม
@@ -427,7 +427,7 @@
             }
         }
 
-        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v32')) || {
+        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v33')) || {
             emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
             pngUrls: []
         };
@@ -486,7 +486,7 @@
                         loadedFilesCount++;
                         if (loadedFilesCount === fileInput.files.length) {
                             bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
-                            try { localStorage.setItem('cloud_bg_decor_v32', JSON.stringify(bgDecorData)); } catch (err) {}
+                            try { localStorage.setItem('cloud_bg_decor_v33', JSON.stringify(bgDecorData)); } catch (err) {}
                             renderBackgroundDecor();
                             closeModal('bgCustomModal');
                         }
@@ -494,7 +494,7 @@
                     reader.readAsDataURL(file);
                 }
             } else {
-                try { localStorage.setItem('cloud_bg_decor_v32', JSON.stringify(bgDecorData)); } catch (err) {}
+                try { localStorage.setItem('cloud_bg_decor_v33', JSON.stringify(bgDecorData)); } catch (err) {}
                 renderBackgroundDecor();
                 closeModal('bgCustomModal');
             }
@@ -503,19 +503,19 @@
         function clearBackgroundDecor() {
             bgDecorData.emojis = '';
             bgDecorData.pngUrls = [];
-            localStorage.setItem('cloud_bg_decor_v32', JSON.stringify(bgDecorData));
+            localStorage.setItem('cloud_bg_decor_v33', JSON.stringify(bgDecorData));
             renderBackgroundDecor();
             closeModal('bgCustomModal');
         }
 
-        let categories = JSON.parse(localStorage.getItem('cloud_categories_v32')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
-        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v32') || '';
-        let headerData = JSON.parse(localStorage.getItem('cloud_header_v32')) || {
+        let categories = JSON.parse(localStorage.getItem('cloud_categories_v33')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
+        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v33') || '';
+        let headerData = JSON.parse(localStorage.getItem('cloud_header_v33')) || {
             title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
             subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
         };
 
-        let groups = JSON.parse(localStorage.getItem('cloud_groups_v32')) || [
+        let groups = JSON.parse(localStorage.getItem('cloud_groups_v33')) || [
             {
                 id: 1,
                 name: 'Pinky Pompom',
@@ -549,15 +549,15 @@
 
         function saveAndRefresh() {
             try {
-                localStorage.setItem('cloud_categories_v32', JSON.stringify(categories));
-                localStorage.setItem('cloud_header_v32', JSON.stringify(headerData));
-                localStorage.setItem('cloud_groups_v32', JSON.stringify(groups));
+                localStorage.setItem('cloud_categories_v33', JSON.stringify(categories));
+                localStorage.setItem('cloud_header_v33', JSON.stringify(headerData));
+                localStorage.setItem('cloud_groups_v33', JSON.stringify(groups));
             } catch (e) {
                 groups.forEach(g => {
                     g.coverImage = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=200&q=50';
                     g.images = [g.coverImage];
                 });
-                try { localStorage.setItem('cloud_groups_v32', JSON.stringify(groups)); } catch (err) {}
+                try { localStorage.setItem('cloud_groups_v33', JSON.stringify(groups)); } catch (err) {}
             }
 
             renderHeader();
@@ -644,7 +644,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     headerBannerUrl = e.target.result;
-                    try { localStorage.setItem('cloud_banner_blob_v32', headerBannerUrl); } catch (err) {}
+                    try { localStorage.setItem('cloud_banner_blob_v33', headerBannerUrl); } catch (err) {}
                     saveAndRefresh();
                     closeModal('headerConfigModal');
                 };
@@ -657,7 +657,7 @@
 
         function removeBannerImage() {
             headerBannerUrl = '';
-            localStorage.removeItem('cloud_banner_blob_v32');
+            localStorage.removeItem('cloud_banner_blob_v33');
             saveAndRefresh();
             closeModal('headerConfigModal');
         }
@@ -742,7 +742,6 @@
             document.getElementById('newGroupAlbumInput').value = '';
         }
 
-        // ฟังก์ชันแปลงไฟล์ภาพเป็น Base64 ที่บีบอัดแล้ว
         function readImageFile(file, callback) {
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -782,7 +781,6 @@
 
             const defaultCover = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70';
 
-            // จัดการอ่านรูปปกก่อน
             const handleCoverImage = (onCoverReady) => {
                 if (coverInput && coverInput.files && coverInput.files[0]) {
                     readImageFile(coverInput.files[0], (base64) => {
@@ -793,7 +791,6 @@
                 }
             };
 
-            // จัดการอ่านรูปอัลบั้มย่อยทีละรูปอย่างปลอดภัย
             const handleAlbumImages = (coverUrl) => {
                 const files = albumInput.files;
                 const albumImages = [];
@@ -802,7 +799,7 @@
                     let loadedCount = 0;
                     Array.from(files).forEach((file, index) => {
                         readImageFile(file, (base64) => {
-                            albumImages[index] = base64; // ล็อคตำแหน่งแน่นอน ป้องกันรูปสลับหรือหาย
+                            albumImages[index] = base64;
                             loadedCount++;
                             if (loadedCount === files.length) {
                                 finishSave(coverUrl, albumImages);
@@ -824,15 +821,14 @@
                     target: target,
                     current: 0,
                     desc: desc,
-                    coverImage: coverUrl, // ภาพปกแยกอิสระ ชัดเจน 100%
-                    images: albumImages   // ภาพในอัลบั้มย่อย
+                    coverImage: coverUrl,
+                    images: albumImages
                 };
                 groups.unshift(newGroup);
                 saveAndRefresh();
                 closeAddGroupModal();
             };
 
-            // เริ่มต้นกระบวนการบันทึก
             handleCoverImage((coverUrl) => {
                 handleAlbumImages(coverUrl);
             });
@@ -885,9 +881,10 @@
                 albumGrid.innerHTML = group.images.map((img, idx) => `
                     <div class="relative group aspect-square rounded-2xl overflow-hidden border-2 shadow-xs" style="background-color: var(--bg-main); border-color: var(--border-color);">
                         <img src="${img}" class="w-full h-full object-cover">
+                        <!-- ปุ่มดาวน์โหลดและปุ่มลบแยกส่วนชัดเจน ไม่ทำให้ภาพหาย -->
                         <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
-                            <a href="${img}" download="album_${group.name}_${idx}.jpg" class="cloud-btn p-2 bg-white text-xs" title="บันทึกรูปนี้ลงเครื่อง"><i class="fa-solid fa-download"></i></a>
-                            <button type="button" onclick="deleteAlbumImage(${idx})" class="cloud-btn p-2 bg-[#fff2f2] text-[#d66868] text-xs" title="ลบรูป"><i class="fa-solid fa-trash"></i></button>
+                            <a href="${img}" download="album_${group.name}_${idx}.jpg" class="cloud-btn w-8 h-8 flex items-center justify-center bg-white text-xs font-bold" title="บันทึกรูปนี้ลงเครื่อง"><i class="fa-solid fa-download"></i></a>
+                            <button type="button" onclick="deleteAlbumImage(${idx})" class="cloud-btn w-8 h-8 flex items-center justify-center bg-[#fff2f2] text-[#d66868] text-xs font-bold" title="ลบรูปนี้"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
                 `).join('');
@@ -926,7 +923,7 @@
             if (!group || !files || files.length === 0) return;
 
             let loadedCount = 0;
-            Array.from(files).forEach((file, index) => {
+            Array.from(files).forEach((file) => {
                 readImageFile(file, (compressedUrl) => {
                     group.images.push(compressedUrl);
                     loadedCount++;
@@ -939,7 +936,7 @@
 
         function deleteAlbumImage(imgIndex) {
             const group = groups.find(g => g.id === currentActiveGroupId);
-            if (group) {
+            if (group && group.images) {
                 group.images.splice(imgIndex, 1);
                 saveAndRefresh();
             }
