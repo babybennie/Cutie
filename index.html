@@ -252,7 +252,7 @@
         </div>
     </div>
 
-    <!-- Modal: เพิ่มกลุ่มใหม่ (แยกช่องรูปปก และ รูปอัลบั้มชัดเจน รองรับรายการจำนวนมาก) -->
+    <!-- Modal: เพิ่มกลุ่มใหม่ (แยกส่วนชัดเจนระหว่างรูปปกและรูปอัลบั้ม) -->
     <div id="addGroupModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
         <div class="cloud-card bg-[#fffdf9] max-w-lg w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
@@ -275,7 +275,7 @@
                     <select id="newGroupCategory" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);"></select>
                 </div>
                 <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">จำนวนงานเป้าหมาย (ค่ามาตรฐาน 25-50 งาน)</label>
+                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">จำนวนงานเป้าหมาย (ค่ามาตรฐาน 25 งาน)</label>
                     <input type="number" id="newGroupTarget" value="25" min="1" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
                 </div>
                 <div>
@@ -283,13 +283,13 @@
                     <textarea id="newGroupDesc" rows="2" placeholder="ใส่ลิงก์ Drive หรือรายละเอียดที่นี่..." class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);"></textarea>
                 </div>
                 
-                <!-- ช่องแยกที่ 1: รูปหน้าปก -->
+                <!-- ช่องอัปโหลดรูปหน้าปก -->
                 <div class="p-3 rounded-2xl border-2" style="background-color: var(--bg-main); border-color: var(--border-color);">
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);"><i class="fa-solid fa-image mr-1 text-[#f2a194]"></i> 1. รูปภาพหน้าปก (แสดงหน้าการ์ดหลัก)</label>
                     <input type="file" id="newGroupCoverInput" accept="image/*" class="w-full text-xs cursor-pointer mt-1">
                 </div>
 
-                <!-- ช่องแยกที่ 2: รูปในอัลบั้มย่อย -->
+                <!-- ช่องอัปโหลดรูปอัลบั้มย่อย -->
                 <div class="p-3 rounded-2xl border-2" style="background-color: var(--bg-main); border-color: var(--border-color);">
                     <label class="block text-sm font-bold mb-1" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1 text-[#f2a194]"></i> 2. รูปภาพในอัลบั้มย่อย (เลือกได้หลายรูป)</label>
                     <input type="file" id="newGroupAlbumInput" accept="image/*" multiple class="w-full text-xs cursor-pointer mt-1">
@@ -427,7 +427,7 @@
             }
         }
 
-        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v31')) || {
+        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v32')) || {
             emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
             pngUrls: []
         };
@@ -486,7 +486,7 @@
                         loadedFilesCount++;
                         if (loadedFilesCount === fileInput.files.length) {
                             bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
-                            try { localStorage.setItem('cloud_bg_decor_v31', JSON.stringify(bgDecorData)); } catch (err) {}
+                            try { localStorage.setItem('cloud_bg_decor_v32', JSON.stringify(bgDecorData)); } catch (err) {}
                             renderBackgroundDecor();
                             closeModal('bgCustomModal');
                         }
@@ -494,7 +494,7 @@
                     reader.readAsDataURL(file);
                 }
             } else {
-                try { localStorage.setItem('cloud_bg_decor_v31', JSON.stringify(bgDecorData)); } catch (err) {}
+                try { localStorage.setItem('cloud_bg_decor_v32', JSON.stringify(bgDecorData)); } catch (err) {}
                 renderBackgroundDecor();
                 closeModal('bgCustomModal');
             }
@@ -503,19 +503,19 @@
         function clearBackgroundDecor() {
             bgDecorData.emojis = '';
             bgDecorData.pngUrls = [];
-            localStorage.setItem('cloud_bg_decor_v31', JSON.stringify(bgDecorData));
+            localStorage.setItem('cloud_bg_decor_v32', JSON.stringify(bgDecorData));
             renderBackgroundDecor();
             closeModal('bgCustomModal');
         }
 
-        let categories = JSON.parse(localStorage.getItem('cloud_categories_v31')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
-        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v31') || '';
-        let headerData = JSON.parse(localStorage.getItem('cloud_header_v31')) || {
+        let categories = JSON.parse(localStorage.getItem('cloud_categories_v32')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
+        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v32') || '';
+        let headerData = JSON.parse(localStorage.getItem('cloud_header_v32')) || {
             title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
             subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
         };
 
-        let groups = JSON.parse(localStorage.getItem('cloud_groups_v31')) || [
+        let groups = JSON.parse(localStorage.getItem('cloud_groups_v32')) || [
             {
                 id: 1,
                 name: 'Pinky Pompom',
@@ -549,18 +549,15 @@
 
         function saveAndRefresh() {
             try {
-                localStorage.setItem('cloud_categories_v31', JSON.stringify(categories));
-                localStorage.setItem('cloud_header_v31', JSON.stringify(headerData));
-                localStorage.setItem('cloud_groups_v31', JSON.stringify(groups));
+                localStorage.setItem('cloud_categories_v32', JSON.stringify(categories));
+                localStorage.setItem('cloud_header_v32', JSON.stringify(headerData));
+                localStorage.setItem('cloud_groups_v32', JSON.stringify(groups));
             } catch (e) {
-                // หาก LocalStorage เต็ม ให้ลบรูปภาพหนักๆ ออกจากกลุ่มเก่าอัตโนมัติ เพื่อให้บันทึกรายการเพิ่มได้เกิน 30+ รายการ
                 groups.forEach(g => {
                     g.coverImage = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=200&q=50';
                     g.images = [g.coverImage];
                 });
-                try {
-                    localStorage.setItem('cloud_groups_v31', JSON.stringify(groups));
-                } catch (err) {}
+                try { localStorage.setItem('cloud_groups_v32', JSON.stringify(groups)); } catch (err) {}
             }
 
             renderHeader();
@@ -647,7 +644,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     headerBannerUrl = e.target.result;
-                    try { localStorage.setItem('cloud_banner_blob_v31', headerBannerUrl); } catch (err) {}
+                    try { localStorage.setItem('cloud_banner_blob_v32', headerBannerUrl); } catch (err) {}
                     saveAndRefresh();
                     closeModal('headerConfigModal');
                 };
@@ -660,7 +657,7 @@
 
         function removeBannerImage() {
             headerBannerUrl = '';
-            localStorage.removeItem('cloud_banner_blob_v31');
+            localStorage.removeItem('cloud_banner_blob_v32');
             saveAndRefresh();
             closeModal('headerConfigModal');
         }
@@ -745,8 +742,8 @@
             document.getElementById('newGroupAlbumInput').value = '';
         }
 
-        // ฟังก์ชันบีบอัดรูปภาพขนาดกะทัดรัดพิเศษ เพื่อรองรับรายการจำนวนมาก 30+ รายการ
-        function compressImageFile(file, callback) {
+        // ฟังก์ชันแปลงไฟล์ภาพเป็น Base64 ที่บีบอัดแล้ว
+        function readImageFile(file, callback) {
             const reader = new FileReader();
             reader.onload = function(e) {
                 const img = new Image();
@@ -785,28 +782,40 @@
 
             const defaultCover = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70';
 
-            const processCoverAndAlbum = (coverUrl) => {
-                const albumImages = [];
-                const files = albumInput.files;
-
-                if (files && files.length > 0) {
-                    let processedCount = 0;
-                    for (let file of files) {
-                        compressImageFile(file, (compressedAlbumUrl) => {
-                            albumImages.push(compressedAlbumUrl);
-                            processedCount++;
-                            if (processedCount === files.length) {
-                                finalizeGroupCreation(coverUrl, albumImages);
-                            }
-                        });
-                    }
+            // จัดการอ่านรูปปกก่อน
+            const handleCoverImage = (onCoverReady) => {
+                if (coverInput && coverInput.files && coverInput.files[0]) {
+                    readImageFile(coverInput.files[0], (base64) => {
+                        onCoverReady(base64);
+                    });
                 } else {
-                    albumImages.push(coverUrl);
-                    finalizeGroupCreation(coverUrl, albumImages);
+                    onCoverReady(defaultCover);
                 }
             };
 
-            const finalizeGroupCreation = (coverUrl, albumImages) => {
+            // จัดการอ่านรูปอัลบั้มย่อยทีละรูปอย่างปลอดภัย
+            const handleAlbumImages = (coverUrl) => {
+                const files = albumInput.files;
+                const albumImages = [];
+
+                if (files && files.length > 0) {
+                    let loadedCount = 0;
+                    Array.from(files).forEach((file, index) => {
+                        readImageFile(file, (base64) => {
+                            albumImages[index] = base64; // ล็อคตำแหน่งแน่นอน ป้องกันรูปสลับหรือหาย
+                            loadedCount++;
+                            if (loadedCount === files.length) {
+                                finishSave(coverUrl, albumImages);
+                            }
+                        });
+                    });
+                } else {
+                    albumImages.push(coverUrl);
+                    finishSave(coverUrl, albumImages);
+                }
+            };
+
+            const finishSave = (coverUrl, albumImages) => {
                 const newGroup = {
                     id: Date.now(),
                     name: name,
@@ -815,21 +824,18 @@
                     target: target,
                     current: 0,
                     desc: desc,
-                    coverImage: coverUrl, 
-                    images: albumImages   
+                    coverImage: coverUrl, // ภาพปกแยกอิสระ ชัดเจน 100%
+                    images: albumImages   // ภาพในอัลบั้มย่อย
                 };
                 groups.unshift(newGroup);
                 saveAndRefresh();
                 closeAddGroupModal();
             };
 
-            if (coverInput && coverInput.files && coverInput.files[0]) {
-                compressImageFile(coverInput.files[0], (compressedCoverUrl) => {
-                    processCoverAndAlbum(compressedCoverUrl);
-                });
-            } else {
-                processCoverAndAlbum(defaultCover);
-            }
+            // เริ่มต้นกระบวนการบันทึก
+            handleCoverImage((coverUrl) => {
+                handleAlbumImages(coverUrl);
+            });
         }
 
         function openDetailModal(id) {
@@ -917,18 +923,18 @@
         function handleAlbumUpload(event) {
             const files = event.target.files;
             const group = groups.find(g => g.id === currentActiveGroupId);
-            if (!group || !files) return;
+            if (!group || !files || files.length === 0) return;
 
             let loadedCount = 0;
-            for (let file of files) {
-                compressImageFile(file, (compressedUrl) => {
+            Array.from(files).forEach((file, index) => {
+                readImageFile(file, (compressedUrl) => {
                     group.images.push(compressedUrl);
                     loadedCount++;
                     if (loadedCount === files.length) {
                         saveAndRefresh();
                     }
                 });
-            }
+            });
         }
 
         function deleteAlbumImage(imgIndex) {
