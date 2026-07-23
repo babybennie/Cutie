@@ -352,7 +352,6 @@
                         </label>
                     </div>
 
-                    <!-- แสดงผลรูปภาพในอัลบั้ม พร้อมปุ่มดาวน์โหลดและลบถาวรด้านล่างชัดเจน 100% -->
                     <div id="modalAlbumGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-72 overflow-y-auto p-1 custom-scrollbar"></div>
                 </div>
             </div>
@@ -428,7 +427,7 @@
             }
         }
 
-        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v35')) || {
+        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v36')) || {
             emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
             pngUrls: []
         };
@@ -487,7 +486,7 @@
                         loadedFilesCount++;
                         if (loadedFilesCount === fileInput.files.length) {
                             bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
-                            try { localStorage.setItem('cloud_bg_decor_v35', JSON.stringify(bgDecorData)); } catch (err) {}
+                            try { localStorage.setItem('cloud_bg_decor_v36', JSON.stringify(bgDecorData)); } catch (err) {}
                             renderBackgroundDecor();
                             closeModal('bgCustomModal');
                         }
@@ -495,7 +494,7 @@
                     reader.readAsDataURL(file);
                 }
             } else {
-                try { localStorage.setItem('cloud_bg_decor_v35', JSON.stringify(bgDecorData)); } catch (err) {}
+                try { localStorage.setItem('cloud_bg_decor_v36', JSON.stringify(bgDecorData)); } catch (err) {}
                 renderBackgroundDecor();
                 closeModal('bgCustomModal');
             }
@@ -504,19 +503,19 @@
         function clearBackgroundDecor() {
             bgDecorData.emojis = '';
             bgDecorData.pngUrls = [];
-            localStorage.setItem('cloud_bg_decor_v35', JSON.stringify(bgDecorData));
+            localStorage.setItem('cloud_bg_decor_v36', JSON.stringify(bgDecorData));
             renderBackgroundDecor();
             closeModal('bgCustomModal');
         }
 
-        let categories = JSON.parse(localStorage.getItem('cloud_categories_v35')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
-        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v35') || '';
-        let headerData = JSON.parse(localStorage.getItem('cloud_header_v35')) || {
+        let categories = JSON.parse(localStorage.getItem('cloud_categories_v36')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
+        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v36') || '';
+        let headerData = JSON.parse(localStorage.getItem('cloud_header_v36')) || {
             title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
             subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
         };
 
-        let groups = JSON.parse(localStorage.getItem('cloud_groups_v35')) || [
+        let groups = JSON.parse(localStorage.getItem('cloud_groups_v36')) || [
             {
                 id: 1,
                 name: 'Pinky Pompom',
@@ -550,15 +549,15 @@
 
         function saveAndRefresh() {
             try {
-                localStorage.setItem('cloud_categories_v35', JSON.stringify(categories));
-                localStorage.setItem('cloud_header_v35', JSON.stringify(headerData));
-                localStorage.setItem('cloud_groups_v35', JSON.stringify(groups));
+                localStorage.setItem('cloud_categories_v36', JSON.stringify(categories));
+                localStorage.setItem('cloud_header_v36', JSON.stringify(headerData));
+                localStorage.setItem('cloud_groups_v36', JSON.stringify(groups));
             } catch (e) {
                 groups.forEach(g => {
                     g.coverImage = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=200&q=50';
                     g.images = [g.coverImage];
                 });
-                try { localStorage.setItem('cloud_groups_v35', JSON.stringify(groups)); } catch (err) {}
+                try { localStorage.setItem('cloud_groups_v36', JSON.stringify(groups)); } catch (err) {}
             }
 
             renderHeader();
@@ -645,7 +644,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     headerBannerUrl = e.target.result;
-                    try { localStorage.setItem('cloud_banner_blob_v35', headerBannerUrl); } catch (err) {}
+                    try { localStorage.setItem('cloud_banner_blob_v36', headerBannerUrl); } catch (err) {}
                     saveAndRefresh();
                     closeModal('headerConfigModal');
                 };
@@ -658,7 +657,7 @@
 
         function removeBannerImage() {
             headerBannerUrl = '';
-            localStorage.removeItem('cloud_banner_blob_v35');
+            localStorage.removeItem('cloud_banner_blob_v36');
             saveAndRefresh();
             closeModal('headerConfigModal');
         }
@@ -879,7 +878,6 @@
                     return;
                 }
 
-                // สร้างการแสดงผลแบบมีกล่องการ์ดแยกชิ้น พร้อมปุ่มดาวน์โหลดและปุ่มลบด้านล่างอย่างชัดเจน
                 albumGrid.innerHTML = group.images.map((img, idx) => `
                     <div class="p-2.5 rounded-2xl border-2 flex flex-col justify-between shadow-xs" style="background-color: var(--card-bg); border-color: var(--border-color);">
                         <div class="aspect-square rounded-xl overflow-hidden border mb-2" style="border-color: var(--border-color); background-color: var(--bg-main);">
@@ -996,12 +994,13 @@
                 const isCompleted = group.current >= group.target;
                 const catStyle = getCategoryStyle(group.category);
                 const imageCount = group.images ? group.images.length : 0;
+                const displayCover = group.coverImage || (group.images && group.images[0]) || 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70';
 
                 return `
                     <div onclick="openDetailModal(${group.id})" class="cloud-card p-5 flex flex-col justify-between cursor-pointer group/card" style="background-color: var(--card-bg);">
                         <div>
                             <div class="relative h-52 rounded-2xl overflow-hidden mb-4 border-2 shadow-xs" style="background-color: var(--bg-main); border-color: var(--border-color);">
-                                <img src="${group.coverImage}" class="w-full h-full object-cover group-hover/card:scale-105 transition duration-500">
+                                <img src="${displayCover}" class="w-full h-full object-cover group-hover/card:scale-105 transition duration-500">
                                 <div class="absolute top-3 left-3 backdrop-blur-xs px-3 py-1 rounded-full text-xs font-bold border shadow-xs" style="background-color: rgba(255,255,255,0.9); color: var(--text-main); border-color: var(--border-color);">
                                     ${group.brand}
                                 </div>
