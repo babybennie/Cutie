@@ -427,7 +427,7 @@
             }
         }
 
-        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v36')) || {
+        let bgDecorData = JSON.parse(localStorage.getItem('cloud_bg_decor_v37')) || {
             emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
             pngUrls: []
         };
@@ -486,7 +486,7 @@
                         loadedFilesCount++;
                         if (loadedFilesCount === fileInput.files.length) {
                             bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
-                            try { localStorage.setItem('cloud_bg_decor_v36', JSON.stringify(bgDecorData)); } catch (err) {}
+                            try { localStorage.setItem('cloud_bg_decor_v37', JSON.stringify(bgDecorData)); } catch (err) {}
                             renderBackgroundDecor();
                             closeModal('bgCustomModal');
                         }
@@ -494,7 +494,7 @@
                     reader.readAsDataURL(file);
                 }
             } else {
-                try { localStorage.setItem('cloud_bg_decor_v36', JSON.stringify(bgDecorData)); } catch (err) {}
+                try { localStorage.setItem('cloud_bg_decor_v37', JSON.stringify(bgDecorData)); } catch (err) {}
                 renderBackgroundDecor();
                 closeModal('bgCustomModal');
             }
@@ -503,31 +503,52 @@
         function clearBackgroundDecor() {
             bgDecorData.emojis = '';
             bgDecorData.pngUrls = [];
-            localStorage.setItem('cloud_bg_decor_v36', JSON.stringify(bgDecorData));
+            localStorage.setItem('cloud_bg_decor_v37', JSON.stringify(bgDecorData));
             renderBackgroundDecor();
             closeModal('bgCustomModal');
         }
 
-        let categories = JSON.parse(localStorage.getItem('cloud_categories_v36')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
-        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v36') || '';
-        let headerData = JSON.parse(localStorage.getItem('cloud_header_v36')) || {
+        let categories = JSON.parse(localStorage.getItem('cloud_categories_v37')) || ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
+        let headerBannerUrl = localStorage.getItem('cloud_banner_blob_v37') || '';
+        let headerData = JSON.parse(localStorage.getItem('cloud_header_v37')) || {
             title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
             subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
         };
 
-        let groups = JSON.parse(localStorage.getItem('cloud_groups_v36')) || [
-            {
-                id: 1,
-                name: 'Pinky Pompom',
-                brand: 'Bennie',
-                category: 'ของตกแต่ง',
-                target: 25,
-                current: 25,
-                desc: 'ชุดแต่งห้องสไตล์พาสเทลละมุนตา',
-                coverImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70',
-                images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70']
-            }
-        ];
+        let rawSavedGroups = JSON.parse(localStorage.getItem('cloud_groups_v37'));
+        let groups = [];
+
+        if (rawSavedGroups && Array.isArray(rawSavedGroups)) {
+            groups = rawSavedGroups.map(g => {
+                let validImages = [];
+                if (g.images && Array.isArray(g.images)) {
+                    validImages = g.images.filter(img => img && typeof img === 'string' && img.trim() !== '');
+                }
+                let validCover = g.coverImage && typeof g.coverImage === 'string' && g.coverImage.trim() !== '' ? g.coverImage : (validImages[0] || 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70');
+                if (validImages.length === 0) {
+                    validImages.push(validCover);
+                }
+                return {
+                    ...g,
+                    coverImage: validCover,
+                    images: validImages
+                };
+            });
+        } else {
+            groups = [
+                {
+                    id: 1,
+                    name: 'Pinky Pompom',
+                    brand: 'Bennie',
+                    category: 'ของตกแต่ง',
+                    target: 25,
+                    current: 25,
+                    desc: 'ชุดแต่งห้องสไตล์พาสเทลละมุนตา',
+                    coverImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70',
+                    images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70']
+                }
+            ];
+        }
 
         let currentActiveGroupId = null;
         let currentCategoryFilter = 'all';
@@ -549,15 +570,11 @@
 
         function saveAndRefresh() {
             try {
-                localStorage.setItem('cloud_categories_v36', JSON.stringify(categories));
-                localStorage.setItem('cloud_header_v36', JSON.stringify(headerData));
-                localStorage.setItem('cloud_groups_v36', JSON.stringify(groups));
+                localStorage.setItem('cloud_categories_v37', JSON.stringify(categories));
+                localStorage.setItem('cloud_header_v37', JSON.stringify(headerData));
+                localStorage.setItem('cloud_groups_v37', JSON.stringify(groups));
             } catch (e) {
-                groups.forEach(g => {
-                    g.coverImage = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=200&q=50';
-                    g.images = [g.coverImage];
-                });
-                try { localStorage.setItem('cloud_groups_v36', JSON.stringify(groups)); } catch (err) {}
+                console.error(e);
             }
 
             renderHeader();
@@ -644,7 +661,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     headerBannerUrl = e.target.result;
-                    try { localStorage.setItem('cloud_banner_blob_v36', headerBannerUrl); } catch (err) {}
+                    try { localStorage.setItem('cloud_banner_blob_v37', headerBannerUrl); } catch (err) {}
                     saveAndRefresh();
                     closeModal('headerConfigModal');
                 };
@@ -657,7 +674,7 @@
 
         function removeBannerImage() {
             headerBannerUrl = '';
-            localStorage.removeItem('cloud_banner_blob_v36');
+            localStorage.removeItem('cloud_banner_blob_v37');
             saveAndRefresh();
             closeModal('headerConfigModal');
         }
@@ -994,7 +1011,10 @@
                 const isCompleted = group.current >= group.target;
                 const catStyle = getCategoryStyle(group.category);
                 const imageCount = group.images ? group.images.length : 0;
-                const displayCover = group.coverImage || (group.images && group.images[0]) || 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70';
+                
+                // ระบบสำรองรูปปก ป้องกันภาพหาย 100%
+                const fallbackImg = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=70';
+                const displayCover = (group.coverImage && group.coverImage.trim() !== '') ? group.coverImage : ((group.images && group.images[0]) ? group.images[0] : fallbackImg);
 
                 return `
                     <div onclick="openDetailModal(${group.id})" class="cloud-card p-5 flex flex-col justify-between cursor-pointer group/card" style="background-color: var(--card-bg);">
