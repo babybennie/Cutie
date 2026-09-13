@@ -1,1164 +1,1780 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>☁️ Cloud Toy Box - เลขาสุดนุ่มฟูสไตล์พาสเทล</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --bg-main: #fefcf9;
-            --card-bg: #ffffff;
-            --border-color: #f2d6cd;
-            --text-main: #6b5b53;
-            --text-sub: #9e8479;
-            --accent-color: #f2a194;
-            --btn-bg: #fff5f2;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8dce8">
 
-        body {
-            font-family: 'Prompt', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            position: relative;
-            overflow-x: hidden;
-        }
+<title>Bennie Choco ♡ Link Book</title>
 
-        #bgStickersLayer {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-        .floating-bg-item {
-            position: absolute;
-            user-select: none;
-            opacity: 0.6;
-            animation: floatSlow 7s ease-in-out infinite alternate;
-        }
-        @keyframes floatSlow {
-            0% { transform: translateY(0px) rotate(0deg) scale(1); }
-            100% { transform: translateY(-20px) rotate(10deg) scale(1.05); }
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap');
 
-        .cloud-card {
-            background: var(--card-bg);
-            border: 2.5px solid var(--border-color);
-            border-radius: 32px;
-            box-shadow: 0 12px 30px -10px rgba(220, 180, 170, 0.2);
-            transition: all 0.3s ease;
-        }
-        .cloud-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 35px -8px rgba(220, 180, 170, 0.3);
-        }
+:root{
+  --pink:#f3c8d8;
+  --pink2:#f9e4ec;
+  --pink3:#fff1f6;
 
-        .cloud-btn {
-            background: var(--btn-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 9999px;
-            box-shadow: 0 6px 15px -3px rgba(230, 190, 180, 0.2);
-            transition: all 0.2s ease;
-            cursor: pointer;
-            color: var(--text-main);
-        }
-        .cloud-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px -3px rgba(230, 190, 180, 0.35);
-        }
-        .cloud-btn:active {
-            transform: translateY(1px);
-        }
+  --lavender:#dcd4f5;
+  --lavender2:#eee9fb;
 
-        .floating-cloud-btn {
-            background: var(--card-bg);
-            border: 2.5px solid var(--border-color);
-            border-radius: 9999px;
-            box-shadow: 0 10px 25px -5px rgba(210, 170, 160, 0.25);
-            transition: all 0.25s ease;
-            cursor: pointer;
-            color: var(--text-main);
-        }
-        .floating-cloud-btn:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 15px 30px -5px rgba(210, 170, 160, 0.4);
-        }
+  --blue:#cfe8f4;
+  --blue2:#eaf7fb;
 
-        .soft-tag {
-            border: 1.5px dashed var(--border-color);
-            background: var(--bg-main);
-        }
+  --yellow:#f8e8b8;
+  --yellow2:#fff8df;
 
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-main); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
-    </style>
+  --mint:#d8eee5;
+  --mint2:#eef9f4;
+
+  --cream:#fffaf7;
+  --white:#ffffff;
+
+  --text:#67525b;
+  --text2:#907b84;
+  --dark:#59434c;
+
+  --shadow:
+    0 8px 25px rgba(125,92,105,.08);
+
+  --shadow-hover:
+    0 13px 30px rgba(125,92,105,.13);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+
+  font-family:"Kanit",sans-serif;
+  color:var(--text);
+
+  background:
+    radial-gradient(
+      circle at 5% 5%,
+      rgba(243,200,216,.7),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 95% 12%,
+      rgba(220,212,245,.7),
+      transparent 23%
+    ),
+    radial-gradient(
+      circle at 85% 90%,
+      rgba(207,232,244,.55),
+      transparent 25%
+    ),
+    linear-gradient(
+      180deg,
+      #fff9fb 0%,
+      #fffdfb 100%
+    );
+
+  overflow-x:hidden;
+}
+
+/* =========================
+   DECORATIONS
+========================= */
+
+body::before{
+  content:"♡";
+  position:fixed;
+
+  top:70px;
+  left:5%;
+
+  font-size:30px;
+  color:#e9b8ca;
+
+  opacity:.55;
+
+  transform:rotate(-15deg);
+
+  pointer-events:none;
+}
+
+body::after{
+  content:"✦";
+  position:fixed;
+
+  right:6%;
+  top:160px;
+
+  font-size:25px;
+
+  color:#c7b9eb;
+
+  opacity:.55;
+
+  pointer-events:none;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.page{
+  width:min(650px,92%);
+  margin:0 auto;
+
+  padding:
+    28px
+    0
+    60px;
+}
+
+/* =========================
+   TOP DECOR
+========================= */
+
+.top-decor{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+
+  margin-bottom:14px;
+
+  color:#d6b4c3;
+
+  font-size:14px;
+}
+
+.top-decor span:nth-child(2){
+  color:#bdb0df;
+}
+
+.top-decor span:nth-child(3){
+  color:#b9d9e7;
+}
+
+/* =========================
+   BRAND
+========================= */
+
+.brand{
+  text-align:center;
+  position:relative;
+
+  margin-bottom:22px;
+}
+
+.brand-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  width:76px;
+  height:76px;
+
+  margin-bottom:13px;
+
+  border-radius:28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f8dce8,
+      #e8def8
+    );
+
+  border:
+    3px solid
+    rgba(255,255,255,.9);
+
+  box-shadow:
+    0 10px 25px rgba(160,120,140,.12);
+
+  font-size:35px;
+
+  transform:rotate(-4deg);
+}
+
+.brand h1{
+  margin:0;
+
+  font-family:"Playfair Display",serif;
+
+  font-size:34px;
+  font-weight:600;
+
+  color:#66505a;
+
+  letter-spacing:.2px;
+}
+
+.brand-sub{
+  margin-top:7px;
+
+  font-size:13px;
+
+  color:#a28c94;
+
+  line-height:1.7;
+}
+
+.brand-pill{
+  display:inline-flex;
+
+  margin-top:11px;
+
+  padding:5px 13px;
+
+  border-radius:999px;
+
+  background:#fff0f5;
+
+  border:
+    1px solid
+    #f2d8e3;
+
+  color:#b27b91;
+
+  font-size:10px;
+
+  letter-spacing:.3px;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+  position:relative;
+
+  margin-bottom:24px;
+}
+
+.search{
+  width:100%;
+  height:53px;
+
+  padding:
+    0
+    20px
+    0
+    49px;
+
+  border:
+    1px solid
+    #f0dce4;
+
+  border-radius:22px;
+
+  outline:none;
+
+  background:
+    rgba(255,255,255,.9);
+
+  box-shadow:
+    0 7px 22px rgba(125,92,105,.055);
+
+  color:var(--text);
+
+  font-family:"Kanit",sans-serif;
+  font-size:13px;
+
+  transition:.2s;
+}
+
+.search::placeholder{
+  color:#b7a4aa;
+}
+
+.search:focus{
+  border-color:#e4b8c9;
+
+  box-shadow:
+    0 8px 25px rgba(170,115,140,.12);
+}
+
+.search-icon{
+  position:absolute;
+
+  left:18px;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  font-size:19px;
+
+  color:#c69bad;
+
+  pointer-events:none;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+  margin-bottom:25px;
+}
+
+.section-head{
+  display:flex;
+  align-items:center;
+
+  margin:
+    0
+    5px
+    10px;
+}
+
+.section-title{
+  margin:0;
+
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  font-size:16px;
+  font-weight:500;
+
+  color:#715b64;
+}
+
+.section-title::after{
+  content:"";
+
+  width:35px;
+  height:1px;
+
+  margin-left:4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #e8c6d3,
+      transparent
+    );
+}
+
+.section-small{
+  margin-left:auto;
+
+  color:#b6a3aa;
+
+  font-size:10px;
+}
+
+/* =========================
+   FEATURED
+========================= */
+
+.featured{
+  position:relative;
+
+  overflow:hidden;
+
+  padding:19px;
+
+  margin-bottom:11px;
+
+  border-radius:25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8dce7,
+      #eee5fa
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.95);
+
+  box-shadow:var(--shadow);
+}
+
+.featured::before{
+  content:"✦";
+
+  position:absolute;
+
+  right:20px;
+  top:13px;
+
+  color:rgba(255,255,255,.9);
+
+  font-size:22px;
+
+  transform:rotate(10deg);
+}
+
+.featured::after{
+  content:"♡";
+
+  position:absolute;
+
+  right:48px;
+  bottom:8px;
+
+  color:rgba(255,255,255,.7);
+
+  font-size:24px;
+
+  transform:rotate(-15deg);
+}
+
+.featured-content{
+  position:relative;
+  z-index:2;
+
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.featured-icon{
+  width:50px;
+  height:50px;
+  min-width:50px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:18px;
+
+  background:
+    rgba(255,255,255,.62);
+
+  border:
+    2px solid
+    rgba(255,255,255,.8);
+
+  font-size:24px;
+}
+
+.featured-title{
+  font-size:15px;
+  font-weight:500;
+
+  color:#66515b;
+}
+
+.featured-description{
+  margin-top:2px;
+
+  font-size:11px;
+
+  color:#927d87;
+}
+
+.featured-button{
+  position:relative;
+  z-index:2;
+
+  width:100%;
+  height:40px;
+
+  margin-top:14px;
+
+  border:0;
+
+  border-radius:14px;
+
+  background:
+    rgba(255,255,255,.88);
+
+  color:#8c5e70;
+
+  font-family:"Kanit",sans-serif;
+
+  font-size:12px;
+  font-weight:500;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.featured-button:hover{
+  transform:translateY(-1px);
+
+  background:white;
+
+  box-shadow:
+    0 5px 15px rgba(140,100,120,.1);
+}
+
+/* =========================
+   LINK CARD
+========================= */
+
+.link-card{
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  padding:12px;
+
+  margin-bottom:9px;
+
+  background:
+    rgba(255,255,255,.88);
+
+  border:
+    1px solid
+    #f0e1e6;
+
+  border-radius:20px;
+
+  box-shadow:
+    0 6px 20px rgba(125,92,105,.045);
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
+}
+
+.link-card:hover{
+  transform:translateY(-2px);
+
+  box-shadow:var(--shadow-hover);
+
+  border-color:#e7cad4;
+}
+
+.link-icon{
+  width:45px;
+  height:45px;
+  min-width:45px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:16px;
+
+  font-size:20px;
+
+  background:#f9e8ef;
+}
+
+/* pastel alternating icon colors */
+
+.link-card:nth-child(3n+1) .link-icon{
+  background:#f9e5ed;
+}
+
+.link-card:nth-child(3n+2) .link-icon{
+  background:#ebe5fa;
+}
+
+.link-card:nth-child(3n+3) .link-icon{
+  background:#e3f2f8;
+}
+
+.link-content{
+  flex:1;
+  min-width:0;
+}
+
+.link-name{
+  color:#67515b;
+
+  font-size:13px;
+  font-weight:500;
+
+  line-height:1.45;
+}
+
+.link-description{
+  margin-top:2px;
+
+  color:#a38e95;
+
+  font-size:10.5px;
+
+  line-height:1.4;
+}
+
+/* =========================
+   TAG
+========================= */
+
+.tag{
+  display:inline-flex;
+  align-items:center;
+
+  margin-left:4px;
+
+  padding:
+    2px
+    7px;
+
+  border-radius:999px;
+
+  background:#fff0c8;
+
+  color:#a1844d;
+
+  font-size:8px;
+
+  vertical-align:middle;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.link-actions{
+  display:flex;
+  gap:5px;
+
+  flex-shrink:0;
+}
+
+.action{
+  width:35px;
+  height:35px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:0;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  font-size:15px;
+
+  transition:.18s;
+}
+
+.copy{
+  background:#fff0f5;
+  color:#b77f92;
+}
+
+.copy:hover{
+  background:#f7dce7;
+  transform:scale(1.05);
+}
+
+.open{
+  background:#eee8fb;
+  color:#8474ad;
+}
+
+.open:hover{
+  background:#e1d9f6;
+  transform:scale(1.05);
+}
+
+/* =========================
+   NO RESULT
+========================= */
+
+.no-result{
+  display:none;
+
+  padding:30px 10px;
+
+  text-align:center;
+
+  color:#ad969e;
+
+  font-size:12px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+  position:relative;
+
+  text-align:center;
+
+  margin-top:38px;
+
+  color:#b29da5;
+
+  font-size:10px;
+
+  line-height:1.8;
+}
+
+.footer-stars{
+  margin-bottom:8px;
+
+  color:#d8bdc8;
+
+  letter-spacing:8px;
+}
+
+.footer-brand{
+  font-family:"Playfair Display",serif;
+
+  font-size:16px;
+
+  color:#80636d;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+  bottom:22px;
+
+  transform:
+    translate(-50%,90px);
+
+  opacity:0;
+
+  padding:
+    10px
+    17px;
+
+  border-radius:999px;
+
+  background:
+    rgba(94,69,78,.95);
+
+  color:white;
+
+  font-size:11px;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.15);
+
+  pointer-events:none;
+
+  transition:.28s ease;
+
+  z-index:9999;
+}
+
+.toast.show{
+  opacity:1;
+
+  transform:
+    translate(-50%,0);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:520px){
+
+  .page{
+    width:92%;
+
+    padding-top:21px;
+  }
+
+  body::before{
+    left:2%;
+    top:90px;
+
+    font-size:23px;
+  }
+
+  body::after{
+    right:3%;
+    top:125px;
+
+    font-size:20px;
+  }
+
+  .brand-badge{
+    width:72px;
+    height:72px;
+
+    border-radius:25px;
+
+    font-size:32px;
+  }
+
+  .brand h1{
+    font-size:31px;
+  }
+
+  .brand-sub{
+    font-size:12px;
+  }
+
+  .featured{
+    padding:16px;
+
+    border-radius:22px;
+  }
+
+  .featured-icon{
+    width:47px;
+    height:47px;
+    min-width:47px;
+
+    border-radius:16px;
+  }
+
+  .link-card{
+    padding:11px;
+
+    border-radius:18px;
+  }
+
+  .link-icon{
+    width:42px;
+    height:42px;
+    min-width:42px;
+
+    border-radius:14px;
+  }
+
+  .link-name{
+    font-size:12.5px;
+  }
+
+  .link-description{
+    font-size:10px;
+  }
+
+  .action{
+    width:34px;
+    height:34px;
+
+    border-radius:11px;
+  }
+
+  .section-title{
+    font-size:15px;
+  }
+}
+</style>
 </head>
-<body class="min-h-screen p-4 md:p-8 pb-28">
 
-    <div id="bgStickersLayer"></div>
+<body>
 
-    <div class="max-w-5xl mx-auto">
-        <!-- ส่วนหัว / แบนเนอร์ -->
-        <header id="mainHeader" class="cloud-card mb-8 overflow-hidden transition-all duration-300">
-            <div id="bannerWrapper" class="w-full hidden">
-                <img id="bannerImageElement" src="" class="w-full h-auto max-h-[450px] object-cover block">
-            </div>
-            <div id="headerTextContent" class="p-6 md:p-10 flex flex-col justify-center items-center text-center max-w-xl mx-auto">
-                <div id="headerBadge" class="inline-block text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-3 shadow-sm" style="background-color: var(--accent-color);">
-                    ☁️ SOFT PASTEL SECRETARY
-                </div>
-                <h1 id="headerTitle" class="text-3xl md:text-5xl font-extrabold tracking-wide" style="color: var(--text-main);">
-                    Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸
-                </h1>
-                <p id="headerSubtitle" class="text-sm md:text-base mt-2 font-medium" style="color: var(--text-sub);">
-                    into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา
-                </p>
-            </div>
-        </header>
+<div class="page">
 
-        <div class="cloud-card p-4 md:p-5 mb-8 flex flex-col md:flex-row gap-4 justify-between items-center">
-            <div id="categoryTabs" class="flex flex-wrap gap-2.5 w-full md:w-auto"></div>
-            <div class="relative w-full md:w-80">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-4" style="color: var(--text-sub);"><i class="fa-solid fa-search"></i></span>
-                <input type="text" id="searchInput" oninput="renderGroups()" placeholder="ค้นหาชื่อกลุ่ม หรือเครือแบรนด์..." class="w-full pl-11 pr-4 py-2.5 rounded-full text-sm font-medium focus:outline-none transition" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
-            </div>
-        </div>
+  <!-- TOP DECOR -->
 
-        <div id="groupGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  <div class="top-decor">
+    <span>♡</span>
+    <span>✦</span>
+    <span>♡</span>
+  </div>
+
+
+  <!-- BRAND -->
+
+  <header class="brand">
+
+    <div class="brand-badge">
+      🍫
     </div>
 
-    <!-- Floating Action Menu -->
-    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3 items-end">
-        <button onclick="exportDataJSON()" type="button" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md" style="background-color: #f0fdf4; color: #15803d;" title="สำรองข้อมูลทั้งหมดเก็บไว้">
-            <i class="fa-solid fa-file-arrow-down text-sm"></i> <span class="hidden sm:inline">สำรองข้อมูล (Backup)</span>
+    <h1>Bennie Choco</h1>
+
+    <div class="brand-sub">
+      รวมลิงก์ของร้านไว้ในที่เดียว ♡
+      <br>
+      หยิบใช้ได้ง่าย ไม่ต้องจำหลายลิงก์
+    </div>
+
+    <div class="brand-pill">
+      ♡ MY LINK BOOK ♡
+    </div>
+
+  </header>
+
+
+  <!-- SEARCH -->
+
+  <div class="search-box">
+
+    <span class="search-icon">
+      ⌕
+    </span>
+
+    <input
+      id="searchInput"
+      class="search"
+      type="search"
+      placeholder="ค้นหาลิงก์ที่ต้องการ..."
+      autocomplete="off"
+    >
+
+  </div>
+
+
+  <!-- ======================
+       QUICK ACCESS
+  ======================= -->
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <h2 class="section-title">
+        ⭐ ลิงก์ที่ใช้บ่อย
+      </h2>
+
+      <span class="section-small">
+        quick
+      </span>
+
+    </div>
+
+
+    <!-- MAIN WEBSITE -->
+
+    <div
+      class="featured searchable"
+      data-search="เว็บหลัก ลิงก์รวม ครอบครัวใหญ่ ระบบทั้งหมด"
+    >
+
+      <div class="featured-content">
+
+        <div class="featured-icon">
+          🌷
+        </div>
+
+        <div>
+
+          <div class="featured-title">
+            เว็บหลักของ Bennie Choco
+          </div>
+
+          <div class="featured-description">
+            ทางเข้าเว็บหลักและระบบต่าง ๆ ของร้าน
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="featured-button"
+        onclick="openLink('https://happy-benny.netlify.app/')"
+      >
+        เปิดเว็บหลัก ↗
+      </button>
+
+    </div>
+
+
+    <!-- REVIEW -->
+
+    <div
+      class="link-card searchable"
+      data-search="อ่านรีวิว ลูกค้า รีวิว รีวิวของร้าน"
+    >
+
+      <div class="link-icon">
+        ⭐
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          ลูกค้าอ่านรีวิว
+          <span class="tag">บ่อย</span>
+        </div>
+
+        <div class="link-description">
+          หน้าสำหรับให้ลูกค้าดูรีวิว
+        </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="copyLink('https://benniefunny.netlify.app/cutereview.html')"
+          aria-label="คัดลอกลิงก์"
+        >
+          ♡
         </button>
-        <label class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md cursor-pointer" style="background-color: #eff6ff; color: #1d4ed8;" title="กู้คืนข้อมูลจากไฟล์สำรอง">
-            <i class="fa-solid fa-file-arrow-up text-sm"></i> <span class="hidden sm:inline">กู้คืนข้อมูล (Restore)</span>
-            <input type="file" accept=".json" class="hidden" onchange="importDataJSON(event)">
-        </label>
-        <button onclick="openModal('bgCustomModal')" type="button" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md" style="background-color: #f7eff8; color: #82547d;">
-            <i class="fa-solid fa-wand-magic-sparkles text-sm"></i> <span class="hidden sm:inline">แต่งพื้นหลังอิโมจิ/PNG</span>
+
+        <button
+          class="action open"
+          onclick="openLink('https://benniefunny.netlify.app/cutereview.html')"
+          aria-label="เปิดลิงก์"
+        >
+          ↗
         </button>
-        <button onclick="openModal('themeModal')" type="button" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md" style="background-color: #fff8f0; color: #b87333;">
-            <i class="fa-solid fa-palette text-sm"></i> <span class="hidden sm:inline">เปลี่ยนโทนสีเว็บ (15 โทน)</span>
+
+      </div>
+
+    </div>
+
+
+    <!-- CUSTOMER REVIEW -->
+
+    <div
+      class="link-card searchable"
+      data-search="ให้ลูกค้ารีวิว เขียนรีวิว ลูกค้ารีวิว"
+    >
+
+      <div class="link-icon">
+        💌
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          ลูกค้าเขียนรีวิว
+          <span class="tag">บ่อย</span>
+        </div>
+
+        <div class="link-description">
+          หน้าสำหรับให้ลูกค้าส่งรีวิว
+        </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="copyLink('https://benniefunny.netlify.app/review')"
+          aria-label="คัดลอกลิงก์"
+        >
+          ♡
         </button>
-        <button onclick="openAddGroupModal()" type="button" class="floating-cloud-btn font-bold px-5 py-3 rounded-full flex items-center gap-2.5 text-sm shadow-lg" style="background-color: var(--accent-color); color: white;">
-            <i class="fa-solid fa-cloud-arrow-up text-base"></i> <span class="hidden sm:inline">+ เปิดกล่องกลุ่มใหม่</span>
+
+        <button
+          class="action open"
+          onclick="openLink('https://benniefunny.netlify.app/review')"
+          aria-label="เปิดลิงก์"
+        >
+          ↗
         </button>
-        <button onclick="openCategoryManagerModal()" type="button" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md">
-            <i class="fa-solid fa-tags text-sm"></i> <span class="hidden sm:inline">จัดการประเภทกลุ่ม</span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================
+       MAIN
+  ======================= -->
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <h2 class="section-title">
+        🌸 เว็บหลัก
+      </h2>
+
+      <span class="section-small">
+        main
+      </span>
+
+    </div>
+
+
+    <div
+      class="link-card searchable"
+      data-search="ครอบครัวใหญ่ เว็บหลัก ลิงก์ครอบครัว"
+    >
+
+      <div class="link-icon">
+        👨‍👩‍👧‍👦
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          ลิงก์ครอบครัวใหญ่
+        </div>
+
+        <div class="link-description">
+          ทางเข้าเว็บหลักของระบบ
+        </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="copyLink('https://happy-benny.netlify.app/')"
+        >
+          ♡
         </button>
-        <button onclick="openModal('headerConfigModal')" type="button" class="floating-cloud-btn font-bold px-4.5 py-2.5 rounded-full flex items-center gap-2 text-xs shadow-md">
-            <i class="fa-solid fa-paintbrush text-sm"></i> <span class="hidden sm:inline">ตั้งค่าแบนเนอร์</span>
+
+        <button
+          class="action open"
+          onclick="openLink('https://happy-benny.netlify.app/')"
+        >
+          ↗
         </button>
+
+      </div>
+
     </div>
 
-    <!-- Modal: เลือกโทนสีเว็บ -->
-    <div id="themeModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
-        <div class="cloud-card bg-[#fffdf9] max-w-xl w-full p-6 md:p-8 text-center max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
-                <h3 class="text-xl font-bold" style="color: var(--text-main);">🎨 เลือกโทนสีพาสเทล (15 โทน)</h3>
-                <button onclick="closeModal('themeModal')" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div id="themeButtonsContainer" class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6"></div>
-            <button onclick="closeModal('themeModal')" type="button" class="cloud-btn px-6 py-2.5 font-bold text-sm w-full" style="background-color: var(--accent-color); color: white;">เสร็จสิ้น</button>
+
+    <div
+      class="link-card searchable"
+      data-search="ลิงก์รวม ระบบทั้งหมด เว็บหลัก"
+    >
+
+      <div class="link-icon">
+        🎀
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          ลิงก์รวม
         </div>
-    </div>
 
-    <!-- Modal: แต่งพื้นหลังอิโมจิ / รูป PNG -->
-    <div id="bgCustomModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
-        <div class="cloud-card bg-[#fffdf9] max-w-md w-full p-6 md:p-8">
-            <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
-                <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
-                    <span style="color: var(--accent-color);"><i class="fa-solid fa-wand-magic-sparkles"></i></span> แต่งพื้นหลัง
-                </h3>
-                <button onclick="closeModal('bgCustomModal')" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">เลือกใส่อิโมจิฟุ้งๆ</label>
-                    <input type="text" id="bgEmojiInput" placeholder="เช่น 🌸⭐🧸☁️🍓" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">อัพโหลดรูป PNG (พื้นหลังใสได้)</label>
-                    <input type="file" id="bgPngInput" accept="image/png, image/*" multiple class="w-full text-xs cursor-pointer" style="color: var(--text-main);">
-                </div>
-                <div class="flex justify-between items-center pt-3">
-                    <button type="button" onclick="clearBackgroundDecor()" class="cloud-btn px-4 py-2 bg-[#fff2f2] text-[#d66868] text-xs font-bold rounded-xl">ลบลวดลายทั้งหมด</button>
-                    <div class="flex gap-2">
-                        <button type="button" onclick="closeModal('bgCustomModal')" class="cloud-btn px-4 py-2 font-bold text-sm">ยกเลิก</button>
-                        <button type="button" onclick="saveBackgroundDecor()" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึกพื้นหลัง</button>
-                    </div>
-                </div>
-            </div>
+        <div class="link-description">
+          ทางเข้าเว็บและฟังก์ชันต่าง ๆ
         </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="copyLink('https://happy-benny.netlify.app/')"
+        >
+          ♡
+        </button>
+
+        <button
+          class="action open"
+          onclick="openLink('https://happy-benny.netlify.app/')"
+        >
+          ↗
+        </button>
+
+      </div>
+
     </div>
 
-    <!-- Modal: ตั้งค่าแบนเนอร์ -->
-    <div id="headerConfigModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
-        <div class="cloud-card bg-[#fffdf9] max-w-md w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
-                <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
-                    <span style="color: var(--accent-color);"><i class="fa-solid fa-paintbrush"></i></span> ตั้งค่าแบนเนอร์
-                </h3>
-                <button onclick="closeModal('headerConfigModal')" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">หัวข้อหลัก (Title)</label>
-                    <input type="text" id="configTitle" placeholder="ปล่อยว่างไว้ได้ครับ" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">คำโปรย / Subtitle</label>
-                    <input type="text" id="configSubtitle" placeholder="ปล่อยว่างไว้ได้ครับ" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">อัพโหลดรูปแบนเนอร์</label>
-                    <input type="file" id="configBannerInput" accept="image/*" class="w-full text-xs cursor-pointer" style="color: var(--text-main);">
-                </div>
 
-                <div class="flex justify-between items-center pt-3 border-t-2 border-dashed mt-4" style="border-color: var(--border-color);">
-                    <button type="button" onclick="removeBannerImage()" class="cloud-btn px-4 py-2 bg-[#fff2f2] text-[#d66868] text-xs font-bold rounded-xl">ลบรูปแบนเนอร์ออก</button>
-                    <div class="flex gap-2">
-                        <button type="button" onclick="closeModal('headerConfigModal')" class="cloud-btn px-4 py-2 font-bold text-sm">ยกเลิก</button>
-                        <button type="button" onclick="saveHeaderConfig()" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึก</button>
-                    </div>
-                </div>
-            </div>
+    <div
+      class="link-card searchable"
+      data-search="แจ้งยอด ลูกค้า ยอดเงิน"
+    >
+
+      <div class="link-icon">
+        💰
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          สำหรับแจ้งยอดลูกค้า
         </div>
-    </div>
 
-    <!-- Modal: จัดการประเภทกลุ่ม -->
-    <div id="categoryManagerModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
-        <div class="cloud-card bg-[#fffdf9] max-w-md w-full p-6 md:p-8">
-            <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
-                <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
-                    <span><i class="fa-solid fa-tags"></i></span> จัดการประเภทกลุ่มสินค้า
-                </h3>
-                <button onclick="closeModal('categoryManagerModal')" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <div class="space-y-4">
-                <div class="flex gap-2">
-                    <input type="text" id="newCategoryName" placeholder="เพิ่มชื่อประเภทใหม่..." class="flex-grow px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
-                    <button onclick="addNewCategory()" type="button" class="cloud-btn px-4 py-2.5 font-bold rounded-2xl text-sm whitespace-nowrap" style="background-color: var(--accent-color); color: white;">+ เพิ่ม</button>
-                </div>
-
-                <div class="max-h-60 overflow-y-auto space-y-2 pr-1 custom-scrollbar" id="categoryListContainer"></div>
-            </div>
-
-            <div class="pt-4 mt-4 border-t-2 border-dashed text-right" style="border-color: var(--border-color);">
-                <button onclick="closeModal('categoryManagerModal')" type="button" class="cloud-btn px-5 py-2 font-bold rounded-2xl text-sm">ปิดหน้าต่าง</button>
-            </div>
+        <div class="link-description">
+          ใช้สำหรับเข้าไปแจ้งยอดลูกค้า
         </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="copyLink('https://happy-benny.netlify.app/')"
+        >
+          ♡
+        </button>
+
+        <button
+          class="action open"
+          onclick="openLink('https://happy-benny.netlify.app/')"
+        >
+          ↗
+        </button>
+
+      </div>
+
     </div>
 
-    <!-- Modal: เพิ่มกลุ่มใหม่ -->
-    <div id="addGroupModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
-        <div class="cloud-card bg-[#fffdf9] max-w-lg w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed" style="border-color: var(--border-color);">
-                <h3 class="text-xl font-bold flex items-center gap-2" style="color: var(--text-main);">
-                    <span style="color: var(--accent-color);"><i class="fa-solid fa-gift"></i></span> เพิ่มกล่องกลุ่มสินค้าใหม่
-                </h3>
-                <button onclick="closeAddGroupModal()" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ชื่อกลุ่มสินค้า</label>
-                    <input type="text" id="newGroupName" placeholder="เช่น Pinky Pompom" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ชื่อเครือ / แบรนด์สังกัด</label>
-                    <input type="text" id="newGroupBrand" placeholder="เช่น Bennie" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">ประเภทกลุ่ม</label>
-                    <select id="newGroupCategory" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);"></select>
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">จำนวนงานเป้าหมาย (ค่ามาตรฐาน 25 งาน)</label>
-                    <input type="number" id="newGroupTarget" value="25" min="1" class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);">
-                </div>
-                <div>
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);">รายละเอียดเพิ่มเติม / ลิงก์ Drive</label>
-                    <textarea id="newGroupDesc" rows="2" placeholder="ใส่ลิงก์ Drive หรือรายละเอียดที่นี่..." class="w-full px-4 py-2.5 rounded-2xl text-sm font-medium focus:outline-none" style="background-color: var(--bg-main); border: 2px solid var(--border-color); color: var(--text-main);"></textarea>
-                </div>
-                
-                <!-- ช่องอัปโหลดรูปหน้าปก -->
-                <div class="p-3 rounded-2xl border-2" style="background-color: var(--bg-main); border-color: var(--border-color);">
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);"><i class="fa-solid fa-image mr-1 text-[#f2a194]"></i> 1. รูปภาพหน้าปก (แสดงหน้าการ์ดหลัก)</label>
-                    <input type="file" id="newGroupCoverInput" accept="image/*" class="w-full text-xs cursor-pointer mt-1">
-                </div>
+  </section>
 
-                <!-- ช่องอัปโหลดรูปอัลบั้มย่อย -->
-                <div class="p-3 rounded-2xl border-2" style="background-color: var(--bg-main); border-color: var(--border-color);">
-                    <label class="block text-sm font-bold mb-1" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1 text-[#f2a194]"></i> 2. รูปภาพในอัลบั้มย่อย (เลือกได้หลายรูป)</label>
-                    <input type="file" id="newGroupAlbumInput" accept="image/*" multiple class="w-full text-xs cursor-pointer mt-1">
-                </div>
 
-                <div class="flex justify-end gap-3 pt-3">
-                    <button onclick="closeAddGroupModal()" type="button" class="cloud-btn px-5 py-2.5 font-bold rounded-2xl text-sm">ยกเลิก</button>
-                    <button onclick="saveNewGroupDirect()" type="button" class="cloud-btn px-6 py-2.5 font-bold rounded-2xl text-sm" style="background-color: var(--accent-color); color: white;">บันทึกกล่อง</button>
-                </div>
-            </div>
+  <!-- ======================
+       CUSTOMER
+  ======================= -->
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <h2 class="section-title">
+        🧁 สำหรับลูกค้า
+      </h2>
+
+      <span class="section-small">
+        customer
+      </span>
+
+    </div>
+
+
+    <div
+      class="link-card searchable"
+      data-search="ลูกค้า อ่านรีวิว รีวิว"
+    >
+
+      <div class="link-icon">
+        🌟
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          ลิงก์สำหรับให้ลูกค้าอ่านรีวิว
         </div>
-    </div>
 
-    <!-- Modal: รายละเอียดกล่อง & อัลบั้มสำรอง -->
-    <div id="detailModal" class="fixed inset-0 bg-[#7a645b]/30 backdrop-blur-xs hidden items-center justify-center p-4 z-50">
-        <div class="cloud-card bg-[#fffdf9] max-w-2xl w-full p-6 md:p-8 max-h-[90vh] flex flex-col">
-            <div class="flex justify-between items-center pb-4 border-b-2 border-dashed mb-4" style="border-color: var(--border-color);">
-                <div class="flex items-center gap-3">
-                    <span id="modalCategoryBadge" class="text-xs font-bold px-3 py-1 rounded-full border" style="border-color: var(--border-color);"></span>
-                    <div>
-                        <span id="modalBrandText" class="text-xs font-bold uppercase" style="color: var(--text-sub);"></span>
-                        <h2 id="modalGroupName" class="text-xl md:text-2xl font-extrabold" style="color: var(--text-main);"></h2>
-                    </div>
-                </div>
-                <button onclick="closeDetailModal()" type="button" class="cloud-btn w-9 h-9 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-
-            <div class="overflow-y-auto custom-scrollbar flex-grow space-y-6 pr-1">
-                <div class="soft-tag p-4 rounded-2xl">
-                    <span class="text-xs font-bold block mb-1" style="color: var(--text-sub);"><i class="fa-solid fa-note-sticky mr-1"></i> รายละเอียด / ลิงก์ Drive:</span>
-                    <p id="modalGroupDesc" class="text-sm font-medium whitespace-pre-wrap" style="color: var(--text-main);">ไม่มีรายละเอียดเพิ่มเติม</p>
-                </div>
-
-                <div class="p-4 rounded-2xl border-2 shadow-xs" style="background-color: var(--bg-main); border-color: var(--border-color);">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-sm font-bold" style="color: var(--text-main);">สถานะความสำเร็จของงาน</span>
-                        <span id="modalProgressText" class="text-sm font-extrabold" style="color: var(--accent-color);"></span>
-                    </div>
-                    <div class="w-full h-4 rounded-full overflow-hidden mb-4 border" style="background-color: var(--card-bg); border-color: var(--border-color);">
-                        <div id="modalProgressBar" class="h-full transition-all duration-300" style="background-color: var(--accent-color); width: 0%"></div>
-                    </div>
-                    <div class="flex items-center justify-between flex-wrap gap-2">
-                        <div class="flex gap-2">
-                            <button onclick="updateModalProgress(-1)" type="button" class="cloud-btn px-4 py-1.5 text-sm font-bold"> -1 งาน</button>
-                            <button onclick="updateModalProgress(1)" type="button" class="cloud-btn px-4 py-1.5 text-sm font-bold" style="background-color: var(--accent-color); color: white;"> +1 งาน</button>
-                        </div>
-                        <button onclick="resetGroupProgress()" type="button" class="cloud-btn px-3 py-1.5 bg-[#fff2f2] text-[#d66868] text-xs font-bold"><i class="fa-solid fa-rotate-right mr-1"></i> รีเซ็ตเป็น 0</button>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="flex justify-between items-center mb-3">
-                        <div>
-                            <h4 class="font-bold text-base" style="color: var(--text-main);"><i class="fa-solid fa-images mr-1" style="color: var(--accent-color);"></i> คลังอัลบั้มรูปภาพย่อย (ความคมชัดสูง)</h4>
-                            <p class="text-xs" style="color: var(--text-sub);">รูปทั้งหมดของกลุ่มนี้ มีปุ่มดาวน์โหลดและปุ่มลบชัดเจนด้านล่าง</p>
-                        </div>
-                        <label class="cloud-btn text-xs font-bold px-4 py-2 flex items-center gap-1.5 cursor-pointer" style="background-color: var(--btn-bg); color: var(--accent-color);">
-                            <i class="fa-solid fa-cloud-arrow-up"></i> เพิ่มรูปในอัลบั้ม (HD)
-                            <input type="file" multiple accept="image/*" class="hidden" onchange="handleAlbumUpload(event)">
-                        </label>
-                    </div>
-
-                    <div id="modalAlbumGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-h-72 overflow-y-auto p-1 custom-scrollbar"></div>
-                </div>
-            </div>
-
-            <div class="pt-4 border-t-2 border-dashed mt-4 flex justify-between items-center" style="border-color: var(--border-color);">
-                <button onclick="deleteCurrentGroup()" type="button" class="cloud-btn px-4 py-2 bg-[#fff2f2] text-[#d66868] text-sm font-bold rounded-2xl flex items-center gap-1">
-                    <i class="fa-solid fa-trash-can"></i> ทิ้งกล่องกลุ่มนี้
-                </button>
-                <button onclick="closeDetailModal()" type="button" class="cloud-btn px-5 py-2 font-bold rounded-2xl">ปิดหน้าต่าง</button>
-            </div>
+        <div class="link-description">
+          หน้าสำหรับดูรีวิวของร้าน
         </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="copyLink('https://benniefunny.netlify.app/cutereview.html')"
+        >
+          ♡
+        </button>
+
+        <button
+          class="action open"
+          onclick="openLink('https://benniefunny.netlify.app/cutereview.html')"
+        >
+          ↗
+        </button>
+
+      </div>
+
     </div>
 
-    <script>
-        const DB_NAME = 'CloudToyBoxDB_HD_v3';
-        const DB_VERSION = 1;
-        let db = null;
-
-        function initDB() {
-            return new Promise((resolve, reject) => {
-                const request = indexedDB.open(DB_NAME, DB_VERSION);
-                request.onerror = () => reject(request.error);
-                request.onsuccess = () => {
-                    db = request.result;
-                    resolve(db);
-                };
-                request.onupgradeneeded = (event) => {
-                    const database = event.target.result;
-                    if (!database.objectStoreNames.contains('appData')) {
-                        database.createObjectStore('appData', { keyPath: 'key' });
-                    }
-                };
-            });
-        }
-
-        function dbGet(key) {
-            return new Promise((resolve, reject) => {
-                if (!db) return resolve(null);
-                const transaction = db.transaction(['appData'], 'readonly');
-                const store = transaction.objectStore('appData');
-                const request = store.get(key);
-                request.onsuccess = () => resolve(request.result ? request.result.value : null);
-                request.onerror = () => reject(request.error);
-            });
-        }
-
-        function dbPut(key, value) {
-            return new Promise((resolve, reject) => {
-                if (!db) return resolve(null);
-                const transaction = db.transaction(['appData'], 'readwrite');
-                const store = transaction.objectStore('appData');
-                const request = store.put({ key: key, value: value });
-                request.onsuccess = () => resolve(true);
-                request.onerror = () => reject(request.error);
-            });
-        }
-
-        const themes = {
-            peach: { name: 'พีบอกอุ่น 🍑', color: '#f2a194', '--bg-main': '#fefcf9', '--card-bg': '#ffffff', '--border-color': '#f2d6cd', '--text-main': '#6b5b53', '--text-sub': '#9e8479', '--accent-color': '#f2a194', '--btn-bg': '#fff5f2' },
-            mint: { name: 'มิ้นต์ละมุน 🌿', color: '#8bc3b0', '--bg-main': '#f4faf7', '--card-bg': '#ffffff', '--border-color': '#c4ded5', '--text-main': '#3a5c52', '--text-sub': '#6c9689', '--accent-color': '#528575', '--btn-bg': '#e4f0ed' },
-            blue: { name: 'ฟ้าพาสเทล 🐳', color: '#82abdb', '--bg-main': '#f4f8fb', '--card-bg': '#ffffff', '--border-color': '#cbdbee', '--text-main': '#3b5675', '--text-sub': '#7492b5', '--accent-color': '#54789e', '--btn-bg': '#e6edf5' },
-            lavender: { name: 'ม่วงลาเวนเดอร์ 💜', color: '#c898c1', '--bg-main': '#faf5f9', '--card-bg': '#ffffff', '--border-color': '#e5cbdf', '--text-main': '#684865', '--text-sub': '#9c7798', '--accent-color': '#965e91', '--btn-bg': '#f5e4f2' },
-            butter: { name: 'เนยครีมวานิลลา 🧈', color: '#e3cd71', '--bg-main': '#fcfaf2', '--card-bg': '#ffffff', '--border-color': '#f0e2b6', '--text-main': '#6b5e32', '--text-sub': '#9e8c58', '--accent-color': '#a68a49', '--btn-bg': '#fcf3db' },
-            strawberry: { name: 'สตอเบอร์รี่นม 🍓', color: '#e87d95', '--bg-main': '#fef8f9', '--card-bg': '#ffffff', '--border-color': '#f5cbd3', '--text-main': '#6b4049', '--text-sub': '#9e737b', '--accent-color': '#e87d95', '--btn-bg': '#fcf0f2' },
-            matcha: { name: 'ชาเขียวมัทฉะ 🍵', color: '#9bbd72', '--bg-main': '#f7f9f4', '--card-bg': '#ffffff', '--border-color': '#d2e3bc', '--text-main': '#4e5c38', '--text-sub': '#819468', '--accent-color': '#9bbd72', '--btn-bg': '#f4f7f0' },
-            milktea: { name: 'ชานมไข่มุก 🧋', color: '#c49a78', '--bg-main': '#fcf9f5', '--card-bg': '#ffffff', '--border-color': '#e6d3c2', '--text-main': '#5e4838', '--text-sub': '#947a66', '--accent-color': '#c49a78', '--btn-bg': '#faf5f0' },
-            sakura: { name: 'ซากุระหวาน 🌸', color: '#db8fb3', '--bg-main': '#fcf5f8', '--card-bg': '#ffffff', '--border-color': '#ebd3de', '--text-main': '#6b4657', '--text-sub': '#9e7687', '--accent-color': '#db8fb3', '--btn-bg': '#faf2f5' },
-            lemon: { name: 'เลมอนโซดา 🍋', color: '#ded46f', '--bg-main': '#fcfcf4', '--card-bg': '#ffffff', '--border-color': '#f2edb8', '--text-main': '#5c5833', '--text-sub': '#948e5c', '--accent-color': '#c7be52', '--btn-bg': '#fcfceb' },
-            taro: { name: 'เผือกหอมนุ่ม 🍠', color: '#b588bc', '--bg-main': '#faf6fc', '--card-bg': '#ffffff', '--border-color': '#e2d0e5', '--text-main': '#5e4363', '--text-sub': '#927396', '--accent-color': '#a875af', '--btn-bg': '#f5ecf7' },
-            sky: { name: 'ท้องฟ้าโปร่ง ☁️', color: '#7fb3f0', '--bg-main': '#f0f6ff', '--card-bg': '#ffffff', '--border-color': '#cce0fd', '--text-main': '#385c8a', '--text-sub': '#749bc7', '--accent-color': '#6398db', '--btn-bg': '#e3effc' },
-            rose: { name: 'กุหลาบวินเทจ 🌹', color: '#e3859b', '--bg-main': '#fcf4f6', '--card-bg': '#ffffff', '--border-color': '#f5d0d9', '--text-main': '#73404d', '--text-sub': '#a87380', '--accent-color': '#db7b93', '--btn-bg': '#f7e6eb' },
-            cocoa: { name: 'โกโก้อุ่นๆ ☕', color: '#b09685', '--bg-main': '#f7f4f2', '--card-bg': '#ffffff', '--border-color': '#e0d4cc', '--text-main': '#59473d', '--text-sub': '#917c70', '--accent-color': '#a38370', '--btn-bg': '#ede6e1' },
-            melon: { name: 'เมล่อนญี่ปุ่น 🍈', color: '#82de9e', '--bg-main': '#f2fcf5', '--card-bg': '#ffffff', '--border-color': '#d0f2dc', '--text-main': '#3b6e49', '--text-sub': '#74a883', '--accent-color': '#64c781', '--btn-bg': '#e1f7e7' }
-        };
-
-        function setTheme(themeName) {
-            const theme = themes[themeName];
-            if (!theme) return;
-            const root = document.documentElement;
-            for (const key in theme) {
-                if (key.startsWith('--')) {
-                    root.style.setProperty(key, theme[key]);
-                }
-            }
-            localStorage.setItem('cloud_current_theme', themeName);
-            closeModal('themeModal');
-        }
-
-        function loadSavedTheme() {
-            const savedTheme = localStorage.getItem('cloud_current_theme') || 'peach';
-            setTheme(savedTheme);
-        }
-
-        function renderThemeButtons() {
-            const container = document.getElementById('themeButtonsContainer');
-            if (!container) return;
-            container.innerHTML = Object.keys(themes).map(key => {
-                const t = themes[key];
-                return `<button type="button" onclick="setTheme('${key}')" class="cloud-btn p-3 rounded-2xl flex items-center gap-2 font-bold text-xs" style="background-color: ${t['--btn-bg']}; border-color: ${t['--border-color']}; color: ${t['--text-main']};"><span class="w-4 h-4 rounded-full" style="background-color: ${t.color}"></span> ${t.name}</button>`;
-            }).join('');
-        }
-
-        function openModal(id) {
-            const el = document.getElementById(id);
-            if (el) {
-                el.classList.remove('hidden');
-                el.classList.add('flex');
-            }
-        }
-
-        function closeModal(id) {
-            const el = document.getElementById(id);
-            if (el) {
-                el.classList.add('hidden');
-                el.classList.remove('flex');
-            }
-        }
-
-        let bgDecorData = {
-            emojis: '🌸 ⭐ 🧸 ☁️ 🍓 🌿 🦋 🐳 🍋 💜',
-            pngUrls: []
-        };
-
-        function renderBackgroundDecor() {
-            const layer = document.getElementById('bgStickersLayer');
-            if (!layer) return;
-            layer.innerHTML = '';
-            const emojiInput = document.getElementById('bgEmojiInput');
-            if (emojiInput) emojiInput.value = bgDecorData.emojis;
-
-            if (bgDecorData.pngUrls && bgDecorData.pngUrls.length > 0) {
-                for (let i = 0; i < 15; i++) {
-                    const randomImgUrl = bgDecorData.pngUrls[Math.floor(Math.random() * bgDecorData.pngUrls.length)];
-                    const imgItem = document.createElement('img');
-                    imgItem.src = randomImgUrl;
-                    imgItem.className = 'floating-bg-item';
-                    imgItem.style.width = (Math.random() * 30 + 35) + 'px';
-                    imgItem.style.top = (Math.random() * 92) + '%';
-                    imgItem.style.left = (Math.random() * 92) + '%';
-                    imgItem.style.animationDuration = (Math.random() * 5 + 6) + 's';
-                    layer.appendChild(imgItem);
-                }
-            }
-
-            const rawEmojis = bgDecorData.emojis || '';
-            const emojiList = [...rawEmojis].filter(e => e.trim() !== '');
-
-            if (emojiList.length > 0) {
-                for (let i = 0; i < 20; i++) {
-                    const span = document.createElement('span');
-                    span.className = 'floating-bg-item';
-                    span.innerText = emojiList[Math.floor(Math.random() * emojiList.length)];
-                    span.style.fontSize = (Math.random() * 1.6 + 1.2) + 'rem';
-                    span.style.top = (Math.random() * 92) + '%';
-                    span.style.left = (Math.random() * 92) + '%';
-                    span.style.animationDuration = (Math.random() * 6 + 5) + 's';
-                    layer.appendChild(span);
-                }
-            }
-        }
-
-        async function saveBackgroundDecor() {
-            const emojiInput = document.getElementById('bgEmojiInput');
-            bgDecorData.emojis = emojiInput ? emojiInput.value : '';
-            const fileInput = document.getElementById('bgPngInput');
-
-            if (fileInput && fileInput.files && fileInput.files.length > 0) {
-                let loadedFilesCount = 0;
-                const newImages = [];
-
-                for (let file of fileInput.files) {
-                    readImageFileHD(file, 800, 0.9, (base64) => {
-                        newImages.push(base64);
-                        loadedFilesCount++;
-                        if (loadedFilesCount === fileInput.files.length) {
-                            bgDecorData.pngUrls = [...(bgDecorData.pngUrls || []), ...newImages];
-                            dbPut('cloud_bg_decor', bgDecorData);
-                            renderBackgroundDecor();
-                            closeModal('bgCustomModal');
-                        }
-                    });
-                }
-            } else {
-                dbPut('cloud_bg_decor', bgDecorData);
-                renderBackgroundDecor();
-                closeModal('bgCustomModal');
-            }
-        }
-
-        function clearBackgroundDecor() {
-            bgDecorData.emojis = '';
-            bgDecorData.pngUrls = [];
-            dbPut('cloud_bg_decor', bgDecorData);
-            renderBackgroundDecor();
-            closeModal('bgCustomModal');
-        }
-
-        let categories = ['ของตกแต่ง', 'บล็อก', 'เสื้อผ้า', 'อื่นๆ'];
-        let headerBannerUrl = '';
-        let headerData = {
-            title: 'Tomatoes turn <span style="color: var(--accent-color);">simple moments</span> 🌸',
-            subtitle: 'into happy ones. เลขาส่วนตัวสุดนุ่มฟู ดูแลกลุ่มและคลังภาพของคุณอย่างละมุนตา'
-        };
-
-        let groups = [
-            {
-                id: 1,
-                name: 'Pinky Pompom',
-                brand: 'Bennie',
-                category: 'ของตกแต่ง',
-                target: 25,
-                current: 25,
-                desc: 'ชุดแต่งห้องสไตล์พาสเทลละมุนตา',
-                coverImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80',
-                images: ['https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80']
-            }
-        ];
-
-        let currentActiveGroupId = null;
-        let currentCategoryFilter = 'all';
-
-        const pastelColorPool = [
-            { bg: '#fff0ed', text: '#d97d71' },
-            { bg: '#e4f0ed', text: '#528575' },
-            { bg: '#e6edf5', text: '#54789e' },
-            { bg: '#fcf3db', text: '#a68a49' },
-            { bg: '#f5e4f2', text: '#965e91' },
-            { bg: '#f4e6e0', text: '#8c6b60' }
-        ];
-
-        function getCategoryStyle(catName) {
-            let index = categories.indexOf(catName);
-            if (index === -1) index = 0;
-            return pastelColorPool[index % pastelColorPool.length];
-        }
-
-        async function saveAndRefresh() {
-            try {
-                await dbPut('cloud_categories', categories);
-                await dbPut('cloud_header', headerData);
-                await dbPut('cloud_banner_blob', headerBannerUrl);
-                await dbPut('cloud_groups', groups);
-            } catch (e) {
-                console.error("DB Save Error:", e);
-            }
-
-            renderHeader();
-            renderCategorySelectOptions();
-            renderCategoryTabs();
-            renderGroups();
-
-            if (currentActiveGroupId !== null) {
-                const group = groups.find(g => g.id === currentActiveGroupId);
-                if (group) updateModalContent(group);
-            }
-        }
-
-        // ฟังก์ชันสำรองข้อมูล (Export Backup)
-        async function exportDataJSON() {
-            const backupData = {
-                categories: categories,
-                headerData: headerData,
-                headerBannerUrl: headerBannerUrl,
-                groups: groups,
-                bgDecorData: bgDecorData,
-                theme: localStorage.getItem('cloud_current_theme') || 'peach'
-            };
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData));
-            const downloadAnchor = document.createElement('a');
-            downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", `CloudToyBox_Backup_${new Date().toISOString().slice(0,10)}.json`);
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            downloadAnchor.remove();
-        }
-
-        // ฟังก์ชันกู้คืนข้อมูล (Import Restore)
-        function importDataJSON(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = async function(e) {
-                try {
-                    const imported = JSON.parse(e.target.result);
-                    if (imported.categories) categories = imported.categories;
-                    if (imported.headerData) headerData = imported.headerData;
-                    if (imported.headerBannerUrl !== undefined) headerBannerUrl = imported.headerBannerUrl;
-                    if (imported.groups) groups = imported.groups;
-                    if (imported.bgDecorData) bgDecorData = imported.bgDecorData;
-                    if (imported.theme) setTheme(imported.theme);
-
-                    await saveAndRefresh();
-                    renderBackgroundDecor();
-                    alert('กู้คืนข้อมูลสำเร็จเรียบร้อยแล้วครับ!');
-                } catch (err) {
-                    alert('ไฟล์สำรองไม่ถูกต้องหรือเสียหายครับ');
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        function renderHeader() {
-            const titleEl = document.getElementById('headerTitle');
-            const subtitleEl = document.getElementById('headerSubtitle');
-            const badgeEl = document.getElementById('headerBadge');
-            const bannerWrapper = document.getElementById('bannerWrapper');
-            const bannerImg = document.getElementById('bannerImageElement');
-            const textContent = document.getElementById('headerTextContent');
-            
-            const configTitle = document.getElementById('configTitle');
-            const configSubtitle = document.getElementById('configSubtitle');
-
-            if (configTitle) configTitle.value = headerData.title && headerData.title.includes('<span') ? headerData.title.replace(/<[^>]*>?/gm, '') : (headerData.title || '');
-            if (configSubtitle) configSubtitle.value = headerData.subtitle || '';
-
-            if (headerBannerUrl) {
-                if (bannerWrapper) bannerWrapper.classList.remove('hidden');
-                if (bannerImg) bannerImg.src = headerBannerUrl;
-
-                if (!headerData.title && !headerData.subtitle) {
-                    if (titleEl) titleEl.style.display = 'none';
-                    if (subtitleEl) subtitleEl.style.display = 'none';
-                    if (badgeEl) badgeEl.style.display = 'none';
-                    if (textContent) textContent.style.display = 'none';
-                } else {
-                    if (titleEl) titleEl.style.display = 'block';
-                    if (subtitleEl) subtitleEl.style.display = 'block';
-                    if (badgeEl) badgeEl.style.display = 'inline-block';
-                    if (textContent) {
-                        textContent.style.display = 'flex';
-                        textContent.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-                        textContent.style.borderRadius = '24px';
-                        textContent.style.padding = '1.5rem';
-                        textContent.style.margin = '1rem auto';
-                        textContent.style.width = 'calc(100% - 2rem)';
-                        textContent.style.border = '2px solid var(--border-color)';
-                    }
-                    if (titleEl) titleEl.innerHTML = headerData.title;
-                    if (subtitleEl) subtitleEl.innerText = headerData.subtitle;
-                }
-            } else {
-                if (bannerWrapper) bannerWrapper.classList.add('hidden');
-                if (bannerImg) bannerImg.src = '';
-                if (textContent) {
-                    textContent.style.display = 'flex';
-                    textContent.style.backgroundColor = 'transparent';
-                    textContent.style.padding = '2.5rem 1.5rem';
-                    textContent.style.margin = '0 auto';
-                    textContent.style.border = 'none';
-                }
-                if (titleEl) titleEl.style.display = 'block';
-                if (subtitleEl) subtitleEl.style.display = 'block';
-                if (badgeEl) badgeEl.style.display = 'inline-block';
-                if (titleEl) titleEl.innerHTML = headerData.title || '';
-                if (subtitleEl) subtitleEl.innerText = headerData.subtitle || '';
-            }
-        }
-
-        function saveHeaderConfig() {
-            const rawTitle = document.getElementById('configTitle').value.trim();
-            const rawSubtitle = document.getElementById('configSubtitle').value.trim();
-            
-            if (rawTitle) {
-                headerData.title = rawTitle.includes('simple moments') ? rawTitle.replace('simple moments', '<span style="color: var(--accent-color);">simple moments</span>') : rawTitle;
-            } else {
-                headerData.title = '';
-            }
-            headerData.subtitle = rawSubtitle;
-
-            const fileInput = document.getElementById('configBannerInput');
-            if (fileInput && fileInput.files && fileInput.files[0]) {
-                readImageFileHD(fileInput.files[0], 1200, 0.85, (base64) => {
-                    headerBannerUrl = base64;
-                    saveAndRefresh();
-                    closeModal('headerConfigModal');
-                });
-            } else {
-                saveAndRefresh();
-                closeModal('headerConfigModal');
-            }
-        }
-
-        function removeBannerImage() {
-            headerBannerUrl = '';
-            saveAndRefresh();
-            closeModal('headerConfigModal');
-        }
-
-        function openCategoryManagerModal() {
-            renderCategoryListInModal();
-            openModal('categoryManagerModal');
-        }
-
-        function renderCategoryListInModal() {
-            const container = document.getElementById('categoryListContainer');
-            if (!container) return;
-            container.innerHTML = categories.map((cat, idx) => `
-                <div class="flex items-center justify-between p-2.5 rounded-2xl border-2" style="background-color: var(--bg-main); border-color: var(--border-color);">
-                    <input type="text" value="${cat}" id="editCat_${idx}" class="bg-transparent text-sm font-bold focus:outline-none w-2/3" style="color: var(--text-main);">
-                    <div class="flex gap-1.5">
-                        <button type="button" onclick="updateCategory(${idx})" class="cloud-btn px-3 py-1 text-xs font-bold" title="บันทึกชื่อใหม่">💾</button>
-                        ${categories.length > 1 ? `<button type="button" onclick="deleteCategory(${idx})" class="cloud-btn px-3 py-1 bg-[#fff2f2] text-[#d66868] text-xs font-bold" title="ลบประเภท">🗑️</button>` : ''}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function addNewCategory() {
-            const input = document.getElementById('newCategoryName');
-            const val = input ? input.value.trim() : '';
-            if (val && !categories.includes(val)) {
-                categories.push(val);
-                input.value = '';
-                saveAndRefresh();
-                renderCategoryListInModal();
-            } else {
-                alert('ชื่อประเภทซ้ำหรือว่างเปล่าครับ');
-            }
-        }
-
-        function updateCategory(idx) {
-            const editInput = document.getElementById(`editCat_${idx}`);
-            const newVal = editInput ? editInput.value.trim() : '';
-            if (newVal && !categories.includes(newVal)) {
-                const oldVal = categories[idx];
-                categories[idx] = newVal;
-                groups.forEach(g => {
-                    if (g.category === oldVal) g.category = newVal;
-                });
-                saveAndRefresh();
-                renderCategoryListInModal();
-            } else {
-                alert('ชื่อประเภทซ้ำหรือว่างเปล่าครับ');
-            }
-        }
-
-        function deleteCategory(idx) {
-            if (confirm('คุณต้องการลบประเภทนี้ใช่หรือไม่?')) {
-                const removed = categories.splice(idx, 1)[0];
-                groups.forEach(g => {
-                    if (g.category === removed) g.category = categories[0];
-                });
-                saveAndRefresh();
-                renderCategoryListInModal();
-            }
-        }
-
-        function renderCategorySelectOptions() {
-            const select = document.getElementById('newGroupCategory');
-            if (select) {
-                select.innerHTML = categories.map(cat => `<option value="${cat}">${cat}</option>`).join('');
-            }
-        }
-
-        function openAddGroupModal() {
-            renderCategorySelectOptions();
-            openModal('addGroupModal');
-        }
-
-        function closeAddGroupModal() {
-            closeModal('addGroupModal');
-            document.getElementById('newGroupName').value = '';
-            document.getElementById('newGroupBrand').value = '';
-            document.getElementById('newGroupDesc').value = '';
-            document.getElementById('newGroupCoverInput').value = '';
-            document.getElementById('newGroupAlbumInput').value = '';
-        }
-
-        function readImageFileHD(file, maxDimension = 1200, quality = 0.9, callback) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    let w = img.width;
-                    let h = img.height;
-                    
-                    if (w > maxDimension || h > maxDimension) {
-                        if (w > h) {
-                            h = Math.round((h * maxDimension) / w);
-                            w = maxDimension;
-                        } else {
-                            w = Math.round((w * maxDimension) / h);
-                            h = maxDimension;
-                        }
-                    }
-                    
-                    canvas.width = w;
-                    canvas.height = h;
-                    const ctx = canvas.getContext('2d');
-                    ctx.clearRect(0, 0, w, h);
-                    ctx.drawImage(img, 0, 0, w, h);
-                    callback(canvas.toDataURL('image/png'));
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function saveNewGroupDirect() {
-            const nameEl = document.getElementById('newGroupName');
-            const brandEl = document.getElementById('newGroupBrand');
-            const categoryEl = document.getElementById('newGroupCategory');
-            const targetEl = document.getElementById('newGroupTarget');
-            const descEl = document.getElementById('newGroupDesc');
-            const coverInput = document.getElementById('newGroupCoverInput');
-            const albumInput = document.getElementById('newGroupAlbumInput');
-
-            const name = nameEl ? nameEl.value.trim() : '';
-            const brand = brandEl ? brandEl.value.trim() : '';
-            const category = categoryEl ? categoryEl.value : categories[0];
-            const target = targetEl ? (parseInt(targetEl.value) || 25) : 25;
-            const desc = descEl ? descEl.value.trim() : '';
-
-            if (!name) { alert('กรุณากรอกชื่อกลุ่มสินค้าด้วยครับ'); return; }
-            if (!brand) { alert('กรุณากรอกชื่อแบรนด์สังกัดด้วยครับ'); return; }
-
-            const defaultCover = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80';
-
-            const handleCoverImage = (onCoverReady) => {
-                if (coverInput && coverInput.files && coverInput.files[0]) {
-                    readImageFileHD(coverInput.files[0], 1000, 0.9, (base64) => {
-                        onCoverReady(base64);
-                    });
-                } else {
-                    onCoverReady(defaultCover);
-                }
-            };
-
-            const handleAlbumImages = (coverUrl) => {
-                const files = albumInput.files;
-                const albumImages = [];
-
-                if (files && files.length > 0) {
-                    let loadedCount = 0;
-                    Array.from(files).forEach((file, index) => {
-                        readImageFileHD(file, 1200, 0.9, (base64) => {
-                            albumImages[index] = base64;
-                            loadedCount++;
-                            if (loadedCount === files.length) {
-                                finishSave(coverUrl, albumImages);
-                            }
-                        });
-                    });
-                } else {
-                    albumImages.push(coverUrl);
-                    finishSave(coverUrl, albumImages);
-                }
-            };
-
-            const finishSave = (coverUrl, albumImages) => {
-                const newGroup = {
-                    id: Date.now(),
-                    name: name,
-                    brand: brand,
-                    category: category,
-                    target: target,
-                    current: 0,
-                    desc: desc,
-                    coverImage: coverUrl,
-                    images: albumImages
-                };
-                groups.unshift(newGroup);
-                saveAndRefresh();
-                closeAddGroupModal();
-            };
-
-            handleCoverImage((coverUrl) => {
-                handleAlbumImages(coverUrl);
-            });
-        }
-
-        function openDetailModal(id) {
-            currentActiveGroupId = id;
-            const group = groups.find(g => g.id === id);
-            if (!group) return;
-
-            updateModalContent(group);
-            openModal('detailModal');
-        }
-
-        function closeDetailModal() {
-            closeModal('detailModal');
-            currentActiveGroupId = null;
-        }
-
-        function updateModalContent(group) {
-            const nameEl = document.getElementById('modalGroupName');
-            const brandEl = document.getElementById('modalBrandText');
-            const descEl = document.getElementById('modalGroupDesc');
-            const badge = document.getElementById('modalCategoryBadge');
-            const progressText = document.getElementById('modalProgressText');
-            const progressBar = document.getElementById('modalProgressBar');
-            const albumGrid = document.getElementById('modalAlbumGrid');
-
-            if (nameEl) nameEl.innerText = group.name;
-            if (brandEl) brandEl.innerText = group.brand;
-            if (descEl) descEl.innerText = group.desc || 'ไม่มีรายละเอียดเพิ่มเติม';
-            
-            const catStyle = getCategoryStyle(group.category);
-            if (badge) {
-                badge.innerText = group.category;
-                badge.style.backgroundColor = catStyle.bg;
-                badge.style.color = catStyle.text;
-            }
-
-            const percent = Math.min(100, Math.round((group.current / group.target) * 100));
-            if (progressText) progressText.innerText = `${group.current} / ${group.target} งาน (${percent}%)`;
-            if (progressBar) progressBar.style.width = `${percent}%`;
-
-            if (albumGrid) {
-                if (!group.images || group.images.length === 0) {
-                    albumGrid.innerHTML = `<p class="col-span-full text-center text-xs py-6 font-medium" style="color: var(--text-sub);">ยังไม่มีรูปในอัลบั้ม กดปุ่มเพิ่มรูปด้านบนได้เลยครับ</p>`;
-                    return;
-                }
-
-                albumGrid.innerHTML = group.images.map((img, idx) => `
-                    <div class="p-2.5 rounded-2xl border-2 flex flex-col justify-between shadow-xs" style="background-color: var(--card-bg); border-color: var(--border-color);">
-                        <div class="aspect-square rounded-xl overflow-hidden border mb-2 flex items-center justify-center" style="border-color: var(--border-color); background-color: var(--bg-main);">
-                            <img src="${img}" class="w-full h-full object-contain">
-                        </div>
-                        <div class="flex gap-1.5 justify-center items-center">
-                            <a href="${img}" download="album_${group.name}_${idx}.png" class="cloud-btn flex-grow py-1.5 text-[11px] font-bold flex items-center justify-center gap-1" style="background-color: var(--btn-bg); color: var(--accent-color);" title="บันทึกรูป">
-                                <i class="fa-solid fa-download"></i> บันทึก
-                            </a>
-                            <button type="button" onclick="deleteAlbumImage(${idx})" class="cloud-btn px-2.5 py-1.5 bg-[#fff2f2] text-[#d66868] text-xs font-bold" title="ลบรูป">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function updateModalProgress(change) {
-            const group = groups.find(g => g.id === currentActiveGroupId);
-            if (group) {
-                group.current = Math.max(0, Math.min(group.target, group.current + change));
-                saveAndRefresh();
-            }
-        }
-
-        function resetGroupProgress() {
-            if (confirm('คุณต้องการรีเซ็ตยอดงานของกลุ่มนี้กลับเป็น 0 ใช่หรือไม่?')) {
-                const group = groups.find(g => g.id === currentActiveGroupId);
-                if (group) {
-                    group.current = 0;
-                    saveAndRefresh();
-                }
-            }
-        }
-
-        function deleteCurrentGroup() {
-            if (confirm('คุณต้องการทิ้งกล่องกลุ่มสินค้านี้ใช่หรือไม่?')) {
-                groups = groups.filter(g => g.id !== currentActiveGroupId);
-                closeDetailModal();
-                saveAndRefresh();
-            }
-        }
-
-        function handleAlbumUpload(event) {
-            const files = event.target.files;
-            const group = groups.find(g => g.id === currentActiveGroupId);
-            if (!group || !files || files.length === 0) return;
-
-            let loadedCount = 0;
-            Array.from(files).forEach((file) => {
-                readImageFileHD(file, 1200, 0.9, (compressedUrl) => {
-                    group.images.push(compressedUrl);
-                    loadedCount++;
-                    if (loadedCount === files.length) {
-                        saveAndRefresh();
-                    }
-                });
-            });
-        }
-
-        function deleteAlbumImage(imgIndex) {
-            const group = groups.find(g => g.id === currentActiveGroupId);
-            if (group && group.images) {
-                group.images.splice(imgIndex, 1);
-                saveAndRefresh();
-            }
-        }
-
-        function setCategoryFilter(cat) {
-            currentCategoryFilter = cat;
-            renderCategoryTabs();
-            renderGroups();
-        }
-
-        function renderCategoryTabs() {
-            const tabsContainer = document.getElementById('categoryTabs');
-            if (!tabsContainer) return;
-            const allCats = ['all', ...categories];
-            
-            tabsContainer.innerHTML = allCats.map(cat => {
-                const label = cat === 'all' ? '✨ ทั้งหมดทุกกลุ่ม' : cat;
-                const isActive = currentCategoryFilter === cat;
-                const activeStyle = isActive ? 'background-color: var(--accent-color); color: white;' : 'background-color: var(--card-bg); color: var(--text-main);';
-                return `<button type="button" onclick="setCategoryFilter('${cat}')" class="cloud-btn px-4 py-2 text-xs font-bold transition" style="${activeStyle}">${label}</button>`;
-            }).join('');
-        }
-
-        function renderGroups() {
-            const searchInput = document.getElementById('searchInput');
-            const searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
-            const grid = document.getElementById('groupGrid');
-            if (!grid) return;
-
-            let filtered = groups.filter(g => {
-                const matchesCategory = currentCategoryFilter === 'all' || g.category === currentCategoryFilter;
-                const matchesSearch = g.name.toLowerCase().includes(searchQuery) || g.brand.toLowerCase().includes(searchQuery);
-                return matchesCategory && matchesSearch;
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full text-center py-16 cloud-card bg-white">
-                        <div class="text-4xl mb-3" style="color: var(--accent-color);"><i class="fa-solid fa-cloud-moon"></i></div>
-                        <p class="font-bold text-base" style="color: var(--text-main);">ไม่พบกล่องกลุ่มสินค้าที่คุณค้นหา</p>
-                        <p class="text-xs mt-1" style="color: var(--text-sub);">ลองกดเพิ่มกลุ่มสินค้าใหม่ด้านล่างขวาได้เลยครับเลขาพร้อมดูแล!</p>
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = filtered.map(group => {
-                const percent = Math.min(100, Math.round((group.current / group.target) * 100));
-                const isCompleted = group.current >= group.target;
-                const catStyle = getCategoryStyle(group.category);
-                const imageCount = group.images ? group.images.length : 0;
-                
-                const fallbackImg = 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80';
-                const displayCover = (group.coverImage && group.coverImage.trim() !== '') ? group.coverImage : ((group.images && group.images[0]) ? group.images[0] : fallbackImg);
-
-                return `
-                    <div onclick="openDetailModal(${group.id})" class="cloud-card p-5 flex flex-col justify-between cursor-pointer group/card" style="background-color: var(--card-bg);">
-                        <div>
-                            <div class="relative h-52 rounded-2xl overflow-hidden mb-4 border-2 shadow-xs" style="background-color: var(--bg-main); border-color: var(--border-color);">
-                                <img src="${displayCover}" class="w-full h-full object-cover group-hover/card:scale-105 transition duration-500">
-                                <div class="absolute top-3 left-3 backdrop-blur-xs px-3 py-1 rounded-full text-xs font-bold border shadow-xs" style="background-color: rgba(255,255,255,0.9); color: var(--text-main); border-color: var(--border-color);">
-                                    ${group.brand}
-                                </div>
-                                <div class="absolute bottom-3 right-3 backdrop-blur-xs px-2.5 py-1 rounded-xl text-xs font-bold text-white" style="background-color: rgba(107, 91, 83, 0.8);">
-                                    <i class="fa-solid fa-images mr-1"></i> ${imageCount} รูป
-                                </div>
-                            </div>
-
-                            <div class="flex items-center gap-2 mb-1.5">
-                                <span class="text-[11px] font-extrabold px-3 py-0.5 rounded-full border" style="background-color: ${catStyle.bg}; color: ${catStyle.text}; border-color: var(--border-color);">${group.category}</span>
-                            </div>
-                            <h3 class="text-lg font-extrabold line-clamp-1 group-hover/card:opacity-75 transition" style="color: var(--text-main);">${group.name}</h3>
-                            <p class="text-xs line-clamp-1 mt-0.5" style="color: var(--text-sub);">${group.desc || 'ไม่มีรายละเอียดเพิ่มเติม'}</p>
-
-                            <div class="mt-4">
-                                <div class="flex justify-between text-xs mb-1 font-bold">
-                                    <span style="color: var(--text-sub);">เป้าหมาย: ${group.current} / ${group.target} งาน</span>
-                                    <span class="${isCompleted ? 'text-emerald-600 font-extrabold' : ''}" style="${!isCompleted ? 'color: var(--accent-color);' : ''}">${isCompleted ? '🎉 สำเร็จครบแล้ว!' : percent + '%'}</span>
-                                </div>
-                                <div class="w-full h-3 rounded-full overflow-hidden border" style="background-color: var(--bg-main); border-color: var(--border-color);">
-                                    <div class="h-full transition-all duration-300" style="background-color: var(--accent-color); width: ${percent}%"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-5 pt-3 border-t border-dashed flex justify-between items-center text-xs font-bold" style="border-color: var(--border-color); color: var(--text-sub);">
-                            <span>คลิกเปิดกล่องดูอัลบั้ม</span>
-                            <span class="w-7 h-7 rounded-full flex items-center justify-center transition" style="background-color: var(--btn-bg); color: var(--accent-color); border: 1px solid var(--border-color);"><i class="fa-solid fa-arrow-right"></i></span>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        window.addEventListener('DOMContentLoaded', async () => {
-            try {
-                await initDB();
-                const savedCategories = await dbGet('cloud_categories');
-                const savedHeader = await dbGet('cloud_header');
-                const savedBanner = await dbGet('cloud_banner_blob');
-                const savedGroups = await dbGet('cloud_groups');
-                const savedDecor = await dbGet('cloud_bg_decor');
-
-                if (savedCategories) categories = savedCategories;
-                if (savedHeader) headerData = savedHeader;
-                if (savedBanner) headerBannerUrl = savedBanner;
-                if (savedGroups && Array.isArray(savedGroups) && savedGroups.length > 0) {
-                    groups = savedGroups;
-                }
-                if (savedDecor) bgDecorData = savedDecor;
-            } catch (err) {
-                console.error("IndexedDB Load Error:", err);
-            }
-
-            renderThemeButtons();
-            loadSavedTheme();
-            renderBackgroundDecor();
-            saveAndRefresh();
-        });
-    </script>
+
+    <div
+      class="link-card searchable"
+      data-search="ลูกค้า เขียนรีวิว รีวิว ส่งรีวิว"
+    >
+
+      <div class="link-icon">
+        💗
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          ลิงก์สำหรับให้ลูกค้ารีวิวให้
+        </div>
+
+        <div class="link-description">
+          หน้าสำหรับส่งรีวิวเข้าร้าน
+        </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="copyLink('https://benniefunny.netlify.app/review')"
+        >
+          ♡
+        </button>
+
+        <button
+          class="action open"
+          onclick="openLink('https://benniefunny.netlify.app/review')"
+        >
+          ↗
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================
+       ADMIN
+  ======================= -->
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <h2 class="section-title">
+        🧸 สำหรับแอดมิน
+      </h2>
+
+      <span class="section-small">
+        admin
+      </span>
+
+    </div>
+
+
+    <div
+      class="link-card searchable"
+      data-search="แอดมิน หลังบ้าน admin หลังบ้านแอดมิน"
+    >
+
+      <div class="link-icon">
+        🛠️
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          ลิงก์หลังบ้านแอดมิน
+        </div>
+
+        <div class="link-description">
+          จัดการระบบฝั่งแอดมิน
+        </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="copyLink('https://happy-benny.netlify.app/admin.html')"
+        >
+          ♡
+        </button>
+
+        <button
+          class="action open"
+          onclick="openLink('https://happy-benny.netlify.app/admin.html')"
+        >
+          ↗
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="link-card searchable"
+      data-search="เพิ่มสมาชิก สมาชิก member admin"
+    >
+
+      <div class="link-icon">
+        🌷
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          ลิงก์เพิ่มสมาชิก
+        </div>
+
+        <div class="link-description">
+          เพิ่มสมาชิกเข้าสู่ระบบ
+        </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="copyLink('https://happy-benny.netlify.app/member-admin')"
+        >
+          ♡
+        </button>
+
+        <button
+          class="action open"
+          onclick="openLink('https://happy-benny.netlify.app/member-admin')"
+        >
+          ↗
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="link-card searchable"
+      data-search="จัดการรีวิว รีวิว review admin หลังบ้าน"
+    >
+
+      <div class="link-icon">
+        📝
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          ลิงก์จัดการรีวิวต่าง ๆ
+        </div>
+
+        <div class="link-description">
+          ตรวจสอบและจัดการรีวิว
+        </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="copyLink('https://happy-benny.netlify.app/review-admin')"
+        >
+          ♡
+        </button>
+
+        <button
+          class="action open"
+          onclick="openLink('https://happy-benny.netlify.app/review-admin')"
+        >
+          ↗
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ======================
+       AGENT
+  ======================= -->
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <h2 class="section-title">
+        🐰 สำหรับตัวแทน
+      </h2>
+
+      <span class="section-small">
+        agent
+      </span>
+
+    </div>
+
+
+    <div
+      class="link-card searchable"
+      data-search="ตัวแทน agent ตัวแทนของตัวแทน"
+    >
+
+      <div class="link-icon">
+        🎀
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          ลิงก์สำหรับตัวแทน
+        </div>
+
+        <div class="link-description">
+          หน้าระบบสำหรับตัวแทน
+        </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="copyLink('https://baby.benniemsb.workers.dev/main')"
+        >
+          ♡
+        </button>
+
+        <button
+          class="action open"
+          onclick="openLink('https://baby.benniemsb.workers.dev/main')"
+        >
+          ↗
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- NO RESULT -->
+
+  <div
+    id="noResult"
+    class="no-result"
+  >
+    🌷<br>
+    ไม่พบลิงก์ที่ค้นหา
+  </div>
+
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="footer-stars">
+      ✦ ♡ ✦
+    </div>
+
+    <div class="footer-brand">
+      Bennie Choco
+    </div>
+
+    <div>
+      my little link book ♡
+    </div>
+
+  </footer>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+  id="toast"
+  class="toast"
+>
+  คัดลอกลิงก์แล้ว ♡
+</div>
+
+
+<script>
+
+/* =========================
+   OPEN LINK
+========================= */
+
+function openLink(url){
+
+  window.open(
+    url,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
+
+
+/* =========================
+   COPY LINK
+========================= */
+
+async function copyLink(url){
+
+  let copied = false;
+
+
+  /*
+    Modern clipboard
+  */
+
+  try{
+
+    if(
+      navigator.clipboard &&
+      window.isSecureContext
+    ){
+
+      await navigator.clipboard.writeText(url);
+
+      copied = true;
+
+    }
+
+  }catch(error){
+
+    copied = false;
+
+  }
+
+
+  /*
+    Fallback
+  */
+
+  if(!copied){
+
+    try{
+
+      const textarea =
+        document.createElement("textarea");
+
+      textarea.value = url;
+
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      textarea.style.top = "0";
+
+      document.body.appendChild(textarea);
+
+      textarea.focus();
+      textarea.select();
+
+      copied =
+        document.execCommand("copy");
+
+      textarea.remove();
+
+    }catch(error){
+
+      copied = false;
+
+    }
+
+  }
+
+
+  if(copied){
+
+    showToast("คัดลอกลิงก์แล้ว ♡");
+
+  }else{
+
+    showToast("คัดลอกไม่สำเร็จ");
+
+  }
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    message;
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer =
+    setTimeout(function(){
+
+      toast.classList.remove("show");
+
+    },1800);
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+const searchInput =
+  document.getElementById(
+    "searchInput"
+  );
+
+const cards =
+  document.querySelectorAll(
+    ".searchable"
+  );
+
+const noResult =
+  document.getElementById(
+    "noResult"
+  );
+
+
+searchInput.addEventListener(
+  "input",
+  function(){
+
+    const keyword =
+      this.value
+        .trim()
+        .toLowerCase();
+
+    let visible = 0;
+
+
+    cards.forEach(function(card){
+
+      const searchText =
+        (
+          card.dataset.search +
+          " " +
+          card.innerText
+        ).toLowerCase();
+
+
+      const matched =
+        searchText.includes(
+          keyword
+        );
+
+
+      card.style.display =
+        matched ? "" : "none";
+
+
+      if(matched){
+
+        visible++;
+
+      }
+
+    });
+
+
+    noResult.style.display =
+      (
+        keyword !== "" &&
+        visible === 0
+      )
+        ? "block"
+        : "none";
+
+  }
+);
+
+</script>
+
 </body>
 </html>
