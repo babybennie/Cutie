@@ -8,35 +8,20 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
-  --pink:#f3c8d8;
-  --pink2:#f9e4ec;
-  --pink3:#fff1f6;
-
-  --lavender:#dcd4f5;
-  --lavender2:#eee9fb;
-
-  --blue:#cfe8f4;
-  --blue2:#eaf7fb;
-
-  --yellow:#f8e8b8;
-  --yellow2:#fff8df;
-
-  --mint:#d8eee5;
-  --mint2:#eef9f4;
-
-  --cream:#fffaf7;
+  --pink:#f7dce7;
+  --pink2:#fff1f6;
+  --cream:#fffafc;
+  --brown:#6d4c57;
+  --dark:#49343d;
+  --gold:#b78a45;
+  --line:#ead5de;
   --white:#ffffff;
-
-  --text:#67525b;
-  --text2:#907b84;
-  --dark:#59434c;
-
-  --shadow:0 12px 30px rgba(103,82,91,.10);
+  --danger:#b85b6e;
 }
 
 *{
@@ -50,53 +35,19 @@ html{
 body{
   margin:0;
   min-height:100vh;
-
-  font-family:"Kanit",sans-serif;
-
-  color:var(--text);
-
   background:
-    radial-gradient(
-      circle at 10% 10%,
-      rgba(243,200,216,.55),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 90% 15%,
-      rgba(207,232,244,.55),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 20% 90%,
-      rgba(220,212,245,.55),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #fffaf7,
-      #fff3f7 45%,
-      #f7f3ff
-    );
-}
-
-button,
-input{
-  font-family:inherit;
-}
-
-button{
-  cursor:pointer;
+    radial-gradient(circle at top left,#fff5f8 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#f8e5ed 0%,transparent 35%),
+    #fffafb;
+  color:var(--dark);
+  font-family:"Kanit",sans-serif;
 }
 
 .container{
-  width:min(720px,92%);
-  margin:auto;
-
-  padding:
-    24px 0
-    60px;
+  width:min(920px,calc(100% - 28px));
+  margin:0 auto;
+  padding:35px 0 55px;
 }
-
 
 /* =========================
    HEADER
@@ -104,298 +55,390 @@ button{
 
 .header{
   text-align:center;
-  margin-bottom:24px;
+  margin-bottom:25px;
 }
 
 .logo{
-  width:78px;
-  height:78px;
-
-  margin:
-    0 auto
-    12px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      #ffffff,
-      #ffeaf2
-    );
-
-  box-shadow:
-    0 10px 25px
-    rgba(103,82,91,.12);
-
-  font-size:36px;
-}
-
-.brand{
-  margin:0;
-
-  font-family:
-    "Playfair Display",
-    serif;
-
-  font-size:32px;
+  font-family:"Playfair Display",serif;
+  font-size:38px;
   font-weight:700;
-
-  color:var(--dark);
+  color:#593c49;
+  letter-spacing:.3px;
+  margin-bottom:5px;
 }
 
 .subtitle{
-  margin:
-    5px 0 0;
-
-  color:var(--text2);
-
   font-size:14px;
+  color:#9a7885;
 }
-
 
 /* =========================
-   SEARCH
+   SEARCH + ADD
 ========================= */
 
+.toolbar{
+  display:flex;
+  gap:10px;
+  margin:25px 0 30px;
+}
+
 .search-box{
-  margin:
-    22px 0;
+  flex:1;
+  position:relative;
 }
 
-.search{
+.search-box input{
   width:100%;
-
-  border:none;
+  height:50px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  padding:0 18px 0 46px;
   outline:none;
-
-  padding:
-    14px
-    18px;
-
-  border-radius:18px;
-
-  background:
-    rgba(255,255,255,.88);
-
-  color:var(--text);
-
+  color:var(--dark);
+  font-family:inherit;
   font-size:15px;
-
-  box-shadow:var(--shadow);
+  box-shadow:0 4px 15px rgba(100,60,75,.05);
 }
 
-.search::placeholder{
-  color:#b29da5;
+.search-box input:focus{
+  border-color:#d5a9b9;
+  box-shadow:0 0 0 3px rgba(215,170,190,.15);
 }
 
+.search-icon{
+  position:absolute;
+  left:17px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:18px;
+  opacity:.65;
+}
+
+.add-main-btn{
+  height:50px;
+  border:0;
+  border-radius:16px;
+  padding:0 18px;
+  background:linear-gradient(135deg,#a96b82,#875268);
+  color:#fff;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  white-space:nowrap;
+  box-shadow:0 7px 18px rgba(135,82,104,.18);
+  transition:.2s;
+}
+
+.add-main-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 9px 22px rgba(135,82,104,.25);
+}
 
 /* =========================
    SECTION
 ========================= */
 
 .section{
-  margin-top:25px;
+  margin-bottom:30px;
 }
 
 .section-title{
   display:flex;
-
   align-items:center;
-  justify-content:space-between;
-
-  margin-bottom:12px;
-}
-
-.section-title h2{
-  margin:0;
-
+  gap:9px;
   font-size:18px;
   font-weight:600;
-
-  color:var(--dark);
+  margin:0 0 13px;
+  color:#654650;
 }
 
-
-/* =========================
-   LINK LIST
-========================= */
-
-.link-list{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:13px;
+.section-title::after{
+  content:"";
+  height:1px;
+  background:var(--line);
+  flex:1;
 }
-
 
 /* =========================
    LINK CARD
 ========================= */
 
+.links{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
 .link-card{
-  position:relative;
-
-  padding:17px;
-
-  border-radius:22px;
-
-  background:
-    rgba(255,255,255,.90);
-
-  border:
-    1px solid
-    rgba(255,255,255,.8);
-
-  box-shadow:var(--shadow);
-
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:14px;
+  box-shadow:0 5px 18px rgba(100,60,75,.045);
   transition:.2s;
 }
 
 .link-card:hover{
-  transform:
-    translateY(-2px);
+  transform:translateY(-1px);
+  box-shadow:0 8px 22px rgba(100,60,75,.08);
+}
+
+.link-top{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.link-icon{
+  width:44px;
+  height:44px;
+  min-width:44px;
+  border-radius:13px;
+  background:var(--pink2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:21px;
+  border:1px solid #f0dce4;
 }
 
 .link-info{
-  margin-bottom:12px;
+  flex:1;
+  min-width:0;
 }
 
-.link-title{
-  margin:0;
-
-  font-size:17px;
+.link-name{
+  font-size:16px;
   font-weight:600;
-
-  color:var(--dark);
+  color:#513842;
+  line-height:1.35;
 }
 
 .link-description{
-  margin:
-    4px 0 0;
-
-  color:var(--text2);
-
+  margin-top:2px;
   font-size:12px;
+  color:#9a7c86;
+  line-height:1.5;
 }
 
-.link-buttons{
-  display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:8px;
+.link-url{
+  margin-top:5px;
+  font-size:11px;
+  color:#b19aa3;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
-
-/* =========================
-   BUTTON
-========================= */
+.link-actions{
+  display:flex;
+  gap:7px;
+  margin-top:12px;
+  padding-left:56px;
+}
 
 .action-btn{
-  border:none;
-
-  padding:
-    10px
-    12px;
-
-  border-radius:13px;
-
-  font-size:13px;
-
-  transition:.2s;
+  border:1px solid var(--line);
+  background:#fff;
+  color:#735563;
+  border-radius:10px;
+  height:34px;
+  padding:0 12px;
+  font-family:inherit;
+  font-size:12px;
+  cursor:pointer;
+  transition:.18s;
 }
 
 .action-btn:hover{
-  transform:
-    translateY(-1px);
+  background:#fff4f8;
+  border-color:#dcb8c7;
 }
 
 .open-btn{
-  background:
-    var(--lavender2);
-
-  color:#70628d;
+  background:#fff0f5;
 }
 
-.copy-btn{
-  background:
-    var(--blue2);
-
-  color:#527887;
+.edit-btn{
+  color:#8b6c35;
 }
 
+.delete-btn{
+  color:var(--danger);
+}
 
 /* =========================
-   CATEGORY COLORS
+   CUSTOM EMPTY
 ========================= */
 
-.card-pink{
-  background:
-    linear-gradient(
-      135deg,
-      #fff,
-      #fff0f5
-    );
+.custom-empty{
+  text-align:center;
+  padding:22px;
+  border:1px dashed #e5ccd7;
+  border-radius:16px;
+  color:#aa8d98;
+  font-size:13px;
+  background:rgba(255,255,255,.55);
 }
-
-.card-blue{
-  background:
-    linear-gradient(
-      135deg,
-      #fff,
-      #eef9fc
-    );
-}
-
-.card-purple{
-  background:
-    linear-gradient(
-      135deg,
-      #fff,
-      #f4f0ff
-    );
-}
-
-.card-yellow{
-  background:
-    linear-gradient(
-      135deg,
-      #fff,
-      #fff9e9
-    );
-}
-
-.card-mint{
-  background:
-    linear-gradient(
-      135deg,
-      #fff,
-      #effaf5
-    );
-}
-
 
 /* =========================
    FOOTER
 ========================= */
 
 .footer{
-  margin-top:35px;
-
   text-align:center;
-
-  color:#ad969f;
-
+  margin-top:45px;
+  color:#b0969f;
   font-size:12px;
 }
 
+/* =========================
+   MODAL
+========================= */
+
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(48,30,37,.42);
+  backdrop-filter:blur(4px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:1000;
+}
+
+.modal-backdrop.show{
+  display:flex;
+}
+
+.modal{
+  width:min(500px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#fffafb;
+  border:1px solid #ead5de;
+  border-radius:22px;
+  box-shadow:0 25px 70px rgba(50,25,35,.22);
+  padding:23px;
+}
+
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.modal-title{
+  font-size:20px;
+  font-weight:600;
+  color:#5b3d48;
+}
+
+.close-btn{
+  width:34px;
+  height:34px;
+  border:0;
+  border-radius:10px;
+  background:#f9eaf0;
+  color:#765561;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-label{
+  display:block;
+  margin-bottom:6px;
+  font-size:13px;
+  color:#6c4e59;
+  font-weight:500;
+}
+
+.form-input,
+.form-select,
+.form-textarea{
+  width:100%;
+  border:1px solid #e4cfd8;
+  border-radius:12px;
+  background:#fff;
+  color:#513842;
+  font-family:inherit;
+  font-size:14px;
+  outline:none;
+  padding:11px 13px;
+}
+
+.form-input,
+.form-select{
+  height:44px;
+}
+
+.form-textarea{
+  min-height:75px;
+  resize:vertical;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus{
+  border-color:#cfa1b3;
+  box-shadow:0 0 0 3px rgba(207,161,179,.13);
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:10px;
+}
+
+.form-help{
+  margin-top:5px;
+  font-size:11px;
+  color:#a88d97;
+}
+
+.custom-category{
+  display:none;
+  margin-top:9px;
+}
+
+.custom-category.show{
+  display:block;
+}
+
+.modal-actions{
+  display:flex;
+  gap:9px;
+  margin-top:22px;
+}
+
+.modal-btn{
+  flex:1;
+  height:44px;
+  border-radius:12px;
+  font-family:inherit;
+  font-size:14px;
+  cursor:pointer;
+}
+
+.cancel-btn{
+  border:1px solid var(--line);
+  background:#fff;
+  color:#765561;
+}
+
+.save-btn{
+  border:0;
+  background:linear-gradient(135deg,#a96b82,#875268);
+  color:#fff;
+}
 
 /* =========================
    TOAST
@@ -403,170 +446,116 @@ button{
 
 .toast{
   position:fixed;
-
   left:50%;
   bottom:25px;
-
-  z-index:2000;
-
-  transform:
-    translate(-50%,20px);
-
-  opacity:0;
-
-  pointer-events:none;
-
-  padding:
-    12px
-    18px;
-
-  border-radius:14px;
-
-  background:
-    rgba(89,67,76,.94);
-
-  color:white;
-
+  transform:translate(-50%,20px);
+  background:#513842;
+  color:#fff;
+  padding:11px 17px;
+  border-radius:12px;
   font-size:13px;
-
+  opacity:0;
+  pointer-events:none;
   transition:.25s;
+  z-index:2000;
+  box-shadow:0 8px 25px rgba(50,25,35,.22);
 }
 
 .toast.show{
   opacity:1;
-
-  transform:
-    translate(-50%,0);
+  transform:translate(-50%,0);
 }
 
+/* =========================
+   SEARCH HIDDEN
+========================= */
+
+.hidden-by-search{
+  display:none !important;
+}
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:520px){
+@media(max-width:600px){
 
   .container{
-    width:94%;
+    width:min(100% - 20px,920px);
+    padding-top:25px;
   }
 
-  .brand{
-    font-size:28px;
+  .logo{
+    font-size:31px;
   }
 
-  .link-buttons{
-    grid-template-columns:
-      1fr 1fr;
+  .toolbar{
+    flex-direction:column;
+  }
+
+  .add-main-btn{
+    width:100%;
+  }
+
+  .link-actions{
+    padding-left:0;
+    flex-wrap:wrap;
   }
 
   .action-btn{
-    padding:11px 8px;
+    flex:1;
+    min-width:85px;
   }
 
+  .form-row{
+    grid-template-columns:70px 1fr;
+  }
 }
-
 </style>
 </head>
 
-
 <body>
-
 
 <div class="container">
 
-
   <!-- HEADER -->
-
   <header class="header">
-
-    <div class="logo">
-      🍫
-    </div>
-
-    <h1 class="brand">
-      Bennie Choco
-    </h1>
-
-    <p class="subtitle">
-      ♡ Link Book / รวมลิงก์ที่ใช้บ่อย ♡
-    </p>
-
+    <div class="logo">Bennie Choco ♡</div>
+    <div class="subtitle">Link Book</div>
   </header>
 
+  <!-- SEARCH + ADD -->
+  <div class="toolbar">
 
-  <!-- SEARCH -->
+    <div class="search-box">
+      <span class="search-icon">⌕</span>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="ค้นหาลิงก์..."
+        autocomplete="off"
+      >
+    </div>
 
-  <div class="search-box">
-
-    <input
-      id="searchInput"
-      class="search"
-      type="search"
-      placeholder="🔎 ค้นหาลิงก์..."
-      autocomplete="off"
-    >
+    <button class="add-main-btn" id="addMainBtn">
+      ＋ เพิ่มรายการ
+    </button>
 
   </div>
 
 
   <!-- =========================
        ลิงก์ที่ใช้บ่อย
-  ========================== -->
-
+  ========================= -->
   <section class="section">
 
-    <div class="section-title">
+    <h2 class="section-title">
+      ⭐ ลิงก์ที่ใช้บ่อย
+    </h2>
 
-      <h2>
-        🔗 ลิงก์ที่ใช้บ่อย
-      </h2>
+    <div class="links">
 
-    </div>
-
-
-    <div class="link-list">
-
-
-      <!-- BIO LIBRARY -->
-
-      <article
-        class="link-card card-purple"
-        data-search="คลังไบโอ ไบโอ ข้อความ bio library"
-      >
-
-        <div class="link-info">
-
-          <h3 class="link-title">
-            📚 คลังไบโออีกหน้าเว็บ
-          </h3>
-
-          <p class="link-description">
-            รวมไบโอและข้อความที่ใช้บ่อย
-          </p>
-
-        </div>
-
-
-        <div class="link-buttons">
-
-          <button
-            class="action-btn open-btn"
-            onclick="openPage('bio-library.html')"
-          >
-            🔗 เปิดหน้าเว็บ
-          </button>
-
-          <button
-            class="action-btn copy-btn"
-            onclick="copyLink('bio-library.html')"
-          >
-            📋 คัดลอกลิงก์
-          </button>
-
-        </div>
-
-      </article>
-
+      <!-- ใส่ลิงก์เดิมของมึงในส่วนนี้ได้ตามต้องการ -->
 
     </div>
 
@@ -575,60 +564,54 @@ button{
 
   <!-- =========================
        เว็บไซต์หลัก
-  ========================== -->
-
+  ========================= -->
   <section class="section">
 
-    <div class="section-title">
+    <h2 class="section-title">
+      🌐 เว็บไซต์หลัก
+    </h2>
 
-      <h2>
-        🌷 เว็บไซต์หลัก
-      </h2>
+    <div class="links">
 
-    </div>
+      <div class="link-card" data-search="bennie choco เว็บไซต์หลัก">
+        <div class="link-top">
 
+          <div class="link-icon">🍫</div>
 
-    <div class="link-list">
+          <div class="link-info">
+            <div class="link-name">
+              Bennie Choco
+            </div>
 
+            <div class="link-description">
+              เว็บไซต์หลักของ Bennie Choco
+            </div>
 
-      <article
-        class="link-card card-pink"
-        data-search="เว็บไซต์หลัก bennie choco main web"
-      >
-
-        <div class="link-info">
-
-          <h3 class="link-title">
-            🏠 เว็บไซต์ Bennie Choco
-          </h3>
-
-          <p class="link-description">
-            หน้าเว็บไซต์หลัก
-          </p>
+            <div class="link-url">
+              https://benniefunny.netlify.app/
+            </div>
+          </div>
 
         </div>
 
-
-        <div class="link-buttons">
+        <div class="link-actions">
 
           <button
             class="action-btn open-btn"
-            onclick="openPage('https://happy-benny.netlify.app/')"
+            onclick="openLink('https://benniefunny.netlify.app/')"
           >
-            🔗 เปิดเว็บไซต์
+            ↗ เปิด
           </button>
 
           <button
-            class="action-btn copy-btn"
-            onclick="copyLink('https://happy-benny.netlify.app/')"
+            class="action-btn"
+            onclick="copyLink('https://benniefunny.netlify.app/')"
           >
             📋 คัดลอกลิงก์
           </button>
 
         </div>
-
-      </article>
-
+      </div>
 
     </div>
 
@@ -636,100 +619,17 @@ button{
 
 
   <!-- =========================
-       ลูกค้า
-  ========================== -->
-
+       ระบบสำหรับลูกค้า
+  ========================= -->
   <section class="section">
 
-    <div class="section-title">
+    <h2 class="section-title">
+      👤 ระบบสำหรับลูกค้า
+    </h2>
 
-      <h2>
-        👤 ระบบสำหรับลูกค้า
-      </h2>
+    <div class="links">
 
-    </div>
-
-
-    <div class="link-list">
-
-
-      <article
-        class="link-card card-blue"
-        data-search="รีวิว รีวิวลูกค้า cute review"
-      >
-
-        <div class="link-info">
-
-          <h3 class="link-title">
-            💬 หน้ารีวิว
-          </h3>
-
-          <p class="link-description">
-            ดูรีวิวจากลูกค้า
-          </p>
-
-        </div>
-
-
-        <div class="link-buttons">
-
-          <button
-            class="action-btn open-btn"
-            onclick="openPage('https://benniefunny.netlify.app/cutereview.html')"
-          >
-            🔗 เปิดหน้าเว็บ
-          </button>
-
-          <button
-            class="action-btn copy-btn"
-            onclick="copyLink('https://benniefunny.netlify.app/cutereview.html')"
-          >
-            📋 คัดลอกลิงก์
-          </button>
-
-        </div>
-
-      </article>
-
-
-      <article
-        class="link-card card-pink"
-        data-search="ส่งรีวิว review submit"
-      >
-
-        <div class="link-info">
-
-          <h3 class="link-title">
-            ✍️ ส่งรีวิว
-          </h3>
-
-          <p class="link-description">
-            หน้าสำหรับลูกค้าส่งรีวิว
-          </p>
-
-        </div>
-
-
-        <div class="link-buttons">
-
-          <button
-            class="action-btn open-btn"
-            onclick="openPage('https://benniefunny.netlify.app/review')"
-          >
-            🔗 เปิดหน้าเว็บ
-          </button>
-
-          <button
-            class="action-btn copy-btn"
-            onclick="copyLink('https://benniefunny.netlify.app/review')"
-          >
-            📋 คัดลอกลิงก์
-          </button>
-
-        </div>
-
-      </article>
-
+      <!-- เพิ่มลิงก์ระบบลูกค้าตรงนี้ -->
 
     </div>
 
@@ -737,139 +637,17 @@ button{
 
 
   <!-- =========================
-       ADMIN
-  ========================== -->
-
+       ระบบหลังบ้าน
+  ========================= -->
   <section class="section">
 
-    <div class="section-title">
+    <h2 class="section-title">
+      🔐 ระบบหลังบ้าน
+    </h2>
 
-      <h2>
-        🔐 ระบบหลังบ้าน
-      </h2>
+    <div class="links">
 
-    </div>
-
-
-    <div class="link-list">
-
-
-      <article
-        class="link-card card-yellow"
-        data-search="admin หลังบ้าน ระบบจัดการ"
-      >
-
-        <div class="link-info">
-
-          <h3 class="link-title">
-            ⚙️ Admin
-          </h3>
-
-          <p class="link-description">
-            ระบบจัดการเว็บไซต์หลัก
-          </p>
-
-        </div>
-
-
-        <div class="link-buttons">
-
-          <button
-            class="action-btn open-btn"
-            onclick="openPage('https://happy-benny.netlify.app/admin.html')"
-          >
-            🔗 เปิดระบบ
-          </button>
-
-          <button
-            class="action-btn copy-btn"
-            onclick="copyLink('https://happy-benny.netlify.app/admin.html')"
-          >
-            📋 คัดลอกลิงก์
-          </button>
-
-        </div>
-
-      </article>
-
-
-      <article
-        class="link-card card-purple"
-        data-search="member admin สมาชิก"
-      >
-
-        <div class="link-info">
-
-          <h3 class="link-title">
-            👥 Member Admin
-          </h3>
-
-          <p class="link-description">
-            ระบบจัดการสมาชิก
-          </p>
-
-        </div>
-
-
-        <div class="link-buttons">
-
-          <button
-            class="action-btn open-btn"
-            onclick="openPage('https://happy-benny.netlify.app/member-admin')"
-          >
-            🔗 เปิดระบบ
-          </button>
-
-          <button
-            class="action-btn copy-btn"
-            onclick="copyLink('https://happy-benny.netlify.app/member-admin')"
-          >
-            📋 คัดลอกลิงก์
-          </button>
-
-        </div>
-
-      </article>
-
-
-      <article
-        class="link-card card-blue"
-        data-search="review admin รีวิว หลังบ้าน"
-      >
-
-        <div class="link-info">
-
-          <h3 class="link-title">
-            🛡️ Review Admin
-          </h3>
-
-          <p class="link-description">
-            จัดการและตรวจสอบรีวิว
-          </p>
-
-        </div>
-
-
-        <div class="link-buttons">
-
-          <button
-            class="action-btn open-btn"
-            onclick="openPage('https://happy-benny.netlify.app/review-admin')"
-          >
-            🔗 เปิดระบบ
-          </button>
-
-          <button
-            class="action-btn copy-btn"
-            onclick="copyLink('https://happy-benny.netlify.app/review-admin')"
-          >
-            📋 เปิดระบบ
-          </button>
-
-        </div>
-
-      </article>
-
+      <!-- เพิ่มลิงก์หลังบ้านตรงนี้ -->
 
     </div>
 
@@ -877,142 +655,251 @@ button{
 
 
   <!-- =========================
-       AGENT
-  ========================== -->
-
+       ระบบตัวแทน
+  ========================= -->
   <section class="section">
 
-    <div class="section-title">
+    <h2 class="section-title">
+      🧸 ระบบตัวแทน
+    </h2>
 
-      <h2>
-        🤝 ระบบตัวแทน
-      </h2>
+    <div class="links">
 
-    </div>
-
-
-    <div class="link-list">
-
-
-      <!-- =========================
-           สมัครตัวแทน
-      ========================== -->
-
-      <article
-        class="link-card card-mint"
-        data-search="สมัครตัวแทน agent register สมัคร ตัวแทน"
+      <!-- 1 -->
+      <div
+        class="link-card"
+        data-search="ระบบตัวแทน ลิงก์หลัก member bennie"
       >
 
-        <div class="link-info">
+        <div class="link-top">
 
-          <h3 class="link-title">
-            📝 สมัครตัวแทน
-          </h3>
+          <div class="link-icon">🧸</div>
 
-          <p class="link-description">
-            แบบฟอร์มสำหรับสมัครเป็นตัวแทน Bennie Choco
-          </p>
+          <div class="link-info">
+
+            <div class="link-name">
+              ระบบตัวแทน — ลิงก์หลัก
+            </div>
+
+            <div class="link-description">
+              หน้าหลักระบบตัวแทน
+            </div>
+
+            <div class="link-url">
+              https://member-bennie.netlify.app/
+            </div>
+
+          </div>
 
         </div>
 
-
-        <div class="link-buttons">
+        <div class="link-actions">
 
           <button
             class="action-btn open-btn"
-            onclick="openPage(AGENT_APPLY_URL)"
+            onclick="openLink('https://member-bennie.netlify.app/')"
           >
-            🔗 สมัครตัวแทน
+            ↗ เปิด
           </button>
 
           <button
-            class="action-btn copy-btn"
-            onclick="copyLink(AGENT_APPLY_URL)"
+            class="action-btn"
+            onclick="copyLink('https://member-bennie.netlify.app/')"
           >
             📋 คัดลอกลิงก์
           </button>
 
         </div>
 
-      </article>
+      </div>
 
 
-      <!-- =========================
-           เช็คตัวแทน
-      ========================== -->
-
-      <article
-        class="link-card card-blue"
-        data-search="เช็คตัวแทน ตรวจสอบตัวแทน สถานะตัวแทน agent check"
+      <!-- 2 -->
+      <div
+        class="link-card"
+        data-search="สมัครตัวแทน agent apply สมัคร"
       >
 
-        <div class="link-info">
+        <div class="link-top">
 
-          <h3 class="link-title">
-            🔎 เช็คสถานะตัวแทน
-          </h3>
+          <div class="link-icon">📝</div>
 
-          <p class="link-description">
-            ตรวจสอบข้อมูลและสถานะของตัวแทน
-          </p>
+          <div class="link-info">
+
+            <div class="link-name">
+              สมัครตัวแทน
+            </div>
+
+            <div class="link-description">
+              หน้าสมัครเป็นตัวแทน Bennie Choco
+            </div>
+
+            <div class="link-url">
+              https://agentapply-bennie.netlify.app/
+            </div>
+
+          </div>
 
         </div>
 
-
-        <div class="link-buttons">
+        <div class="link-actions">
 
           <button
             class="action-btn open-btn"
-            onclick="openPage(AGENT_CHECK_URL)"
+            onclick="openLink('https://agentapply-bennie.netlify.app/')"
           >
-            🔎 เช็คตัวแทน
+            ↗ เปิด
           </button>
 
           <button
-            class="action-btn copy-btn"
-            onclick="copyLink(AGENT_CHECK_URL)"
+            class="action-btn"
+            onclick="copyLink('https://agentapply-bennie.netlify.app/')"
           >
             📋 คัดลอกลิงก์
           </button>
 
         </div>
 
-      </article>
+      </div>
 
 
-      <!-- =========================
-           ระบบตัวแทนเดิม
-      ========================== -->
-
-      <article
-        class="link-card card-purple"
-        data-search="agent ตัวแทน baby bennie ระบบตัวแทนเดิม"
+      <!-- 3 -->
+      <div
+        class="link-card"
+        data-search="เช็คสถานะตัวแทน agent check ตรวจสอบ ตัวแทน"
       >
 
-        <div class="link-info">
+        <div class="link-top">
 
-          <h3 class="link-title">
-            🧸 Agent
-          </h3>
+          <div class="link-icon">🔎</div>
 
-          <p class="link-description">
-            ระบบสำหรับตัวแทน
-          </p>
+          <div class="link-info">
+
+            <div class="link-name">
+              เช็คสถานะตัวแทน
+            </div>
+
+            <div class="link-description">
+              ตรวจสอบข้อมูลและสถานะตัวแทน
+            </div>
+
+            <div class="link-url">
+              https://agentcheck-bennie.netlify.app/
+            </div>
+
+          </div>
 
         </div>
 
-
-        <div class="link-buttons">
+        <div class="link-actions">
 
           <button
             class="action-btn open-btn"
-            onclick="openPage('https://baby.benniemsb.workers.dev/main')"
+            onclick="openLink('https://agentcheck-bennie.netlify.app/')"
           >
-            🔗 เปิดระบบ
+            ↗ เปิด
           </button>
 
           <button
-            class="action-btn copy-btn"
+            class="action-btn"
+            onclick="copyLink('https://agentcheck-bennie.netlify.app/')"
+          >
+            📋 คัดลอกลิงก์
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- 4 -->
+      <div
+        class="link-card"
+        data-search="หลังบ้านตัวแทน agent admin admin ตัวแทน"
+      >
+
+        <div class="link-top">
+
+          <div class="link-icon">🔐</div>
+
+          <div class="link-info">
+
+            <div class="link-name">
+              หลังบ้านตัวแทน
+            </div>
+
+            <div class="link-description">
+              ระบบจัดการข้อมูลตัวแทน
+            </div>
+
+            <div class="link-url">
+              https://agentadmin-bennie.netlify.app/
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="link-actions">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openLink('https://agentadmin-bennie.netlify.app/')"
+          >
+            ↗ เปิด
+          </button>
+
+          <button
+            class="action-btn"
+            onclick="copyLink('https://agentadmin-bennie.netlify.app/')"
+          >
+            📋 คัดลอกลิงก์
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- 5 -->
+      <div
+        class="link-card"
+        data-search="เมนูตัวแทนเดิม baby bennie workers"
+      >
+
+        <div class="link-top">
+
+          <div class="link-icon">🧸</div>
+
+          <div class="link-info">
+
+            <div class="link-name">
+              เมนูตัวแทนเดิม
+            </div>
+
+            <div class="link-description">
+              ระบบเมนูตัวแทนเดิม
+            </div>
+
+            <div class="link-url">
+              https://baby.benniemsb.workers.dev/main
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="link-actions">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openLink('https://baby.benniemsb.workers.dev/main')"
+          >
+            ↗ เปิด
+          </button>
+
+          <button
+            class="action-btn"
             onclick="copyLink('https://baby.benniemsb.workers.dev/main')"
           >
             📋 คัดลอกลิงก์
@@ -1020,20 +907,248 @@ button{
 
         </div>
 
-      </article>
-
+      </div>
 
     </div>
 
   </section>
 
 
+  <!-- =========================
+       รายการที่เพิ่มเอง
+  ========================= -->
+  <section class="section" id="customSection">
+
+    <h2 class="section-title">
+      ➕ รายการที่เพิ่มเอง
+    </h2>
+
+    <div
+      class="links"
+      id="customLinksContainer"
+    ></div>
+
+  </section>
+
+
   <footer class="footer">
-
     Bennie Choco ♡ Link Book
-
   </footer>
 
+</div>
+
+
+<!-- =========================
+     ADD / EDIT MODAL
+========================= -->
+
+<div
+  class="modal-backdrop"
+  id="modalBackdrop"
+>
+
+  <div
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+  >
+
+    <div class="modal-header">
+
+      <div
+        class="modal-title"
+        id="modalTitle"
+      >
+        เพิ่มรายการ
+      </div>
+
+      <button
+        class="close-btn"
+        id="closeModalBtn"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <form id="linkForm">
+
+      <input
+        type="hidden"
+        id="editId"
+      >
+
+
+      <!-- ชื่อ -->
+      <div class="form-group">
+
+        <label class="form-label">
+          ชื่อรายการ *
+        </label>
+
+        <input
+          class="form-input"
+          id="linkNameInput"
+          type="text"
+          placeholder="เช่น ระบบเช็คยอด"
+          maxlength="100"
+          required
+        >
+
+      </div>
+
+
+      <!-- รายละเอียด -->
+      <div class="form-group">
+
+        <label class="form-label">
+          รายละเอียด
+        </label>
+
+        <textarea
+          class="form-textarea"
+          id="linkDescriptionInput"
+          placeholder="รายละเอียดสั้น ๆ ของลิงก์"
+          maxlength="200"
+        ></textarea>
+
+      </div>
+
+
+      <!-- URL -->
+      <div class="form-group">
+
+        <label class="form-label">
+          URL *
+        </label>
+
+        <input
+          class="form-input"
+          id="linkUrlInput"
+          type="url"
+          placeholder="https://example.com"
+          required
+        >
+
+        <div class="form-help">
+          ต้องเป็นลิงก์ที่ขึ้นต้นด้วย https:// หรือ http://
+        </div>
+
+      </div>
+
+
+      <!-- ICON -->
+      <div class="form-group">
+
+        <label class="form-label">
+          ไอคอน
+        </label>
+
+        <div class="form-row">
+
+          <input
+            class="form-input"
+            id="linkIconInput"
+            type="text"
+            value="🔗"
+            maxlength="4"
+          >
+
+          <input
+            class="form-input"
+            id="iconPreviewInput"
+            type="text"
+            value="ใส่อีโมจิ เช่น 🔗"
+            disabled
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- CATEGORY -->
+      <div class="form-group">
+
+        <label class="form-label">
+          หมวดหมู่
+        </label>
+
+        <select
+          class="form-select"
+          id="linkCategoryInput"
+        >
+
+          <option value="ลิงก์ที่ใช้บ่อย">
+            ⭐ ลิงก์ที่ใช้บ่อย
+          </option>
+
+          <option value="เว็บไซต์หลัก">
+            🌐 เว็บไซต์หลัก
+          </option>
+
+          <option value="ระบบสำหรับลูกค้า">
+            👤 ระบบสำหรับลูกค้า
+          </option>
+
+          <option value="ระบบหลังบ้าน">
+            🔐 ระบบหลังบ้าน
+          </option>
+
+          <option value="ระบบตัวแทน">
+            🧸 ระบบตัวแทน
+          </option>
+
+          <option value="อื่น ๆ">
+            📁 อื่น ๆ
+          </option>
+
+        </select>
+
+
+        <div
+          class="custom-category"
+          id="customCategoryBox"
+        >
+
+          <input
+            class="form-input"
+            id="customCategoryInput"
+            type="text"
+            maxlength="50"
+            placeholder="ชื่อหมวดหมู่ใหม่"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- BUTTONS -->
+      <div class="modal-actions">
+
+        <button
+          class="modal-btn cancel-btn"
+          type="button"
+          id="cancelModalBtn"
+        >
+          ยกเลิก
+        </button>
+
+        <button
+          class="modal-btn save-btn"
+          type="submit"
+        >
+          💾 บันทึก
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
 
 </div>
 
@@ -1041,114 +1156,234 @@ button{
 <!-- TOAST -->
 
 <div
-  id="toast"
   class="toast"
+  id="toast"
 ></div>
 
 
 <script>
 
-/* =========================
-   AGENT WEBSITE URLS
-   =========================
-   
-   ตอนนี้ยังไม่มี URL จริง
-   ให้ใส่ URL ของเว็บจริงภายหลังตรงนี้
-*/
+/* =========================================================
+   SETTINGS
+========================================================= */
 
-const AGENT_APPLY_URL =
-  "https://YOUR-AGENT-APPLY-SITE.netlify.app/";
-
-const AGENT_CHECK_URL =
-  "https://YOUR-AGENT-CHECK-SITE.netlify.app/";
+const STORAGE_KEY = "bennie_link_book_custom_links";
 
 
-/* =========================
-   OPEN PAGE
-========================= */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-function openPage(url){
+const modalBackdrop =
+  document.getElementById("modalBackdrop");
 
-  window.location.href = url;
+const modalTitle =
+  document.getElementById("modalTitle");
+
+const linkForm =
+  document.getElementById("linkForm");
+
+const editId =
+  document.getElementById("editId");
+
+const linkNameInput =
+  document.getElementById("linkNameInput");
+
+const linkDescriptionInput =
+  document.getElementById("linkDescriptionInput");
+
+const linkUrlInput =
+  document.getElementById("linkUrlInput");
+
+const linkIconInput =
+  document.getElementById("linkIconInput");
+
+const linkCategoryInput =
+  document.getElementById("linkCategoryInput");
+
+const customCategoryBox =
+  document.getElementById("customCategoryBox");
+
+const customCategoryInput =
+  document.getElementById("customCategoryInput");
+
+const customLinksContainer =
+  document.getElementById("customLinksContainer");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const customSection =
+  document.getElementById("customSection");
+
+const toast =
+  document.getElementById("toast");
+
+
+/* =========================================================
+   LOAD DATA
+========================================================= */
+
+let customLinks = loadCustomLinks();
+
+
+function loadCustomLinks(){
+
+  try{
+
+    const saved =
+      localStorage.getItem(STORAGE_KEY);
+
+    if(!saved){
+      return [];
+    }
+
+    const parsed =
+      JSON.parse(saved);
+
+    return Array.isArray(parsed)
+      ? parsed
+      : [];
+
+  }catch(error){
+
+    console.error(
+      "ไม่สามารถอ่านรายการที่บันทึกไว้ได้",
+      error
+    );
+
+    return [];
+
+  }
 
 }
 
 
-/* =========================
-   COPY LINK
-========================= */
+/* =========================================================
+   SAVE DATA
+========================================================= */
 
-async function copyLink(url){
-
-  let finalUrl = url;
-
-
-  /*
-    ถ้าเป็นลิงก์ภายในเว็บ
-    เช่น bio-library.html
-    ให้แปลงเป็น URL เต็มของเว็บปัจจุบัน
-  */
-
-  if(
-    !url.startsWith("http://") &&
-    !url.startsWith("https://")
-  ){
-
-    finalUrl =
-      new URL(
-        url,
-        window.location.href
-      ).href;
-
-  }
-
+function saveCustomLinks(){
 
   try{
 
-    await navigator.clipboard.writeText(
-      finalUrl
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(customLinks)
+    );
+
+  }catch(error){
+
+    console.error(
+      "ไม่สามารถบันทึกรายการได้",
+      error
     );
 
     showToast(
-      "คัดลอกลิงก์แล้ว 📋"
+      "❌ บันทึกไม่สำเร็จ"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   URL VALIDATION
+========================================================= */
+
+function validUrl(value){
+
+  try{
+
+    const url =
+      new URL(value);
+
+    return (
+      url.protocol === "https:" ||
+      url.protocol === "http:"
+    );
+
+  }catch{
+
+    return false;
+
+  }
+
+}
+
+
+/* =========================================================
+   OPEN LINK
+========================================================= */
+
+function openLink(url){
+
+  window.open(
+    url,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
+
+
+/* =========================================================
+   COPY LINK
+========================================================= */
+
+async function copyLink(url){
+
+  try{
+
+    await navigator.clipboard.writeText(url);
+
+    showToast(
+      "📋 คัดลอกลิงก์แล้ว"
     );
 
   }catch(error){
 
     const textarea =
-      document.createElement(
-        "textarea"
-      );
+      document.createElement("textarea");
 
-    textarea.value =
-      finalUrl;
+    textarea.value = url;
 
-    textarea.style.position =
-      "fixed";
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
 
-    textarea.style.opacity =
-      "0";
-
-    document.body.appendChild(
-      textarea
-    );
+    document.body.appendChild(textarea);
 
     textarea.select();
 
     try{
 
-      document.execCommand(
-        "copy"
-      );
+      document.execCommand("copy");
 
       showToast(
-        "คัดลอกลิงก์แล้ว 📋"
+        "📋 คัดลอกลิงก์แล้ว"
       );
 
-    }catch(e){
+    }catch{
 
       showToast(
-        "คัดลอกไม่สำเร็จ"
+        "❌ คัดลอกไม่สำเร็จ"
       );
 
     }
@@ -1160,107 +1395,816 @@ async function copyLink(url){
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+/* =========================================================
+   TOAST
+========================================================= */
 
-const searchInput =
-  document.getElementById(
-    "searchInput"
+let toastTimer;
+
+function showToast(message){
+
+  clearTimeout(toastTimer);
+
+  toast.textContent =
+    message;
+
+  toast.classList.add("show");
+
+  toastTimer =
+    setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    },2200);
+
+}
+
+
+/* =========================================================
+   OPEN MODAL
+========================================================= */
+
+function openAddModal(){
+
+  linkForm.reset();
+
+  editId.value = "";
+
+  linkIconInput.value = "🔗";
+
+  linkCategoryInput.value =
+    "ลิงก์ที่ใช้บ่อย";
+
+  customCategoryBox.classList.remove(
+    "show"
   );
 
+  customCategoryInput.value = "";
 
-searchInput.addEventListener(
-  "input",
-  function(){
+  modalTitle.textContent =
+    "เพิ่มรายการ";
 
-    const keyword =
-      this.value
-        .trim()
-        .toLowerCase();
+  modalBackdrop.classList.add(
+    "show"
+  );
+
+  setTimeout(() => {
+
+    linkNameInput.focus();
+
+  },100);
+
+}
 
 
-    const cards =
-      document.querySelectorAll(
-        ".link-card"
+/* =========================================================
+   EDIT MODAL
+========================================================= */
+
+function openEditModal(id){
+
+  const item =
+    customLinks.find(
+      link => link.id === id
+    );
+
+  if(!item){
+    return;
+  }
+
+  editId.value =
+    item.id;
+
+  linkNameInput.value =
+    item.name || "";
+
+  linkDescriptionInput.value =
+    item.description || "";
+
+  linkUrlInput.value =
+    item.url || "";
+
+  linkIconInput.value =
+    item.icon || "🔗";
+
+
+  const standardCategories = [
+    "ลิงก์ที่ใช้บ่อย",
+    "เว็บไซต์หลัก",
+    "ระบบสำหรับลูกค้า",
+    "ระบบหลังบ้าน",
+    "ระบบตัวแทน"
+  ];
+
+
+  if(
+    standardCategories.includes(
+      item.category
+    )
+  ){
+
+    linkCategoryInput.value =
+      item.category;
+
+    customCategoryBox.classList.remove(
+      "show"
+    );
+
+  }else{
+
+    linkCategoryInput.value =
+      "อื่น ๆ";
+
+    customCategoryBox.classList.add(
+      "show"
+    );
+
+    customCategoryInput.value =
+      item.category || "";
+
+  }
+
+
+  modalTitle.textContent =
+    "แก้ไขรายการ";
+
+  modalBackdrop.classList.add(
+    "show"
+  );
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeModal(){
+
+  modalBackdrop.classList.remove(
+    "show"
+  );
+
+  linkForm.reset();
+
+  editId.value = "";
+
+  customCategoryBox.classList.remove(
+    "show"
+  );
+
+}
+
+
+/* =========================================================
+   DELETE CUSTOM LINK
+========================================================= */
+
+function deleteCustomLink(id){
+
+  const item =
+    customLinks.find(
+      link => link.id === id
+    );
+
+  if(!item){
+    return;
+  }
+
+
+  const confirmed =
+    confirm(
+      `ต้องการลบ "${item.name}" ใช่ไหม?`
+    );
+
+
+  if(!confirmed){
+    return;
+  }
+
+
+  customLinks =
+    customLinks.filter(
+      link => link.id !== id
+    );
+
+
+  saveCustomLinks();
+
+  renderCustomLinks();
+
+  applySearch();
+
+  showToast(
+    "🗑️ ลบรายการแล้ว"
+  );
+
+}
+
+
+/* =========================================================
+   RENDER CUSTOM LINKS
+========================================================= */
+
+function renderCustomLinks(){
+
+  customLinksContainer.innerHTML = "";
+
+
+  if(customLinks.length === 0){
+
+    const empty =
+      document.createElement("div");
+
+    empty.className =
+      "custom-empty";
+
+    empty.textContent =
+      "ยังไม่มีรายการที่เพิ่มเอง";
+
+    customLinksContainer.appendChild(
+      empty
+    );
+
+    return;
+
+  }
+
+
+  customLinks.forEach(item => {
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "link-card custom-link-card";
+
+    card.dataset.search = [
+      item.name,
+      item.description,
+      item.url,
+      item.category
+    ]
+      .join(" ")
+      .toLowerCase();
+
+
+    const top =
+      document.createElement("div");
+
+    top.className =
+      "link-top";
+
+
+    const icon =
+      document.createElement("div");
+
+    icon.className =
+      "link-icon";
+
+    icon.textContent =
+      item.icon || "🔗";
+
+
+    const info =
+      document.createElement("div");
+
+    info.className =
+      "link-info";
+
+
+    const name =
+      document.createElement("div");
+
+    name.className =
+      "link-name";
+
+    name.textContent =
+      item.name;
+
+
+    const description =
+      document.createElement("div");
+
+    description.className =
+      "link-description";
+
+    description.textContent =
+      item.description || "";
+
+
+    const url =
+      document.createElement("div");
+
+    url.className =
+      "link-url";
+
+    url.textContent =
+      item.url;
+
+
+    info.appendChild(name);
+
+    if(item.description){
+      info.appendChild(description);
+    }
+
+    info.appendChild(url);
+
+    top.appendChild(icon);
+
+    top.appendChild(info);
+
+
+    const actions =
+      document.createElement("div");
+
+    actions.className =
+      "link-actions";
+
+
+    const openBtn =
+      document.createElement("button");
+
+    openBtn.type =
+      "button";
+
+    openBtn.className =
+      "action-btn open-btn";
+
+    openBtn.textContent =
+      "↗ เปิด";
+
+    openBtn.addEventListener(
+      "click",
+      () => openLink(item.url)
+    );
+
+
+    const copyBtn =
+      document.createElement("button");
+
+    copyBtn.type =
+      "button";
+
+    copyBtn.className =
+      "action-btn";
+
+    copyBtn.textContent =
+      "📋 คัดลอกลิงก์";
+
+    copyBtn.addEventListener(
+      "click",
+      () => copyLink(item.url)
+    );
+
+
+    const editBtn =
+      document.createElement("button");
+
+    editBtn.type =
+      "button";
+
+    editBtn.className =
+      "action-btn edit-btn";
+
+    editBtn.textContent =
+      "✏️ แก้ไข";
+
+    editBtn.addEventListener(
+      "click",
+      () => openEditModal(item.id)
+    );
+
+
+    const deleteBtn =
+      document.createElement("button");
+
+    deleteBtn.type =
+      "button";
+
+    deleteBtn.className =
+      "action-btn delete-btn";
+
+    deleteBtn.textContent =
+      "🗑️ ลบ";
+
+    deleteBtn.addEventListener(
+      "click",
+      () => deleteCustomLink(item.id)
+    );
+
+
+    actions.appendChild(openBtn);
+
+    actions.appendChild(copyBtn);
+
+    actions.appendChild(editBtn);
+
+    actions.appendChild(deleteBtn);
+
+
+    card.appendChild(top);
+
+    card.appendChild(actions);
+
+
+    customLinksContainer.appendChild(
+      card
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function applySearch(){
+
+  const keyword =
+    searchInput.value
+      .trim()
+      .toLowerCase();
+
+
+  const cards =
+    document.querySelectorAll(
+      ".link-card"
+    );
+
+
+  let visibleCustom =
+    0;
+
+
+  cards.forEach(card => {
+
+    const text =
+      (
+        card.dataset.search ||
+        card.textContent ||
+        ""
+      )
+      .toLowerCase();
+
+
+    const match =
+      !keyword ||
+      text.includes(keyword);
+
+
+    card.classList.toggle(
+      "hidden-by-search",
+      !match
+    );
+
+
+    if(
+      match &&
+      card.classList.contains(
+        "custom-link-card"
+      )
+    ){
+
+      visibleCustom++;
+
+    }
+
+  });
+
+
+  /*
+    ซ่อนหัวข้อรายการที่เพิ่มเอง
+    เมื่อค้นหาแล้วไม่มีรายการที่ตรง
+  */
+
+  if(
+    keyword &&
+    visibleCustom === 0
+  ){
+
+    customSection.classList.add(
+      "hidden-by-search"
+    );
+
+  }else{
+
+    customSection.classList.remove(
+      "hidden-by-search"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   CATEGORY UI
+========================================================= */
+
+linkCategoryInput.addEventListener(
+  "change",
+  () => {
+
+    if(
+      linkCategoryInput.value ===
+      "อื่น ๆ"
+    ){
+
+      customCategoryBox.classList.add(
+        "show"
       );
 
+      customCategoryInput.focus();
 
-    cards.forEach(card => {
+    }else{
 
-      const text =
-        card
-          .getAttribute(
-            "data-search"
-          )
-          .toLowerCase();
+      customCategoryBox.classList.remove(
+        "show"
+      );
 
+      customCategoryInput.value = "";
 
-      if(
-        text.includes(keyword)
-      ){
-
-        card.style.display =
-          "";
-
-      }else{
-
-        card.style.display =
-          "none";
-
-      }
-
-    });
+    }
 
   }
 );
 
 
-/* =========================
-   TOAST
-========================= */
+/* =========================================================
+   ADD MAIN BUTTON
+========================================================= */
 
-let toastTimer;
-
-
-function showToast(message){
-
-  const toast =
-    document.getElementById(
-      "toast"
-    );
-
-
-  toast.textContent =
-    message;
-
-
-  toast.classList.add(
-    "show"
+document
+  .getElementById("addMainBtn")
+  .addEventListener(
+    "click",
+    openAddModal
   );
 
 
-  clearTimeout(
-    toastTimer
+/* =========================================================
+   CLOSE BUTTONS
+========================================================= */
+
+document
+  .getElementById("closeModalBtn")
+  .addEventListener(
+    "click",
+    closeModal
   );
 
 
-  toastTimer =
-    setTimeout(
-      () => {
+document
+  .getElementById("cancelModalBtn")
+  .addEventListener(
+    "click",
+    closeModal
+  );
 
-        toast.classList.remove(
-          "show"
+
+/* =========================================================
+   BACKDROP CLOSE
+========================================================= */
+
+modalBackdrop.addEventListener(
+  "click",
+  event => {
+
+    if(
+      event.target ===
+      modalBackdrop
+    ){
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ESCAPE CLOSE
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key === "Escape" &&
+      modalBackdrop.classList.contains(
+        "show"
+      )
+    ){
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   FORM SUBMIT
+========================================================= */
+
+linkForm.addEventListener(
+  "submit",
+  event => {
+
+    event.preventDefault();
+
+
+    const name =
+      linkNameInput.value.trim();
+
+    const description =
+      linkDescriptionInput.value.trim();
+
+    const url =
+      linkUrlInput.value.trim();
+
+    const icon =
+      linkIconInput.value.trim() ||
+      "🔗";
+
+
+    let category =
+      linkCategoryInput.value;
+
+
+    if(
+      category === "อื่น ๆ"
+    ){
+
+      category =
+        customCategoryInput.value.trim();
+
+      if(!category){
+
+        showToast(
+          "⚠️ กรุณาใส่ชื่อหมวดหมู่"
         );
 
-      },
-      2200
+        customCategoryInput.focus();
+
+        return;
+
+      }
+
+    }
+
+
+    if(!name){
+
+      showToast(
+        "⚠️ กรุณาใส่ชื่อรายการ"
+      );
+
+      linkNameInput.focus();
+
+      return;
+
+    }
+
+
+    if(!validUrl(url)){
+
+      showToast(
+        "⚠️ URL ไม่ถูกต้อง"
+      );
+
+      linkUrlInput.focus();
+
+      return;
+
+    }
+
+
+    const existingId =
+      editId.value;
+
+
+    /* =========================
+       EDIT
+    ========================= */
+
+    if(existingId){
+
+      const index =
+        customLinks.findIndex(
+          link =>
+            link.id === existingId
+        );
+
+
+      if(index !== -1){
+
+        customLinks[index] = {
+
+          ...customLinks[index],
+
+          name,
+          description,
+          url,
+          icon,
+          category
+
+        };
+
+        saveCustomLinks();
+
+        renderCustomLinks();
+
+        applySearch();
+
+        closeModal();
+
+        showToast(
+          "✏️ แก้ไขรายการแล้ว"
+        );
+
+        return;
+
+      }
+
+    }
+
+
+    /* =========================
+       ADD
+    ========================= */
+
+    const newItem = {
+
+      id:
+        Date.now().toString(36) +
+        Math.random()
+          .toString(36)
+          .slice(2),
+
+      name,
+
+      description,
+
+      url,
+
+      icon,
+
+      category,
+
+      createdAt:
+        new Date().toISOString()
+
+    };
+
+
+    customLinks.unshift(
+      newItem
     );
 
-}
+
+    saveCustomLinks();
+
+    renderCustomLinks();
+
+    applySearch();
+
+    closeModal();
+
+    showToast(
+      "✅ เพิ่มรายการแล้ว"
+    );
+
+  }
+);
+
+
+/* =========================================================
+   SEARCH EVENT
+========================================================= */
+
+searchInput.addEventListener(
+  "input",
+  applySearch
+);
+
+
+/* =========================================================
+   INITIAL RENDER
+========================================================= */
+
+renderCustomLinks();
+
+applySearch();
 
 </script>
-
 
 </body>
 </html>
