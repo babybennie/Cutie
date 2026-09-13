@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bennie Choco ♡ คลังไบโอ</title>
+<title>Bennie Choco ♡ Link Book</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
   --pink:#f3c8d8;
   --pink2:#f9e4ec;
@@ -49,20 +50,37 @@ html{
 body{
   margin:0;
   min-height:100vh;
+
   font-family:"Kanit",sans-serif;
+
   color:var(--text);
 
   background:
-    radial-gradient(circle at 10% 10%, rgba(243,200,216,.55), transparent 30%),
-    radial-gradient(circle at 90% 15%, rgba(207,232,244,.55), transparent 30%),
-    radial-gradient(circle at 20% 90%, rgba(220,212,245,.55), transparent 30%),
-    linear-gradient(135deg,#fffaf7,#fff3f7 45%,#f7f3ff);
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(243,200,216,.55),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(207,232,244,.55),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 20% 90%,
+      rgba(220,212,245,.55),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #fffaf7,
+      #fff3f7 45%,
+      #f7f3ff
+    );
 }
 
 button,
-input,
-textarea,
-select{
+input{
   font-family:inherit;
 }
 
@@ -72,21 +90,30 @@ button{
 
 .container{
   width:min(720px,92%);
-  margin:0 auto;
-  padding:24px 0 60px;
+  margin:auto;
+
+  padding:
+    24px 0
+    60px;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 .header{
   text-align:center;
-  margin-bottom:22px;
+  margin-bottom:24px;
 }
 
 .logo{
   width:78px;
   height:78px;
-  margin:0 auto 12px;
+
+  margin:
+    0 auto
+    12px;
 
   display:flex;
   align-items:center;
@@ -95,10 +122,15 @@ button{
   border-radius:50%;
 
   background:
-    linear-gradient(145deg,#fff,#ffeaf2);
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #ffeaf2
+    );
 
   box-shadow:
-    0 10px 25px rgba(103,82,91,.12);
+    0 10px 25px
+    rgba(103,82,91,.12);
 
   font-size:36px;
 }
@@ -106,7 +138,10 @@ button{
 .brand{
   margin:0;
 
-  font-family:"Playfair Display",serif;
+  font-family:
+    "Playfair Display",
+    serif;
+
   font-size:32px;
   font-weight:700;
 
@@ -114,29 +149,41 @@ button{
 }
 
 .subtitle{
-  margin:5px 0 0;
+  margin:
+    5px 0 0;
+
   color:var(--text2);
+
   font-size:14px;
 }
 
-/* SEARCH */
+
+/* =========================
+   SEARCH
+========================= */
 
 .search-box{
-  margin:22px 0;
+  margin:
+    22px 0;
 }
 
 .search{
   width:100%;
+
   border:none;
   outline:none;
 
-  padding:14px 18px;
+  padding:
+    14px
+    18px;
 
   border-radius:18px;
 
-  background:rgba(255,255,255,.88);
+  background:
+    rgba(255,255,255,.88);
 
   color:var(--text);
+
   font-size:15px;
 
   box-shadow:var(--shadow);
@@ -146,14 +193,18 @@ button{
   color:#b29da5;
 }
 
-/* SECTION */
+
+/* =========================
+   SECTION
+========================= */
 
 .section{
-  margin-top:24px;
+  margin-top:25px;
 }
 
 .section-title{
   display:flex;
+
   align-items:center;
   justify-content:space-between;
 
@@ -169,130 +220,90 @@ button{
   color:var(--dark);
 }
 
-.count{
-  font-size:12px;
-  color:var(--text2);
-}
 
-/* ADD BUTTON */
+/* =========================
+   LINK LIST
+========================= */
 
-.add-button{
-  width:100%;
-
-  border:none;
-  border-radius:18px;
-
-  padding:15px 18px;
-
-  background:
-    linear-gradient(135deg,var(--lavender),var(--pink2));
-
-  color:var(--dark);
-
-  font-size:16px;
-  font-weight:600;
-
-  box-shadow:var(--shadow);
-
-  transition:.2s;
-}
-
-.add-button:hover{
-  transform:translateY(-2px);
-}
-
-/* CARDS */
-
-.bio-list{
+.link-list{
   display:flex;
+
   flex-direction:column;
-  gap:14px;
+
+  gap:13px;
 }
 
-.bio-card{
+
+/* =========================
+   LINK CARD
+========================= */
+
+.link-card{
   position:relative;
 
-  padding:18px;
+  padding:17px;
 
   border-radius:22px;
 
-  background:rgba(255,255,255,.90);
+  background:
+    rgba(255,255,255,.90);
+
+  border:
+    1px solid
+    rgba(255,255,255,.8);
 
   box-shadow:var(--shadow);
-
-  border:1px solid rgba(255,255,255,.8);
 
   transition:.2s;
 }
 
-.bio-card:hover{
-  transform:translateY(-2px);
+.link-card:hover{
+  transform:
+    translateY(-2px);
 }
 
-.bio-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-
-  gap:12px;
+.link-info{
+  margin-bottom:12px;
 }
 
-.bio-title{
+.link-title{
   margin:0;
 
-  font-size:18px;
+  font-size:17px;
   font-weight:600;
 
   color:var(--dark);
 }
 
-.bio-category{
-  display:inline-block;
+.link-description{
+  margin:
+    4px 0 0;
 
-  margin-top:5px;
+  color:var(--text2);
 
-  padding:4px 10px;
-
-  border-radius:20px;
-
-  background:var(--pink3);
-
-  color:#9b7180;
-
-  font-size:11px;
+  font-size:12px;
 }
 
-.bio-content{
-  margin:14px 0;
-
-  padding:14px;
-
-  border-radius:15px;
-
-  background:#fffafc;
-
-  border:1px solid #f6e6ed;
-
-  white-space:pre-wrap;
-
-  line-height:1.7;
-
-  font-size:14px;
-
-  color:var(--text);
-}
-
-.bio-actions{
+.link-buttons{
   display:grid;
-  grid-template-columns:1fr 1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
 
   gap:8px;
 }
 
+
+/* =========================
+   BUTTON
+========================= */
+
 .action-btn{
   border:none;
 
-  padding:10px 8px;
+  padding:
+    10px
+    12px;
 
   border-radius:13px;
 
@@ -302,204 +313,78 @@ button{
 }
 
 .action-btn:hover{
-  transform:translateY(-1px);
+  transform:
+    translateY(-1px);
 }
 
-.copy-btn{
-  background:var(--blue2);
-  color:#527887;
-}
+.open-btn{
+  background:
+    var(--lavender2);
 
-.edit-btn{
-  background:var(--lavender2);
   color:#70628d;
 }
 
-.delete-btn{
-  background:#fff0f0;
-  color:#a66b6b;
+.copy-btn{
+  background:
+    var(--blue2);
+
+  color:#527887;
 }
 
-/* EMPTY */
 
-.empty{
-  padding:35px 20px;
+/* =========================
+   CATEGORY COLORS
+========================= */
 
-  text-align:center;
-
-  border-radius:20px;
-
-  background:rgba(255,255,255,.7);
-
-  color:var(--text2);
-
-  box-shadow:var(--shadow);
+.card-pink{
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      #fff0f5
+    );
 }
 
-.empty-icon{
-  font-size:38px;
-  margin-bottom:8px;
+.card-blue{
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      #eef9fc
+    );
 }
 
-/* MODAL */
-
-.modal{
-  position:fixed;
-  inset:0;
-
-  z-index:1000;
-
-  display:none;
-  align-items:center;
-  justify-content:center;
-
-  padding:18px;
-
-  background:rgba(72,55,63,.35);
-
-  backdrop-filter:blur(6px);
+.card-purple{
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      #f4f0ff
+    );
 }
 
-.modal.show{
-  display:flex;
+.card-yellow{
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      #fff9e9
+    );
 }
 
-.modal-box{
-  width:min(620px,100%);
-  max-height:90vh;
-  overflow:auto;
-
-  padding:22px;
-
-  border-radius:25px;
-
-  background:var(--cream);
-
-  box-shadow:0 25px 70px rgba(50,35,42,.22);
+.card-mint{
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      #effaf5
+    );
 }
 
-.modal-title{
-  margin:0 0 18px;
 
-  font-size:21px;
-  font-weight:600;
-
-  color:var(--dark);
-}
-
-.form-group{
-  margin-bottom:15px;
-}
-
-.form-group label{
-  display:block;
-
-  margin-bottom:6px;
-
-  font-size:13px;
-  font-weight:500;
-
-  color:var(--dark);
-}
-
-.form-input,
-.form-textarea,
-.form-select{
-  width:100%;
-
-  border:1px solid #eadde2;
-  outline:none;
-
-  border-radius:14px;
-
-  padding:12px 14px;
-
-  background:white;
-
-  color:var(--text);
-
-  font-size:14px;
-}
-
-.form-input:focus,
-.form-textarea:focus,
-.form-select:focus{
-  border-color:#d9bdd0;
-
-  box-shadow:0 0 0 3px rgba(243,200,216,.25);
-}
-
-.form-textarea{
-  min-height:180px;
-  resize:vertical;
-  line-height:1.7;
-}
-
-.modal-actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-
-  gap:10px;
-
-  margin-top:20px;
-}
-
-.modal-btn{
-  border:none;
-
-  padding:13px;
-
-  border-radius:15px;
-
-  font-size:15px;
-  font-weight:500;
-}
-
-.cancel-btn{
-  background:#eee8eb;
-  color:var(--text);
-}
-
-.save-btn{
-  background:linear-gradient(135deg,var(--pink),var(--lavender));
-  color:var(--dark);
-}
-
-/* TOAST */
-
-.toast{
-  position:fixed;
-
-  left:50%;
-  bottom:25px;
-
-  z-index:2000;
-
-  transform:translate(-50%,20px);
-
-  opacity:0;
-
-  pointer-events:none;
-
-  padding:12px 18px;
-
-  border-radius:14px;
-
-  background:rgba(89,67,76,.94);
-
-  color:white;
-
-  font-size:13px;
-
-  transition:.25s;
-}
-
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
-
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 .footer{
   margin-top:35px;
@@ -511,6 +396,54 @@ button{
   font-size:12px;
 }
 
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+  bottom:25px;
+
+  z-index:2000;
+
+  transform:
+    translate(-50%,20px);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  padding:
+    12px
+    18px;
+
+  border-radius:14px;
+
+  background:
+    rgba(89,67,76,.94);
+
+  color:white;
+
+  font-size:13px;
+
+  transition:.25s;
+}
+
+.toast.show{
+  opacity:1;
+
+  transform:
+    translate(-50%,0);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:520px){
 
   .container{
@@ -521,34 +454,47 @@ button{
     font-size:28px;
   }
 
-  .bio-actions{
-    grid-template-columns:1fr;
+  .link-buttons{
+    grid-template-columns:
+      1fr 1fr;
   }
 
   .action-btn{
-    padding:11px;
+    padding:11px 8px;
   }
 
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <div class="container">
 
+
+  <!-- HEADER -->
+
   <header class="header">
 
-    <div class="logo">🍫</div>
+    <div class="logo">
+      🍫
+    </div>
 
-    <h1 class="brand">Bennie Choco</h1>
+    <h1 class="brand">
+      Bennie Choco
+    </h1>
 
     <p class="subtitle">
-      ♡ คลังไบโอ / ข้อความที่ใช้บ่อย ♡
+      ♡ Link Book / รวมลิงก์ที่ใช้บ่อย ♡
     </p>
 
   </header>
 
+
+  <!-- SEARCH -->
 
   <div class="search-box">
 
@@ -556,167 +502,538 @@ button{
       id="searchInput"
       class="search"
       type="search"
-      placeholder="🔎 ค้นหาไบโอ..."
+      placeholder="🔎 ค้นหาลิงก์..."
       autocomplete="off"
     >
 
   </div>
 
 
-  <div class="section">
+  <!-- =========================
+       ลิงก์ที่ใช้บ่อย
+  ========================== -->
 
-    <button
-      class="add-button"
-      onclick="openAddModal()"
-    >
-      ＋ เพิ่มไบโอใหม่
-    </button>
-
-  </div>
-
-
-  <div class="section">
+  <section class="section">
 
     <div class="section-title">
 
-      <h2>📚 คลังไบโอ</h2>
-
-      <span
-        id="countText"
-        class="count"
-      >
-        0 รายการ
-      </span>
+      <h2>
+        🔗 ลิงก์ที่ใช้บ่อย
+      </h2>
 
     </div>
 
 
-    <div
-      id="bioList"
-      class="bio-list"
-    ></div>
+    <div class="link-list">
 
-  </div>
+
+      <!-- BIO LIBRARY -->
+
+      <article
+        class="link-card card-purple"
+        data-search="คลังไบโอ ไบโอ ข้อความ bio library"
+      >
+
+        <div class="link-info">
+
+          <h3 class="link-title">
+            📚 คลังไบโออีกหน้าเว็บ
+          </h3>
+
+          <p class="link-description">
+            รวมไบโอและข้อความที่ใช้บ่อย
+          </p>
+
+        </div>
+
+
+        <div class="link-buttons">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openPage('bio-library.html')"
+          >
+            🔗 เปิดหน้าเว็บ
+          </button>
+
+          <button
+            class="action-btn copy-btn"
+            onclick="copyLink('bio-library.html')"
+          >
+            📋 คัดลอกลิงก์
+          </button>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       เว็บไซต์หลัก
+  ========================== -->
+
+  <section class="section">
+
+    <div class="section-title">
+
+      <h2>
+        🌷 เว็บไซต์หลัก
+      </h2>
+
+    </div>
+
+
+    <div class="link-list">
+
+
+      <article
+        class="link-card card-pink"
+        data-search="เว็บไซต์หลัก bennie choco main web"
+      >
+
+        <div class="link-info">
+
+          <h3 class="link-title">
+            🏠 เว็บไซต์ Bennie Choco
+          </h3>
+
+          <p class="link-description">
+            หน้าเว็บไซต์หลัก
+          </p>
+
+        </div>
+
+
+        <div class="link-buttons">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openPage('https://happy-benny.netlify.app/')"
+          >
+            🔗 เปิดเว็บไซต์
+          </button>
+
+          <button
+            class="action-btn copy-btn"
+            onclick="copyLink('https://happy-benny.netlify.app/')"
+          >
+            📋 คัดลอกลิงก์
+          </button>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ลูกค้า
+  ========================== -->
+
+  <section class="section">
+
+    <div class="section-title">
+
+      <h2>
+        👤 ระบบสำหรับลูกค้า
+      </h2>
+
+    </div>
+
+
+    <div class="link-list">
+
+
+      <article
+        class="link-card card-blue"
+        data-search="รีวิว รีวิวลูกค้า cute review"
+      >
+
+        <div class="link-info">
+
+          <h3 class="link-title">
+            💬 หน้ารีวิว
+          </h3>
+
+          <p class="link-description">
+            ดูรีวิวจากลูกค้า
+          </p>
+
+        </div>
+
+
+        <div class="link-buttons">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openPage('https://benniefunny.netlify.app/cutereview.html')"
+          >
+            🔗 เปิดหน้าเว็บ
+          </button>
+
+          <button
+            class="action-btn copy-btn"
+            onclick="copyLink('https://benniefunny.netlify.app/cutereview.html')"
+          >
+            📋 คัดลอกลิงก์
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <article
+        class="link-card card-pink"
+        data-search="ส่งรีวิว review submit"
+      >
+
+        <div class="link-info">
+
+          <h3 class="link-title">
+            ✍️ ส่งรีวิว
+          </h3>
+
+          <p class="link-description">
+            หน้าสำหรับลูกค้าส่งรีวิว
+          </p>
+
+        </div>
+
+
+        <div class="link-buttons">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openPage('https://benniefunny.netlify.app/review')"
+          >
+            🔗 เปิดหน้าเว็บ
+          </button>
+
+          <button
+            class="action-btn copy-btn"
+            onclick="copyLink('https://benniefunny.netlify.app/review')"
+          >
+            📋 คัดลอกลิงก์
+          </button>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ADMIN
+  ========================== -->
+
+  <section class="section">
+
+    <div class="section-title">
+
+      <h2>
+        🔐 ระบบหลังบ้าน
+      </h2>
+
+    </div>
+
+
+    <div class="link-list">
+
+
+      <article
+        class="link-card card-yellow"
+        data-search="admin หลังบ้าน ระบบจัดการ"
+      >
+
+        <div class="link-info">
+
+          <h3 class="link-title">
+            ⚙️ Admin
+          </h3>
+
+          <p class="link-description">
+            ระบบจัดการเว็บไซต์หลัก
+          </p>
+
+        </div>
+
+
+        <div class="link-buttons">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openPage('https://happy-benny.netlify.app/admin.html')"
+          >
+            🔗 เปิดระบบ
+          </button>
+
+          <button
+            class="action-btn copy-btn"
+            onclick="copyLink('https://happy-benny.netlify.app/admin.html')"
+          >
+            📋 คัดลอกลิงก์
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <article
+        class="link-card card-purple"
+        data-search="member admin สมาชิก"
+      >
+
+        <div class="link-info">
+
+          <h3 class="link-title">
+            👥 Member Admin
+          </h3>
+
+          <p class="link-description">
+            ระบบจัดการสมาชิก
+          </p>
+
+        </div>
+
+
+        <div class="link-buttons">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openPage('https://happy-benny.netlify.app/member-admin')"
+          >
+            🔗 เปิดระบบ
+          </button>
+
+          <button
+            class="action-btn copy-btn"
+            onclick="copyLink('https://happy-benny.netlify.app/member-admin')"
+          >
+            📋 คัดลอกลิงก์
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <article
+        class="link-card card-blue"
+        data-search="review admin รีวิว หลังบ้าน"
+      >
+
+        <div class="link-info">
+
+          <h3 class="link-title">
+            🛡️ Review Admin
+          </h3>
+
+          <p class="link-description">
+            จัดการและตรวจสอบรีวิว
+          </p>
+
+        </div>
+
+
+        <div class="link-buttons">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openPage('https://happy-benny.netlify.app/review-admin')"
+          >
+            🔗 เปิดระบบ
+          </button>
+
+          <button
+            class="action-btn copy-btn"
+            onclick="copyLink('https://happy-benny.netlify.app/review-admin')"
+          >
+            📋 เปิดระบบ
+          </button>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       AGENT
+  ========================== -->
+
+  <section class="section">
+
+    <div class="section-title">
+
+      <h2>
+        🤝 ระบบตัวแทน
+      </h2>
+
+    </div>
+
+
+    <div class="link-list">
+
+
+      <!-- =========================
+           สมัครตัวแทน
+      ========================== -->
+
+      <article
+        class="link-card card-mint"
+        data-search="สมัครตัวแทน agent register สมัคร ตัวแทน"
+      >
+
+        <div class="link-info">
+
+          <h3 class="link-title">
+            📝 สมัครตัวแทน
+          </h3>
+
+          <p class="link-description">
+            แบบฟอร์มสำหรับสมัครเป็นตัวแทน Bennie Choco
+          </p>
+
+        </div>
+
+
+        <div class="link-buttons">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openPage(AGENT_APPLY_URL)"
+          >
+            🔗 สมัครตัวแทน
+          </button>
+
+          <button
+            class="action-btn copy-btn"
+            onclick="copyLink(AGENT_APPLY_URL)"
+          >
+            📋 คัดลอกลิงก์
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           เช็คตัวแทน
+      ========================== -->
+
+      <article
+        class="link-card card-blue"
+        data-search="เช็คตัวแทน ตรวจสอบตัวแทน สถานะตัวแทน agent check"
+      >
+
+        <div class="link-info">
+
+          <h3 class="link-title">
+            🔎 เช็คสถานะตัวแทน
+          </h3>
+
+          <p class="link-description">
+            ตรวจสอบข้อมูลและสถานะของตัวแทน
+          </p>
+
+        </div>
+
+
+        <div class="link-buttons">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openPage(AGENT_CHECK_URL)"
+          >
+            🔎 เช็คตัวแทน
+          </button>
+
+          <button
+            class="action-btn copy-btn"
+            onclick="copyLink(AGENT_CHECK_URL)"
+          >
+            📋 คัดลอกลิงก์
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           ระบบตัวแทนเดิม
+      ========================== -->
+
+      <article
+        class="link-card card-purple"
+        data-search="agent ตัวแทน baby bennie ระบบตัวแทนเดิม"
+      >
+
+        <div class="link-info">
+
+          <h3 class="link-title">
+            🧸 Agent
+          </h3>
+
+          <p class="link-description">
+            ระบบสำหรับตัวแทน
+          </p>
+
+        </div>
+
+
+        <div class="link-buttons">
+
+          <button
+            class="action-btn open-btn"
+            onclick="openPage('https://baby.benniemsb.workers.dev/main')"
+          >
+            🔗 เปิดระบบ
+          </button>
+
+          <button
+            class="action-btn copy-btn"
+            onclick="copyLink('https://baby.benniemsb.workers.dev/main')"
+          >
+            📋 คัดลอกลิงก์
+          </button>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </section>
 
 
   <footer class="footer">
-    Bennie Choco ♡ Bio Library
+
+    Bennie Choco ♡ Link Book
+
   </footer>
 
-</div>
-
-
-<!-- MODAL -->
-
-<div
-  id="modal"
-  class="modal"
-  onclick="closeModalOutside(event)"
->
-
-  <div
-    class="modal-box"
-    onclick="event.stopPropagation()"
-  >
-
-    <h2
-      id="modalTitle"
-      class="modal-title"
-    >
-      เพิ่มไบโอ
-    </h2>
-
-
-    <div class="form-group">
-
-      <label>
-        ชื่อไบโอ
-      </label>
-
-      <input
-        id="titleInput"
-        class="form-input"
-        type="text"
-        placeholder="เช่น ไบโอแนะนำร้าน"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        หมวดหมู่
-      </label>
-
-      <select
-        id="categoryInput"
-        class="form-select"
-      >
-
-        <option value="ทั่วไป">
-          ทั่วไป
-        </option>
-
-        <option value="แนะนำร้าน">
-          แนะนำร้าน
-        </option>
-
-        <option value="โปรโมชั่น">
-          โปรโมชั่น
-        </option>
-
-        <option value="ติดต่อ">
-          ติดต่อ
-        </option>
-
-        <option value="ประกาศ">
-          ประกาศ
-        </option>
-
-        <option value="อื่นๆ">
-          อื่นๆ
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        ข้อความไบโอ
-      </label>
-
-      <textarea
-        id="contentInput"
-        class="form-textarea"
-        placeholder="พิมพ์ข้อความไบโอที่ต้องการเก็บไว้..."
-      ></textarea>
-
-    </div>
-
-
-    <div class="modal-actions">
-
-      <button
-        class="modal-btn cancel-btn"
-        onclick="closeModal()"
-      >
-        ยกเลิก
-      </button>
-
-      <button
-        class="modal-btn save-btn"
-        onclick="saveBio()"
-      >
-        💾 บันทึก
-      </button>
-
-    </div>
-
-  </div>
 
 </div>
 
@@ -731,467 +1048,108 @@ button{
 
 <script>
 
-const STORAGE_KEY = "bennie_choco_bio_library_v1";
+/* =========================
+   AGENT WEBSITE URLS
+   =========================
+   
+   ตอนนี้ยังไม่มี URL จริง
+   ให้ใส่ URL ของเว็บจริงภายหลังตรงนี้
+*/
 
-let bios = [];
+const AGENT_APPLY_URL =
+  "https://YOUR-AGENT-APPLY-SITE.netlify.app/";
 
-let editingId = null;
+const AGENT_CHECK_URL =
+  "https://YOUR-AGENT-CHECK-SITE.netlify.app/";
 
 
 /* =========================
-   LOAD DATA
+   OPEN PAGE
 ========================= */
 
-function loadBios(){
+function openPage(url){
 
-  try{
+  window.location.href = url;
 
-    const saved =
-      localStorage.getItem(STORAGE_KEY);
+}
 
-    if(saved){
 
-      bios = JSON.parse(saved);
+/* =========================
+   COPY LINK
+========================= */
 
-    }else{
+async function copyLink(url){
 
-      bios = [
+  let finalUrl = url;
 
-        {
-          id: Date.now(),
 
-          title:"ตัวอย่างไบโอ",
+  /*
+    ถ้าเป็นลิงก์ภายในเว็บ
+    เช่น bio-library.html
+    ให้แปลงเป็น URL เต็มของเว็บปัจจุบัน
+  */
 
-          category:"ทั่วไป",
+  if(
+    !url.startsWith("http://") &&
+    !url.startsWith("https://")
+  ){
 
-          content:
-`ยินดีต้อนรับเข้าสู่ Bennie Choco ♡
-
-สามารถใส่ข้อความไบโอที่ใช้บ่อยไว้ตรงนี้ได้เลยค่ะ`
-
-        }
-
-      ];
-
-      saveToStorage();
-
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-    bios = [];
-
-    showToast("ไม่สามารถโหลดข้อมูลที่บันทึกไว้ได้");
+    finalUrl =
+      new URL(
+        url,
+        window.location.href
+      ).href;
 
   }
-
-}
-
-
-/* =========================
-   SAVE STORAGE
-========================= */
-
-function saveToStorage(){
-
-  try{
-
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(bios)
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    showToast("บันทึกข้อมูลไม่สำเร็จ");
-
-  }
-
-}
-
-
-/* =========================
-   RENDER
-========================= */
-
-function renderBios(){
-
-  const list =
-    document.getElementById("bioList");
-
-  const search =
-    document
-      .getElementById("searchInput")
-      .value
-      .trim()
-      .toLowerCase();
-
-
-  const filtered =
-    bios.filter(item => {
-
-      const text =
-        `${item.title} ${item.category} ${item.content}`
-        .toLowerCase();
-
-      return text.includes(search);
-
-    });
-
-
-  document.getElementById("countText").textContent =
-    `${filtered.length} รายการ`;
-
-
-  if(filtered.length === 0){
-
-    list.innerHTML = `
-
-      <div class="empty">
-
-        <div class="empty-icon">
-          📝
-        </div>
-
-        <div>
-          ${
-            search
-            ? "ไม่พบไบโอที่ค้นหา"
-            : "ยังไม่มีไบโอในคลัง"
-          }
-        </div>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  list.innerHTML =
-    filtered
-      .map(item => createBioCard(item))
-      .join("");
-
-}
-
-
-/* =========================
-   CREATE CARD
-========================= */
-
-function createBioCard(item){
-
-  const safeTitle =
-    escapeHtml(item.title);
-
-  const safeCategory =
-    escapeHtml(item.category);
-
-  const safeContent =
-    escapeHtml(item.content);
-
-
-  return `
-
-    <article class="bio-card">
-
-      <div class="bio-top">
-
-        <div>
-
-          <h3 class="bio-title">
-            ${safeTitle}
-          </h3>
-
-          <span class="bio-category">
-            ${safeCategory}
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <div class="bio-content">
-        ${safeContent}
-      </div>
-
-
-      <div class="bio-actions">
-
-        <button
-          class="action-btn copy-btn"
-          onclick="copyBio(${item.id})"
-        >
-          📋 คัดลอก
-        </button>
-
-        <button
-          class="action-btn edit-btn"
-          onclick="editBio(${item.id})"
-        >
-          ✏️ แก้ไข
-        </button>
-
-        <button
-          class="action-btn delete-btn"
-          onclick="deleteBio(${item.id})"
-        >
-          🗑️ ลบ
-        </button>
-
-      </div>
-
-    </article>
-
-  `;
-
-}
-
-
-/* =========================
-   ADD
-========================= */
-
-function openAddModal(){
-
-  editingId = null;
-
-  document.getElementById("modalTitle").textContent =
-    "เพิ่มไบโอ";
-
-  document.getElementById("titleInput").value =
-    "";
-
-  document.getElementById("categoryInput").value =
-    "ทั่วไป";
-
-  document.getElementById("contentInput").value =
-    "";
-
-  document.getElementById("modal").classList.add("show");
-
-  setTimeout(() => {
-
-    document.getElementById("titleInput").focus();
-
-  },100);
-
-}
-
-
-/* =========================
-   EDIT
-========================= */
-
-function editBio(id){
-
-  const item =
-    bios.find(bio => bio.id === id);
-
-  if(!item) return;
-
-  editingId = id;
-
-  document.getElementById("modalTitle").textContent =
-    "แก้ไขไบโอ";
-
-  document.getElementById("titleInput").value =
-    item.title;
-
-  document.getElementById("categoryInput").value =
-    item.category;
-
-  document.getElementById("contentInput").value =
-    item.content;
-
-  document.getElementById("modal").classList.add("show");
-
-}
-
-
-/* =========================
-   SAVE BIO
-========================= */
-
-function saveBio(){
-
-  const title =
-    document
-      .getElementById("titleInput")
-      .value
-      .trim();
-
-  const category =
-    document
-      .getElementById("categoryInput")
-      .value;
-
-  const content =
-    document
-      .getElementById("contentInput")
-      .value
-      .trim();
-
-
-  if(!title){
-
-    showToast("กรุณาใส่ชื่อไบโอ");
-
-    return;
-
-  }
-
-
-  if(!content){
-
-    showToast("กรุณาใส่ข้อความไบโอ");
-
-    return;
-
-  }
-
-
-  if(editingId){
-
-    const index =
-      bios.findIndex(
-        item => item.id === editingId
-      );
-
-    if(index !== -1){
-
-      bios[index] = {
-
-        ...bios[index],
-
-        title,
-        category,
-        content
-
-      };
-
-    }
-
-    showToast("แก้ไขไบโอแล้ว");
-
-  }else{
-
-    bios.unshift({
-
-      id:
-        Date.now(),
-
-      title,
-
-      category,
-
-      content
-
-    });
-
-    showToast("เพิ่มไบโอแล้ว");
-
-  }
-
-
-  saveToStorage();
-
-  renderBios();
-
-  closeModal();
-
-}
-
-
-/* =========================
-   DELETE
-========================= */
-
-function deleteBio(id){
-
-  const item =
-    bios.find(bio => bio.id === id);
-
-  if(!item) return;
-
-
-  const confirmed =
-    confirm(
-      `ต้องการลบ "${item.title}" ใช่ไหม?`
-    );
-
-
-  if(!confirmed) return;
-
-
-  bios =
-    bios.filter(
-      bio => bio.id !== id
-    );
-
-
-  saveToStorage();
-
-  renderBios();
-
-  showToast("ลบไบโอแล้ว");
-
-}
-
-
-/* =========================
-   COPY
-========================= */
-
-async function copyBio(id){
-
-  const item =
-    bios.find(bio => bio.id === id);
-
-  if(!item) return;
-
-
-  const text =
-    item.content;
 
 
   try{
 
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(
+      finalUrl
+    );
 
-    showToast("คัดลอกไบโอแล้ว 📋");
+    showToast(
+      "คัดลอกลิงก์แล้ว 📋"
+    );
 
   }catch(error){
 
     const textarea =
-      document.createElement("textarea");
+      document.createElement(
+        "textarea"
+      );
 
-    textarea.value = text;
+    textarea.value =
+      finalUrl;
 
-    textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
+    textarea.style.position =
+      "fixed";
 
-    document.body.appendChild(textarea);
+    textarea.style.opacity =
+      "0";
+
+    document.body.appendChild(
+      textarea
+    );
 
     textarea.select();
 
     try{
 
-      document.execCommand("copy");
+      document.execCommand(
+        "copy"
+      );
 
-      showToast("คัดลอกไบโอแล้ว 📋");
+      showToast(
+        "คัดลอกลิงก์แล้ว 📋"
+      );
 
     }catch(e){
 
-      showToast("คัดลอกไม่สำเร็จ");
+      showToast(
+        "คัดลอกไม่สำเร็จ"
+      );
 
     }
 
@@ -1203,44 +1161,59 @@ async function copyBio(id){
 
 
 /* =========================
-   MODAL
-========================= */
-
-function closeModal(){
-
-  document
-    .getElementById("modal")
-    .classList.remove("show");
-
-  editingId = null;
-
-}
-
-
-function closeModalOutside(event){
-
-  if(
-    event.target ===
-    document.getElementById("modal")
-  ){
-
-    closeModal();
-
-  }
-
-}
-
-
-/* =========================
    SEARCH
 ========================= */
 
-document
-  .getElementById("searchInput")
-  .addEventListener(
-    "input",
-    renderBios
+const searchInput =
+  document.getElementById(
+    "searchInput"
   );
+
+
+searchInput.addEventListener(
+  "input",
+  function(){
+
+    const keyword =
+      this.value
+        .trim()
+        .toLowerCase();
+
+
+    const cards =
+      document.querySelectorAll(
+        ".link-card"
+      );
+
+
+    cards.forEach(card => {
+
+      const text =
+        card
+          .getAttribute(
+            "data-search"
+          )
+          .toLowerCase();
+
+
+      if(
+        text.includes(keyword)
+      ){
+
+        card.style.display =
+          "";
+
+      }else{
+
+        card.style.display =
+          "none";
+
+      }
+
+    });
+
+  }
+);
 
 
 /* =========================
@@ -1249,58 +1222,45 @@ document
 
 let toastTimer;
 
+
 function showToast(message){
 
   const toast =
-    document.getElementById("toast");
+    document.getElementById(
+      "toast"
+    );
+
 
   toast.textContent =
     message;
 
-  toast.classList.add("show");
 
-  clearTimeout(toastTimer);
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    toastTimer
+  );
+
 
   toastTimer =
-    setTimeout(() => {
+    setTimeout(
+      () => {
 
-      toast.classList.remove("show");
+        toast.classList.remove(
+          "show"
+        );
 
-    },2200);
-
-}
-
-
-/* =========================
-   ESCAPE HTML
-========================= */
-
-function escapeHtml(value){
-
-  return String(value)
-
-    .replaceAll("&","&amp;")
-
-    .replaceAll("<","&lt;")
-
-    .replaceAll(">","&gt;")
-
-    .replaceAll('"',"&quot;")
-
-    .replaceAll("'","&#039;");
+      },
+      2200
+    );
 
 }
-
-
-/* =========================
-   START
-========================= */
-
-loadBios();
-
-renderBios();
 
 </script>
+
 
 </body>
 </html>
