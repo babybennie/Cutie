@@ -563,8 +563,6 @@ body::after{
   background:#f9e8ef;
 }
 
-/* pastel alternating icon colors */
-
 .link-card:nth-child(3n+1) .link-icon{
   background:#f9e5ed;
 }
@@ -971,6 +969,53 @@ body::after{
       >
         เปิดเว็บหลัก ↗
       </button>
+
+    </div>
+
+
+    <!-- BIO LIBRARY -->
+
+    <div
+      class="link-card searchable"
+      data-search="คลังไบโอ ไบโอ ข้อความไบโอ ข้อความ คลังข้อความ"
+    >
+
+      <div class="link-icon">
+        📚
+      </div>
+
+      <div class="link-content">
+
+        <div class="link-name">
+          คลังไบโออีกหน้าเว็บ
+          <span class="tag">ใหม่</span>
+        </div>
+
+        <div class="link-description">
+          หน้าสำหรับเก็บและจัดการข้อความไบโอ
+        </div>
+
+      </div>
+
+      <div class="link-actions">
+
+        <button
+          class="action copy"
+          onclick="showToast('ยังไม่มีลิงก์คลังไบโอ')"
+          aria-label="คัดลอกลิงก์"
+        >
+          ♡
+        </button>
+
+        <button
+          class="action open"
+          onclick="showToast('กำลังเตรียมหน้าเว็บคลังไบโอ')"
+          aria-label="เปิดลิงก์"
+        >
+          ↗
+        </button>
+
+      </div>
 
     </div>
 
@@ -1600,11 +1645,6 @@ async function copyLink(url){
 
   let copied = false;
 
-
-  /*
-    Modern clipboard
-  */
-
   try{
 
     if(
@@ -1624,10 +1664,6 @@ async function copyLink(url){
 
   }
 
-
-  /*
-    Fallback
-  */
 
   if(!copied){
 
